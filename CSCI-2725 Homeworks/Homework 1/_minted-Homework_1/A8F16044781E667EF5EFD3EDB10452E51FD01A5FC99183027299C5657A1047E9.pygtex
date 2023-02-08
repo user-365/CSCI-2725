@@ -1,0 +1,16 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n+nf}{fun}\PYG{+w}{ }\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{N}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{+w}{                   }\PYG{c+c1}{// $T(N) =$}
+\PYG{+w}{  }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{N}\PYG{p}{;}\PYG{+w}{                            }\PYG{c+c1}{// $1 +$}
+\PYG{+w}{  }\PYG{k}{while}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{i}\PYG{+w}{ }\PYG{o}{\PYGZgt{}=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{+w}{                  }\PYG{c+c1}{// $(\log(N) + 1) \times ($ % TK infinite loop}
+\PYG{+w}{    }\PYG{n}{j}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{+w}{                          }\PYG{c+c1}{// $1 +$}
+\PYG{+w}{    }\PYG{k}{while}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{j}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{N}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{+w}{                 }\PYG{c+c1}{// $\log(N) \times ($}
+\PYG{+w}{      }\PYG{n}{k}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{                        }\PYG{c+c1}{// $1 +$}
+\PYG{+w}{      }\PYG{k}{while}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{k}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{N}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{+w}{               }\PYG{c+c1}{// $\frac{1}{2}N \times ($}
+\PYG{+w}{        }\PYG{n}{k}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{k}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{;}\PYG{+w}{                  }\PYG{c+c1}{// $1) +$}
+\PYG{+w}{      }\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{c+c1}{// while (3)}
+\PYG{+w}{      }\PYG{n}{j}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{j}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{;}\PYG{+w}{                    }\PYG{c+c1}{// $1) +$}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{c+c1}{// while (2)}
+\PYG{+w}{    }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{;}\PYG{+w}{                      }\PYG{c+c1}{// $1$}
+\PYG{+w}{  }\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{c+c1}{// while (1)                    // $) = \frac{1}{2}N\log(N)^2 + 2\log(N)^2 + 4\log(N) + \frac{1}{2}N\log(N) + 3$}
+\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{c+c1}{// fun (0)                        // $\therefore T \in O(N\log(N)^2)$}
+\end{Verbatim}

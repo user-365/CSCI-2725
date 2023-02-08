@@ -1,0 +1,300 @@
+% manage PDFs (esp. screen-reading tags)
+%\RequirePackage{pdfmanagement-testphase} % TK Uncomment when dependencies gotten
+%\DeclareDocumentMetadata{uncompress,pdfversion=2.0} % TK uncomment when control sequence done
+
+% TK TODO:
+% - add labels and captions n stuff to code blocks/snippets (fix function relabeling too)
+% - align 2nd level enumeration items with 1st level (ask on stackexchange)
+% - fix that one thing you emailed prof about
+
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+
+% make better PDF
+\usepackage[pdflang={en-US},pdftex]{hyperref}
+\hypersetup{
+  pdftitle={CSCI 2725 Homework 1},
+  pdfauthor={Yitao Tian},
+} % setup PDF
+%\usepackage{tagpdf} % TK uncomment. add tags to content
+
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools} % for multlined environment
+\usepackage{tcolorbox}
+
+% render code blocks
+\tcbuselibrary{minted, breakable, xparse, skins}
+\definecolor{bg}{gray}{0.12} % bg color of code block (almost black)
+\renewcommand{\theFancyVerbLine}{\sffamily % change line number formatting
+	\textcolor[rgb]{0.9,0.9,1}{\scriptsize
+	\oldstylenums{\arabic{FancyVerbLine}}}}
+\DeclareTCBListing{mymintedunbreakablecodeblock}{O{}m!O{}}{%
+  breakable=false,
+  listing engine=minted,
+  listing only,
+  minted language=#2,
+  minted style=github-dark,
+  minted options={%
+    linenos=true, % enable line numbers
+    gobble=3, % how many (conventionally, tab) characters to ignore from the latex editor
+    breaklines=true,
+    breakafter=,
+    fontfamily=tt,
+    fontsize=\small,
+    numbersep=8pt, % how far line numbers are from left edge of text
+    texcomments=true, % allow inline LaTeX math mode in code comments
+    % do not use tabs (use spaces instead), due to issues with incomplete tabs and spacing
+    #1},
+  label={Function},
+  left skip=0pt,
+  right skip=0pt,
+  width=\linewidth,
+  center, % center code block in page
+  boxsep=3pt, % all around minimum distance between text and edge
+  left=25pt, % to get line numbers into box
+  arc=5pt, % radius (?) of the rounded corner
+  boxrule=0pt, % no thin border around box
+  colback=bg, % bg color (almost black)
+  shadow={4pt}{-4pt}{0pt}{black!50!white}, % drop shadow
+  % ^page 188 of the version 4.15 (tcolorbox) manual
+  enhanced,
+  overlay={%
+    \begin{tcbclipinterior}
+    \fill[bg] (frame.south west) rectangle ([xshift=20pt] frame.north west);
+    \end{tcbclipinterior}},
+  #3}
+
+% right align qed symbol
+\newcommand{\myqed}{\tag*{$\blacksquare$}}
+
+% creates a phantom relational symbol (e.g. "=" or "\leq")
+% multiline/split expressions (after relational) must be horizontally to the right of the relational
+% source: https://tex.stackexchange.com/a/448386
+\newcommand*\myphantomrel[1]{\mathrel{\phantom{#1}}}
+
+% word/phrase inline highlighting (for final answers)
+% source: https://tex.stackexchange.com/a/234175 (less SLOW than tikz method on same page?)
+\newtcbox{\myhighlight}[1][]{enhanced, colframe=green, colback=green!15, 
+       frame style={opacity=0.25}, interior style={opacity=0.25}, 
+       nobeforeafter, tcbox raise base, shrink tight, extrude by=1mm, #1}
+
+\begin{document}
+
+%title
+\author{Yitao Tian}
+\date{2023-01-21}
+\title{CSCI-2725 Homework 1}
+\maketitle
+
+\begin{enumerate}
+	\item \textbf{Problem 1:} Give the Big O estimate of the following functions. \label{1}
+		\begin{enumerate}
+		
+			\item As defined, \myhighlight{$f \in O(n^{5})$}. Given a function $f: \mathbb{N} \rightarrow \mathbb{N}$, where
+			\begin{align*}
+				f(n)                     & = 5n^5 - 4n^4 + 3n^3 + \sqrt{2}n^2 + n - 1 \\
+					\textrm{(which is in turn) } & \leq 5n^5 + 3n^5 + \sqrt{2}n^5 + 1n^5 \\
+					\textrm{(which is in turn) } & = (5 + 3 + \sqrt{2} + 1) n^5 \\
+				\therefore f             & \in O(n^{5}).
+			\end{align*} \label{1(a)}
+			\item As defined, \myhighlight{$f \in O(n^{5})$}. Given a function $f$, where
+			\begin{align*}
+				f(n)         & = (n^3 - (\log(n))^3)(n^2 - \log(n)) + 11n^3 \\
+					         & = n^3n^2 - n^3\log(n) - (\log(n))^3n^2 + (\log(n))^4 + 11n^3 \\
+					         & = n^5 - n^3\log(n) - n^2(\log(n))^3 + (\log(n))^4 + 11n^3 \\
+					         & \leq n^5 + (\log(n))^4 + 11n^3 \\
+					         & \leq 1n^5 + 1n^5 + 11n^5 \\
+					         & = (1 + 1 + 11) n^5 \\
+				\therefore f & \in O(n^5).
+			\end{align*} \label{1(b)}
+			\item As defined, \myhighlight{$f \in O(n^{2})$}. Given a function $f$, where
+			\begin{align*}
+				f(n)         & = \frac{5n^4 + 10n^3 - 100n^2 - n - 1}{6n^2} \\
+					         & = \frac{5}{6}n^2 + \frac{10}{6}n - \frac{100}{6} - \frac{1}{6n} - \frac{1}{6n^2} \\
+					         & \leq \frac{5}{6}n^2 + \frac{10}{6}n \\
+					         & \leq \frac{5}{6}n^2 + \frac{10}{6}n^2 \\
+					         & = \left( \frac{5}{6} + \frac{10}{6} \right) n^2 \\
+				\therefore f & \in O(n^2).
+			\end{align*} \label{1(c)}
+			\item As defined, \myhighlight{$f \in O(n^2\log(n))$}. Given a function $f$, where
+			\begin{align*}
+				f(n)         & = \log(n^3 + n + 10) + n^2\log(n + 4) \\
+					         & \leq \log(1n^3 + 1n^3 + 10n^3) + n^2\log(1n + 4n) \\
+					         & = n^2\log(5n) + \log(12n^3) \\
+					         & = n^2(\log(5) + \log(n)) + \log(12) + \log(n^3) \\
+					         & = \log(5)n^2 + n^2\log(n) + \log(12) + 3\log(n) \\
+					         & \leq (1 + \log(5) + \log(12) + 3) n^2\log(n) \\
+				\therefore f & \in O(n^2\log(n)).
+			\end{align*} \label{1(d)}
+			\item As defined, \myhighlight{$f \in O(n^2\log(n)^2)$}. Given a function $f$, where
+			\begin{align*}
+				f(n)         & = (n\log(n) + 1)^2 + (\log(n) + 1)(n^2 + 1) \\
+					         & = n^2(\log(n))^2 + 2n\log(n) + n^2\log(n) + \log(n) + n^2 + 2 \\
+					         & \leq (1 + 2 + 1 + 1 + 1 + 1 + 1) n^2\log(n)^2 \\
+				\therefore f & \in O(n^2\log(n)^2).
+			\end{align*} \label{1(e)}
+			\item As defined, \myhighlight{$f \in O(\log(n))$}. Given a function $f$, where %TK
+			\begin{align*}
+				f(n)         & = \log((5n^5 + 7n^3 + 10)^2(3n^3 + 4n + 10)) \\
+					         & = \log((25n^{10} + 70n^8 + 100n^5 + 49n^6 + 140n^3 + 100) \\
+					         & \myphantomrel{=} \hphantom{\log((} \times (3n^3 + 4n + 10)) \\
+					         & = \log(75n^{13} + 310n^{11} + 250n^{10} + 427n^9 + 1000n^8 \\
+					         & \myphantomrel{=} \hphantom{\log(} + 196n^7 + 1310n^6 + 1000n^5 \\
+					         & \myphantomrel{=} \hphantom{\log(} + 560n^4 + 1700n^3 + 400n + 10000) \\
+					         & \leq \log((75 + 310 + 250 + 427 + 1000 + 196 + 1310 \\
+					         & \myphantomrel{\leq} \hphantom{\log((} + 1000 + 560 + 1700 + 400 + 10000)n^{13}) \\
+					         & = \log(75 + 310 + 250 + 427 + 1000 + 196 + 1310 \\
+					         & \myphantomrel{=} \hphantom{\log(} + 1000 + 560 + 1700 + 400 + 10000) + 13\log(n) \\
+					         & \leq (\log(75 + 310 + 250 + 427 + 1000 + 196 + 1310 \\
+					         & \myphantomrel{\leq} \hphantom{(\log(} + 1000 + 560 + 1700 + 400 + 10000) + 13)\log(n) \\
+				\therefore f & \in O(\log(n)).
+			\end{align*} \label{1(f)}
+		\end{enumerate}
+		
+	\item \textbf{Problem 2:} Find constants $c$ and $n_0$ such that the given statement is true. \label{2}
+		\begin{enumerate}
+			\item Show, for a function $f$, where $f(n) = n^2 + 10$, $f \in O(n^3)$:
+			\begin{align*}
+				& \because f(n)
+				\begin{aligned}[t]
+					& = n^2 + 10 \\
+					& \leq 1n^2 + 10n^2, n_0 = 1 \\
+					& = 11n^2
+				\end{aligned} \\
+				& \therefore \textrm{ if } \myhighlight{$c = 11 \land n_0 = 1$}, \textrm{ then } f \in O(n^3).
+				\myqed
+			\end{align*} \label{2(a)} % ^^what the hell do you see that?? in the highlight??
+			\item Show, for a function $f$, where $f(n) = n!$, $f \in O(n^n)$:
+			\begin{align*}
+				& \because f(n)
+				\begin{aligned}[t]
+					& = n! \triangleq \prod\nolimits_{i=1}^{n} i \\
+					& = \underbrace{(n)(n-1) \cdots(2)(1)}_{n\textrm{ factors}} \\
+					& \leq \underbrace{(n)(n)\cdots(n)(n)}_{n\textrm{ factors}}, n_0 = 1 \\
+					& = 1^n
+				\end{aligned} \\
+				& \therefore \textrm{ if } \myhighlight{$c = 1 \land n_0 = 1$}, \textrm{ then } f \in O(n^n).
+				\myqed
+			\end{align*} \label{2(b)}
+			\item Show, for a function $f$, where $f(n) = 3n^3 + 7n + 10$, $f \in \Theta(n^3)$:
+			\begin{align*}
+				& \because f(n)
+				\begin{aligned}[t]
+					& = 3n^3 + 7n + 10 \\
+					& \leq 3n^3 + 7n^3 + 10n^3, n_0 = 1 \\
+					& = 20n^3
+				\end{aligned} \\
+				& \therefore \textrm{ if } c_1 = 20 \land n_0 = 1, \textrm{ then } f \in O(n^3). \\
+				& \because f(n)
+				\begin{aligned}[t]
+					& = 3n^3 + 7n + 10 \\
+					& \geq 3n^3, n_0 = 1
+				\end{aligned} \\
+				& \therefore \textrm{ if } c_2 = 3 \land n_0 = 1, \textrm{ then } f \in \Omega(n^3). \\
+				& \because \textrm{ if } f \in O(n^3) \land f \in \Omega(n^3) , \textrm{ then } f \in \Theta(n^3)\\
+				& \therefore \textrm{ if } \myhighlight{$c_1 = 20 \land c_2 = 3 \land n_0 = 1$}, \textrm{ then } f \in \Theta(n^3).
+				\myqed
+			\end{align*} \label{2(c)}
+			\item Show, for a function $f$, where $f(n) = 1^2 + 2^2 + 3^2 + \cdots + n^2$, $f \in O(n^3)$:
+			\begin{align*}
+				& \because f(n)
+				\begin{aligned}[t]
+					& = 1^2 + 2^2 + 3^2 + \cdots + n^2 \\
+					& = \sum\nolimits_{i=1}^{n} i^2 \\
+					& = \frac{n(n + 1)(2n + 1)}{6} \\
+					& = \frac{1n + 2n^3 + 3n^2}{6} \\
+					& \leq \frac{(1 + 2 + 3) n^3}{6}, n_0 = 1 \\
+					& = n^3
+				\end{aligned} \\
+				& \therefore \textrm{ if } \myhighlight{$c = 1 \land n_0 = 1$}, \textrm{ then } f \in O(n^3).
+				\myqed
+			\end{align*} \label{2(d)}
+		\end{enumerate}
+		
+	\item \textbf{Problem 3:} Find the Big O estimate or worst case complexity of the following functions (given in pseudo-code). \label{3}\\\\
+		For the following code snippets, the work for the problem is contained in code comments.
+		The function algorithms ($T(n)$) are measured in units of assignment operations.
+		\begin{enumerate} %[leftmargin=0pt, labelsep=3em] % TKmarker i eyeballed this.
+		% ^purpose is to match 2nd level [(a)] with horizontal position/depth/whatever of 1st level [3.],
+		% e.g. when mintedcodeblocks (that need to be centered) are	in enumitem
+		% (TK as you can see, mintedcodeblocks are currently OUT of enumitem)
+		% use \DrawEnumitemLabel as a guide (that i find to be so abstruse. the docs r no help either [3.2 Horizontal spacing of labels]
+		\item The Big O estimate of the below function is \myhighlight{$O(N^3)$}.
+		\end{enumerate}\begin{mymintedunbreakablecodeblock}{java}
+			int fun (int N) {                   // $T(N) =$
+			  for (i = 0; i < N; i++) {         // $N \times ($
+			    if (x < 10) {
+			      for (j = 0; j < N * N; j++) { // $(N^2 \times$
+			        a = a + 10;                 // $1) +$
+			      } // for (level 3)
+			    } // if (2)
+			    else if (y < 10) {
+			      for (p = 0; p <= N * N; p++) {// $((N^2 + 1)\times$
+			        b = b + 10;                 // $1) +$
+			      } // for (level 3)
+			    } // elif (level 2)
+			    else {
+			      for (k = 0; k <= 10; k++) {   // $(11\times$
+			        c = c + 10;                 // $1))$
+			      } // for (level 3)
+			    } // else (level 2)
+			  } // for (level 1)
+			    // $= 2N^3 + 12N$ assignment operations
+			} // fun (level 0)                  // $\therefore T \in O(N^3)$\end{mymintedunbreakablecodeblock}
+			\label{3(a)} % TK complexity N^3
+		
+		\begin{enumerate}[resume]
+		\item The Big O estimate of the below function is \myhighlight{$O(N^2)$}.
+		\end{enumerate}\begin{mymintedunbreakablecodeblock}{java}
+			int fun (int N) {                   // $T(N) =$
+			  for (i = N; i > 0; i--) {         // $N\times ($
+			    for (j = 0; j < i; j++) {       // $i\times ($
+			      a = a + 10;                   // $1))$
+			    } // for (2)
+			  } // for (1)
+			    // $= \frac{1}{2}N(N - 1)$ assignment operations
+			} // fun (0)                        // $\therefore T \in O(N^2)$\end{mymintedunbreakablecodeblock}
+			\label{3(b)} % TK complexity N^2
+
+		\begin{enumerate}[resume]
+		\item The Big O estimate of the below function is \myhighlight{$O((\log(N))^2)$}.
+		\end{enumerate}\begin{mymintedunbreakablecodeblock}{java}
+			int fun (int N) {                   // $T(N) =$
+			  for (i = N; i > 0; i = i / 2) {   // $(\log(N) + 1) \times ($
+			    j = 1;                          // $1 +$
+			    while (j < N) {                 // $\log(N) \times ($
+			      a = a + 10;                   // $1 +$
+			      j = 2 * j;                    // $1))$
+			    } // while (2)
+			  } // for (1)
+			    // $= 2\log(N)^2 + 3\log(N) + 1$ assignment operations
+			} // fun (0)
+			  // $\therefore T \in O((\log(N))^2)$\end{mymintedunbreakablecodeblock}
+			\label{3(c)} % TK complexity log(N)
+
+		\begin{enumerate}[resume]
+		\item The Big O estimate of the below function is \myhighlight{$O(N(\log(N))^2)$}.
+		\end{enumerate}\begin{mymintedunbreakablecodeblock}{java}
+			int fun (int N) {                   // $T(N) =$
+			  i = N;                            // $1 +$
+			  while (i > 0) {                   // $(\log(N) + 1) \times ($
+			    j = 1;                          // $1 +$
+			    while (j < N) {                 // $\log(N) \times ($
+			      k = 0;                        // $1 +$
+			      while (k < N) {               // $\frac{1}{2}N \times ($
+			        k = k + 2;                  // $1) +$
+			      } // while (3)
+			      j = j * 2;                    // $1) +$
+			    } // while (2)
+			    i = i / 2;                      // $1)$
+			  } // while (1)
+			    // $= \frac{1}{2}N\log(N)^2 + 2\log(N)^2 + 4\log(N) + \frac{1}{2}N\log(N) + 3$ assignment operations
+			} // fun (0)
+			  // $\therefore T \in O(N(\log(N))^2)$\end{mymintedunbreakablecodeblock}
+			\label{3(d)} % TK complexity n*log^2
+		
+\end{enumerate}
+
+\end{document}
