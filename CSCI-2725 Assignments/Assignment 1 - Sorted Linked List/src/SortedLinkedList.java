@@ -2,6 +2,7 @@
 // TK implement methods
 // TK handle null head
 // TK handle other edge cases
+// TK always assuming NodeType can never be empty (of ItemType)
 public class SortedLinkedList {
     
     private NodeType head;
@@ -11,6 +12,7 @@ public class SortedLinkedList {
      */
     public SortedLinkedList() {
         super();
+        // empty is no Node, not empty Node
     } // SortedLinkedList()
 
     /**
@@ -20,22 +22,22 @@ public class SortedLinkedList {
      * <p>
      * <strong>Side effects:</strong> none.
      * 
+     * TK handle edge cases that may come up
+     * 
      * @return the length of the linked list
      */
     public int getLength() {
         int counter = 0;
-        if (this.head != null) {
-            NodeType temp = this.head;
-            while (temp.next != null) {
-                counter++;
-                temp = temp.next;
-            } // while
-        } // ifnotnull
+        NodeType temp = this.head;
+        while (temp != null) {
+            counter++;
+            temp = temp.next;
+        } // while
         return counter;
     } // getLength()
 
     /**
-     * item should be inserted to the linked list maintaining
+     * {@code item} should be inserted to the linked list maintaining
      * the ascending sorted order.
      * 
      * <ul>
@@ -56,7 +58,27 @@ public class SortedLinkedList {
      * @param inserenda that which is to be inserted into the linked-list
      */
     public void insertItem(ItemType inserenda) {
-        
+        if (this.head == null) { // insert in an empty list
+            (this.head = new NodeType()).info = inserenda;
+        } else { // begin traversing
+            NodeType preTempNode = this.head, tempNode = preTempNode.next;
+            // insert before first item
+            if (inserenda.compareTo(preTempNode.info) <= 0) { // if < first item
+                NodeType prePreTempNode = new NodeType();
+                prePreTempNode.info = inserenda;
+                prePreTempNode.next = preTempNode;
+                this.head = prePreTempNode;
+            } // if
+            // as long as the inserenda's number is <= the temp's number, ...
+            while (tempNode != null
+                && inserenda.compareTo(tempNode.info) <= 0) { // keep traversing.
+                preTempNode = tempNode; // shift down
+                tempNode = tempNode.next; // shift down
+            } // while
+            // otherwise (>), insert inserenda after preTempNode (& before tempNode)
+            (preTempNode.next = new NodeType()).info = inserenda;
+            preTempNode.next.next = tempNode;
+        } // if-else
     } // insertItem(ItemType)
 
     /**
@@ -85,7 +107,23 @@ public class SortedLinkedList {
      * @param delenda that which is to be deleted from the linked-list
      */
     public void deleteItem(ItemType delenda) {
-        
+        if (this.head == null) { // delete from an empty list
+            System.out.println("You cannot delete from an empty list");
+        } else { // begin traversing
+            NodeType preTempNode = this.head, tempNode = preTempNode.next;
+            // delete first item
+            if (delenda.compareTo(preTempNode.info) == 0) { // if == first item
+                this.head = tempNode;
+            } // if
+              // as long as the delenda's number is != the temp's number, ...
+            while (tempNode != null
+                    && delenda.compareTo(tempNode.info) != 0) { // keep traversing.
+                preTempNode = tempNode; // shift down
+                tempNode = tempNode.next; // shift down
+            } // while
+            // otherwise (==), link before and after Nodes around delenda
+            preTempNode.next = tempNode.next;
+        } // if-else
     } // deleteItem(ItemType)
 
     /**
@@ -100,7 +138,21 @@ public class SortedLinkedList {
      * @return the index of the item if present; otherwise, -1
      */
     public int searchItem(ItemType quaerenda) {
-        
+        int index = -1;
+        if (this.head == null) { // search from an empty list
+            System.out.println("Item not found");
+            // intentional fall-through
+        } else { // begin traversing
+            NodeType temp = this.head;
+            // as long as the quarenda's number is != the temp's number, ...
+            while (temp != null
+                    && quaerenda.compareTo(temp.info) != 0) { // keep traversing.
+                index++;
+                temp = temp.next; // shift down
+            } // while
+            // intentional fall-through
+        } // if-else
+        return index;
     } // serachitem(ItemType)
 
     /**

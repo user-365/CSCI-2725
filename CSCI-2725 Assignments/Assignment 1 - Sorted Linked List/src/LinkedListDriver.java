@@ -19,7 +19,7 @@ public class LinkedListDriver {
             Files.lines(file)
                 .map(str -> str.split(" ")) // space-separated integers
                 .flatMap(Arrays::stream)
-                .mapToInt(Integer::parseInt)
+                .mapToInt(Integer::parseInt) // String to int
                 .distinct() // no duplicates!
                 .sorted() // ascending order
                 .forEach(i -> list.insertItem(new ItemType((byte) i))); // put in list
