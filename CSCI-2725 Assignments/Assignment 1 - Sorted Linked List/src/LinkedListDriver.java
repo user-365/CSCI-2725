@@ -4,124 +4,135 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
 // TK handle edge cases like empty list etc.
-// TK replace with prefix printing
 // TK remember to create Readme.txt on Odin
 
 public class LinkedListDriver {
     
     public static void main(String[] args) {
+        
         System.out.println("Commands:\n(i) - Insert value\n(d) - Delete value\n(s) - Search value\n(a) - Delete alternate nodes\n(m) - Merge lists\n(p) - Print list\n(l) - Print length\n(q) - Quit program");
-        Path file = Paths.get(args[0]);
+        SortedLinkedList list = new SortedLinkedList();
+        Scanner s = new Scanner(System.in);
+        ItemType item;
+
         try {
-            SortedLinkedList list = new SortedLinkedList();
-            Files.lines(file)
+
+            Path file = Paths.get(args[0]);
+            Stream<String> listPrecursor = Files.lines(file)
                 .map(str -> str.split(" ")) // space-separated integers
-                .flatMap(Arrays::stream)
-                .mapToInt(Integer::parseInt) // String to int
-                .distinct() // no duplicates!
-                .sorted() // ascending order
-                .forEach(i -> list.insertItem(new ItemType((byte) i))); // put in list
-            Scanner s = new Scanner(System.in);
-            ItemType item;
-            for (;;) {
-                System.out.println("Enter a command: ");
-                no_prefix: // from default case
-                switch (s.nextLine()) {
-                    case "i":
-                        System.out.print("Enter a number to insert: ");
-                        item = new ItemType((byte) s.nextInt());
-                        System.out.print("Original list: ");
-                        list.printList();
-                        list.insertItem(item);
-                        System.out.print("New list: ");
-                        list.printList();
-                        break;
-                    case "d":
-                        System.out.print("Enter a number to delete: ");
-                        item = new ItemType((byte) s.nextInt());
-                        System.out.print("Original list: ");
-                        list.printList();
-                        list.deleteItem(item);
-                        System.out.print("New list: ");
-                        list.printList();
-                        break;
-                    case "s":
-                        System.out.print("Enter a number to search: ");
-                        item = new ItemType((byte) s.nextInt());
-                        System.out.print("Original list: ");
-                        list.printList();
-                        int index = list.searchItem(item);
-                        if (index == -1) {
-                            System.out.println("Item is not present in the list");
-                        } else {
-                            System.out.println("The item is present at index " + index);
-                        } // if-else
-                        break;
-                    case "a":
-                        System.out.print("Original list: ");
-                        list.printList();
-                        SortedLinkedList.deleteAlternateNodes(list);
-                        System.out.print("New list: ");
-                        list.printList();
-                        break;
-                    case "m":
-                        System.out.print("Enter the length of the new list: ");
-                        int newLength = s.nextInt();
-                        System.out.print("Enter the numbers: ");
-                        System.out.print("The list 1: ");
-                        list.printList();
-                        SortedLinkedList newList;
-                        // TK create newList
-                        System.out.print("The list 2: ");
-                        newList.printList();
-                        SortedLinkedList.mergeList(list, newList);
-                        System.out.print("Merged list: ");
-                        list.printList();
-                        break;
-                    case "p":
-                        System.out.print("The list is: ");
-                        list.printList();
-                        break;
-                    case "l":
-                        System.out.print("The length of the list is " + list.getLength());
-                        break;
-                    case "q": 
-                        System.out.println("Exiting the program...");
-                        s.close();
-                        System.exit(0);
-                        break;
-                    default:
-                        System.out.println("Invalid command try again: ");
-                        break no_prefix;
-                } // switch
-            } // for
+                .flatMap(Arrays::stream);
+            makeSLLFromStream(listPrecursor, list);
+            
         } catch (IOException x) {
             System.err.format("IOException: %s%n", x);
         } // try-catch
+
+        for (;;) {
+            System.out.println("Enter a command: ");
+            no_prefix: // from default case
+            switch (s.nextLine()) {
+
+                case "i":
+                    System.out.print("Enter a number to insert: ");
+                    item = new ItemType((byte) s.nextInt());
+                    printListWithLabel("Original list", list);
+                    list.insertItem(item);
+                    printListWithLabel("New list", list);
+                    break;
+                
+                case "d":
+                    System.out.print("Enter a number to delete: ");
+                    item = new ItemType((byte) s.nextInt());
+                    printListWithLabel("Original list", list);
+                    list.deleteItem(item);
+                    printListWithLabel("New list", list);
+                    break;
+
+                case "s":
+                    System.out.print("Enter a number to search: ");
+                    item = new ItemType((byte) s.nextInt());
+                    printListWithLabel("Original list", list);
+                    int index = list.searchItem(item);
+                    if (index == -1) {
+                        System.out.println("Item is not present in the list");
+                    } else {
+                        System.out.println("The item is present at index " + index);
+                    } // if-else
+                    break;
+
+                case "a":
+                    printListWithLabel("Original list", list);
+                    SortedLinkedList.deleteAlternateNodes(list);
+                    printListWithLabel("New list", list);
+                    break;
+
+                case "m":
+                    System.out.print("Enter the length of the new list: ");
+                    int newLength = s.nextInt(); // TK what
+
+                    // make newList
+                    System.out.print("Enter the numbers: ");
+                    SortedLinkedList newList = new SortedLinkedList();
+                    Stream<String> listPrecursor = Pattern.compile(" ")
+                        .splitAsStream(s.nextLine()); // apparently faster than Stream.of()
+                    makeSLLFromStream(listPrecursor, newList);
+
+                    printListWithLabel("The list 1", list);
+                    // TK create newList based on arguments
+                    printListWithLabel("The list 2", newList);
+                    SortedLinkedList.mergeList(list, newList);
+                    printListWithLabel("Merged list", list);
+                    break;
+
+                case "p":
+                    printListWithLabel("The list is", list);
+                    break;
+
+                case "l":
+                    System.out.print("The length of the list is " + list.getLength());
+                    break;
+
+                case "q": // loop's exit condition
+                    System.out.println("Exiting the program...");
+                    s.close();
+                    System.exit(0);
+                    break;
+
+                default:
+                    System.out.println("Invalid command, try again: ");
+                    break no_prefix;
+                    
+            } // switch
+        } // for
+
     } // main
 
     /**
      * TK write this
-     * @param prefix
+     * @param label
      * @param list
      */
-    public static void printListWithPrefix(String prefix, SortedLinkedList list) {
-        switch (prefix) {
-            case "O":
-                System.out.print("Original list: ");
-                list.printList();
-                break;
-            case "N":
-                System.out.print("New list: ");
-                list.printList();
-                break;
-            default:
-                System.out.print(prefix + ": ");
-                list.printList();
-                break;
-        } // switch
+    public static void printListWithLabel(String label, SortedLinkedList list) {
+
+        System.out.print(label + ": ");
+        list.printList();
+
     } // printListWithPrefix(String, SortedLinkedList)
+
+    /**
+     * TK write this
+     * @param stream
+     * @param SLL
+     */
+    public static void makeSLLFromStream(Stream<String> stream, SortedLinkedList SLL) {
+        stream.mapToInt(Integer::parseInt) // String to int
+                .distinct() // no duplicates!
+                .sorted() // ascending order
+                .forEach(i -> SLL.insertItem(new ItemType((byte) i))); // put in list
+    } // makeSLLFromStream
 
 } // LinkedListDriver

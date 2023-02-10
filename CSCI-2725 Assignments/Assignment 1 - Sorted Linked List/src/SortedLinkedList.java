@@ -1,6 +1,7 @@
 // TK finish javadocs
 // TK handle null head
 // TK handle other edge cases
+// TK handle duplicates!
 // Note: always assuming NodeType can never be empty (of ItemType)
 // Note: iterate over and compare with temp, while prevTemp is following
 public class SortedLinkedList {
@@ -64,23 +65,27 @@ public class SortedLinkedList {
         if (this.head == null) { // insert in an empty list
             (this.head = new NodeType()).info = inserenda;
         } else { // begin traversing
-            NodeType preTempNode = this.head, tempNode = preTempNode.next;
-            // insert before first item
-            if (inserenda.compareTo(preTempNode.info) <= 0) { // if < first item
-                NodeType prePreTempNode = new NodeType();
-                prePreTempNode.info = inserenda;
-                prePreTempNode.next = preTempNode;
-                this.head = prePreTempNode;
-            } // if
-            // as long as the inserenda's number is <= the temp's number, ...
-            while (tempNode != null
-                && inserenda.compareTo(tempNode.info) <= 0) { // keep traversing.
-                preTempNode = tempNode; // shift down
-                tempNode = tempNode.next; // shift down
+
+            // TK check this
+            NodeType prevTemp = new NodeType();
+            prevTemp.info = new ItemType((byte) -1);
+            NodeType temp = this.head;
+            prevTemp.next = temp;
+            while (temp != null) {
+                // as long as the inserenda's number is < the temp's number, ...
+                if (inserenda.compareTo(temp.info) < 0) { // keep traversing.
+                    prevTemp = temp; // shift down
+                    temp = temp.next; // shift down
+                } else if (inserenda.compareTo(temp.info) == 0) {
+                    System.out.println("Item already exists");
+                    return; // don't insert duplicate item
+                } else {
+                    // otherwise (>), insert inserenda after preTempNode (& before tempNode)
+                    (prevTemp.next = new NodeType()).info = inserenda;
+                    prevTemp.next.next = temp;
+                } // if-elif-else
             } // while
-            // otherwise (>), insert inserenda after preTempNode (& before tempNode)
-            (preTempNode.next = new NodeType()).info = inserenda;
-            preTempNode.next.next = tempNode;
+
         } // if-else
         
     } // insertItem(ItemType)
@@ -115,19 +120,26 @@ public class SortedLinkedList {
         if (this.head == null) { // delete from an empty list
             System.out.println("You cannot delete from an empty list");
         } else { // begin traversing
+
+            // TK check this
             NodeType prevTemp = this.head, temp = prevTemp.next;
             // delete first item
             if (delenda.compareTo(prevTemp.info) == 0) { // if == first item
                 this.head = temp;
             } // if
-              // as long as the delenda's number is != the temp's number, ...
-            while (temp != null
-                    && delenda.compareTo(temp.info) != 0) { // keep traversing.
-                prevTemp = temp; // shift down
-                temp = temp.next; // shift down
+            while (temp != null) {
+                // as long as the delenda's number is != the temp's number, ...
+                if (delenda.compareTo(temp.info) == 0) {
+                    // link before and after Nodes around delenda
+                    prevTemp.next = temp.next;
+                } else {
+                    // otherwise (!=), keep traversing.
+                    prevTemp = temp; // shift down
+                    temp = temp.next; // shift down
+                } // if-else
             } // while
-            // otherwise (==), link before and after Nodes around delenda
-            prevTemp.next = temp.next;
+            System.out.println("The item is not present in the list");
+
         } // if-else
         
     } // deleteItem(ItemType)
@@ -145,21 +157,27 @@ public class SortedLinkedList {
      */
     public int searchItem(ItemType quaerenda) {
         
-        int index = -1;
+        // TK check this
+        // TK figure out souts
+        int index = 0;
         if (this.head == null) { // search from an empty list
             System.out.println("Item not found");
             // intentional fall-through
         } else { // begin traversing
             NodeType temp = this.head;
             // as long as the quarenda's number is != the temp's number, ...
-            while (temp != null
-                    && quaerenda.compareTo(temp.info) != 0) { // keep traversing.
-                index++;
-                temp = temp.next; // shift down
+            while (temp != null) {
+                if (quaerenda.compareTo(temp.info) == 0) {
+                    return index;
+                } else { // keep traversing.
+                    index++;
+                    temp = temp.next; // shift down
+                } // if-else
             } // while
+            System.out.println("Item is not present in the list");
             // intentional fall-through
         } // if-else
-        return index;
+        return -1;
         
     } // serachitem(ItemType)
 
@@ -196,7 +214,7 @@ public class SortedLinkedList {
         NodeType temp1 = list1.head, temp2 = list2.head;
         // header to avoid handling edge cases
         NodeType mergeTemp = new NodeType();
-        mergeTemp.info = new ItemType(-1);
+        mergeTemp.info = new ItemType((byte) -1);
         NodeType mergedListHead = mergeTemp;
         boolean temp1IsNOTNull, temp2IsNOTNull; // don't want to calculate this everytime
         
@@ -209,12 +227,12 @@ public class SortedLinkedList {
             // thus, we must break out of this loop
             if (!(temp1IsNOTNull && temp2IsNOTNull)) { break; } // if
             // compare each item.
-            if (temp1.compareTo(temp2) == -1) {
+            if (temp1.info.compareTo(temp2.info) == -1) {
                 // then put in first item
                 mergeTemp = temp1;
                 temp1 = temp1.next;
                 // intentional fall-through
-            } else if (temp1.compareTo(temp2) == 1) {
+            } else if (temp1.info.compareTo(temp2.info) == 1) {
                 // else put in second item
                 mergeTemp = temp2;
                 temp2 = temp2.next;
@@ -238,7 +256,6 @@ public class SortedLinkedList {
         // only need to attach/append temp1 to the merged list because temp1 holds the chain
         // before we entered this loop, we had already prepared the next spot for an item
         mergeTemp = temp1;
-        
         // we are now done merging.
         // shift the merged list head off of the -1 header node
         mergedListHead = mergedListHead.next;
@@ -266,6 +283,8 @@ public class SortedLinkedList {
      * @param list
      */
     public static void deleteAlternateNodes(SortedLinkedList list) {
+        
+        // TK check this (end behavior)
         NodeType temp = list.head;
         if (temp == null) { return; } // if
         // while neither temp nor its twice-subsequent is null
@@ -273,18 +292,23 @@ public class SortedLinkedList {
             temp.next = temp.next.next;
             temp = temp.next;
         } // while
+        // end of list
+        if (temp.next.next == null) { temp.next = null; } // if
+
     } // deleteAlternateNodes()
 
     /**
      * Prints the instance linked-list, in order, as space-separated integers.
      */
     public void printList() {
+
         NodeType temp = this.head;
         while (temp != null) {
             System.out.print(temp.info.getValue() + " ");
             temp = temp.next;
         } // while
         System.out.println();
+
     } // printList()
 
 } // SortedLinkedList

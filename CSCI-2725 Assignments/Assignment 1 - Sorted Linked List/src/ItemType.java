@@ -4,7 +4,7 @@
  */
 public class ItemType {
     
-    private byte value;
+    private byte value; // it does say "integer" not "int"...
 
     /**
      * Default constructor.
@@ -35,15 +35,5 @@ public class ItemType {
     public int getValue() {
         return value;
     } // getValue()
-
-    /**
-     * Equals method based on underlying private member.
-     * TK used in which method?
-     * @param item that which is to be compared to the calling object
-     * @return whether their integer values are equal
-     */
-    public boolean equals(ItemType item) {
-        return this.value == item.getValue();
-    } // equals()
 
 } // ItemType
