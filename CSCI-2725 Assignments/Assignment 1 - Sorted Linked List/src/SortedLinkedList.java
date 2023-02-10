@@ -2,7 +2,9 @@
 // TK implement methods
 // TK handle null head
 // TK handle other edge cases
-// TK always assuming NodeType can never be empty (of ItemType)
+// Note: always assuming NodeType can never be empty (of ItemType)
+// Note: iterate over and compare with tempNode, while preTempNode is following
+// TK change pre to prev lol
 public class SortedLinkedList {
     
     private NodeType head;
@@ -27,6 +29,7 @@ public class SortedLinkedList {
      * @return the length of the linked list
      */
     public int getLength() {
+        
         int counter = 0;
         NodeType temp = this.head;
         while (temp != null) {
@@ -34,6 +37,7 @@ public class SortedLinkedList {
             temp = temp.next;
         } // while
         return counter;
+        
     } // getLength()
 
     /**
@@ -58,6 +62,7 @@ public class SortedLinkedList {
      * @param inserenda that which is to be inserted into the linked-list
      */
     public void insertItem(ItemType inserenda) {
+        
         if (this.head == null) { // insert in an empty list
             (this.head = new NodeType()).info = inserenda;
         } else { // begin traversing
@@ -79,6 +84,7 @@ public class SortedLinkedList {
             (preTempNode.next = new NodeType()).info = inserenda;
             preTempNode.next.next = tempNode;
         } // if-else
+        
     } // insertItem(ItemType)
 
     /**
@@ -107,6 +113,7 @@ public class SortedLinkedList {
      * @param delenda that which is to be deleted from the linked-list
      */
     public void deleteItem(ItemType delenda) {
+        
         if (this.head == null) { // delete from an empty list
             System.out.println("You cannot delete from an empty list");
         } else { // begin traversing
@@ -124,6 +131,7 @@ public class SortedLinkedList {
             // otherwise (==), link before and after Nodes around delenda
             preTempNode.next = tempNode.next;
         } // if-else
+        
     } // deleteItem(ItemType)
 
     /**
@@ -138,6 +146,7 @@ public class SortedLinkedList {
      * @return the index of the item if present; otherwise, -1
      */
     public int searchItem(ItemType quaerenda) {
+        
         int index = -1;
         if (this.head == null) { // search from an empty list
             System.out.println("Item not found");
@@ -153,12 +162,16 @@ public class SortedLinkedList {
             // intentional fall-through
         } // if-else
         return index;
+        
     } // serachitem(ItemType)
 
     /**
      * This function should merge two lists and not include any duplicate items in
      * the list. If there are duplicates in the two lists, the merge function should
      * keep only one of the duplicate instances in the resulting list.
+     * 
+     * <p>Assuming, of course, that the two list arguments are sorted
+     * <p><strong><em>Side effect:</em></strong> modifies list1 argument
      * 
      * <ul>
      * <li>Example:
@@ -177,7 +190,62 @@ public class SortedLinkedList {
      * @param list1
      * @param list2
      */
-    public static void mergeList(SortedLinkedList list, SortedLinkedList list2) {
+    public static void mergeList(SortedLinkedList list1, SortedLinkedList list2) {
+        
+        // we are going to traverse down both lists (always traverse lists thoroughly).
+        
+        // Setup:
+        NodeType temp1 = list1.head, temp2 = list2.head;
+        // header to avoid handling edge cases
+        NodeType mergeTemp = new NodeType();
+        mergeTemp.info = new ItemType(-1);
+        NodeType mergedListHead = mergeTemp;
+        boolean temp1IsNOTNull, temp2IsNOTNull;
+        
+        // while at least one of temp1/2 is NOT null, there are still items to merge
+        while ((temp1IsNOTNull = (temp1 != null))
+               | (temp2IsNOTNull = (temp2 != null))) { // bitwise OR to avoid short-circuiting
+            // iterate on merged list, to prepare for next item
+            mergeTemp = mergeTemp.next;
+            // if at least one of temp1/2 IS null, we need to switch to single-track merging
+            // thus, we must break out of this loop
+            if (!(temp1IsNOTNull && temp2IsNOTNull)) { break; }
+            // compare each item.
+            if (temp1.compareTo(temp2) == -1) {
+                // then put in first item
+                mergeTemp = temp1;
+                temp1 = temp1.next;
+                // intentional fall-through
+            } else if (temp1.compareTo(temp2) == 1) {
+                // else put in second item
+                mergeTemp = temp2;
+                temp2 = temp2.next;
+                // intentional fall-through
+            } else {
+                // if item == other item, then put only one item in
+                mergeTemp = temp1;
+                // then, iterate on BOTH lists
+                temp1 = temp1.next;
+                temp2 = temp2.next;
+                // intentional fall-through
+            } // if-elif-else
+        } // while
+        
+        // it is likely that we run out of traversing one list faster than the other.
+        // for the rest of the items, simply append them to the merged list
+        if (!temp1IsNOTNull && temp2IsNOTNull) { // if temp1 is null and temp2 is not, ...
+            // then switch to temp2 to continue merging
+            temp1 = temp2;
+        } // if
+        // only need to attach/append temp1 to the merged list because temp1 holds the chain
+        // before we entered this loop, we had already prepared the next spot for an item
+        mergeTemp = temp1;
+        
+        // we are now done merging.
+        // shift the merged list head off of the -1 header node
+        mergedListHead = mergedListHead.next;
+        // do...something? do we return the list (void tho) or just assign one of them to the merged list?
+        list1.head = mergedListHead;
         
     } // mergeList()
 
