@@ -1,10 +1,8 @@
 // TK finish javadocs
-// TK implement methods
 // TK handle null head
 // TK handle other edge cases
 // Note: always assuming NodeType can never be empty (of ItemType)
-// Note: iterate over and compare with tempNode, while preTempNode is following
-// TK change pre to prev lol
+// Note: iterate over and compare with temp, while prevTemp is following
 public class SortedLinkedList {
     
     private NodeType head;
@@ -117,19 +115,19 @@ public class SortedLinkedList {
         if (this.head == null) { // delete from an empty list
             System.out.println("You cannot delete from an empty list");
         } else { // begin traversing
-            NodeType preTempNode = this.head, tempNode = preTempNode.next;
+            NodeType prevTemp = this.head, temp = prevTemp.next;
             // delete first item
-            if (delenda.compareTo(preTempNode.info) == 0) { // if == first item
-                this.head = tempNode;
+            if (delenda.compareTo(prevTemp.info) == 0) { // if == first item
+                this.head = temp;
             } // if
               // as long as the delenda's number is != the temp's number, ...
-            while (tempNode != null
-                    && delenda.compareTo(tempNode.info) != 0) { // keep traversing.
-                preTempNode = tempNode; // shift down
-                tempNode = tempNode.next; // shift down
+            while (temp != null
+                    && delenda.compareTo(temp.info) != 0) { // keep traversing.
+                prevTemp = temp; // shift down
+                temp = temp.next; // shift down
             } // while
             // otherwise (==), link before and after Nodes around delenda
-            preTempNode.next = tempNode.next;
+            prevTemp.next = temp.next;
         } // if-else
         
     } // deleteItem(ItemType)
@@ -200,7 +198,7 @@ public class SortedLinkedList {
         NodeType mergeTemp = new NodeType();
         mergeTemp.info = new ItemType(-1);
         NodeType mergedListHead = mergeTemp;
-        boolean temp1IsNOTNull, temp2IsNOTNull;
+        boolean temp1IsNOTNull, temp2IsNOTNull; // don't want to calculate this everytime
         
         // while at least one of temp1/2 is NOT null, there are still items to merge
         while ((temp1IsNOTNull = (temp1 != null))
@@ -209,7 +207,7 @@ public class SortedLinkedList {
             mergeTemp = mergeTemp.next;
             // if at least one of temp1/2 IS null, we need to switch to single-track merging
             // thus, we must break out of this loop
-            if (!(temp1IsNOTNull && temp2IsNOTNull)) { break; }
+            if (!(temp1IsNOTNull && temp2IsNOTNull)) { break; } // if
             // compare each item.
             if (temp1.compareTo(temp2) == -1) {
                 // then put in first item
@@ -233,7 +231,7 @@ public class SortedLinkedList {
         
         // it is likely that we run out of traversing one list faster than the other.
         // for the rest of the items, simply append them to the merged list
-        if (!temp1IsNOTNull && temp2IsNOTNull) { // if temp1 is null and temp2 is not, ...
+        if (!temp1IsNOTNull && temp2IsNOTNull) { // if temp1 is null and temp2 is NOT, ...
             // then switch to temp2 to continue merging
             temp1 = temp2;
         } // if
@@ -268,20 +266,24 @@ public class SortedLinkedList {
      * @param list
      */
     public static void deleteAlternateNodes(SortedLinkedList list) {
-        
+        NodeType temp = list.head;
+        if (temp == null) { return; } // if
+        // while neither temp nor its twice-subsequent is null
+        while (!(temp == null || temp.next == null)) {
+            temp.next = temp.next.next;
+            temp = temp.next;
+        } // while
     } // deleteAlternateNodes()
 
     /**
      * Prints the instance linked-list, in order, as space-separated integers.
      */
     public void printList() {
-        if (this.head != null) {
-            NodeType temp = this.head;
-            for (int i = 0; i < this.getLength(); i++) {
-                System.out.print(temp.info.getValue() + " ");
-                temp = temp.next;
-            } // for
-        } // ifnotnull
+        NodeType temp = this.head;
+        while (temp != null) {
+            System.out.print(temp.info.getValue() + " ");
+            temp = temp.next;
+        } // while
         System.out.println();
     } // printList()
 
