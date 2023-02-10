@@ -3,6 +3,7 @@
 // TK handle other edge cases
 // TK handle duplicates!
 // TK standardize behavior when list is empty (i.e. no action)
+
 // Note: always assuming NodeType can never be empty (of ItemType)
 // Note: iterate over and compare with temp, while prevTemp is following
 public class SortedLinkedList {
