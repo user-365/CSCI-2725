@@ -15,7 +15,7 @@ public class SortedLinkedList {
      */
     public SortedLinkedList() {
         super();
-        // empty is no Node, not empty Node
+        // empty is having no node, not having empty node
     } // SortedLinkedList()
 
     /**
@@ -69,9 +69,8 @@ public class SortedLinkedList {
         } else { // begin traversing
 
             // TK check this
-            NodeType prevTemp = new NodeType();
-            prevTemp.info = new ItemType((byte) -1);
-            NodeType temp = this.head;
+            NodeType prevTemp = new NodeType(), temp = this.head;
+            prevTemp.info = new ItemType((byte) -1); // header item
             prevTemp.next = temp;
             while (temp != null) {
                 // as long as the inserenda's number is < the temp's number, ...
