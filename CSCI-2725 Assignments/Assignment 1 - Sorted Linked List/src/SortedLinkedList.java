@@ -1,11 +1,7 @@
 // TK finish javadocs
-// TK handle null head
-// TK handle other edge cases
-// TK handle duplicates!
-// TK standardize behavior when list is empty (i.e. no action)
 
 // Note: always assuming NodeType can never be empty (of ItemType)
-// Note: iterate over and compare with temp, while prevTemp is following
+// Note: iterate using and compare with temp, while prevTemp is following
 public class SortedLinkedList {
     
     private NodeType head;
@@ -64,26 +60,30 @@ public class SortedLinkedList {
      */
     public void insertItem(ItemType inserenda) {
         
+        // superfluous but did it anyway for early exit
         if (this.head == null) { // insert in an empty list
             (this.head = new NodeType()).info = inserenda;
         } else { // begin traversing
 
             // TK check this
             NodeType prevTemp = new NodeType(), temp = this.head;
-            prevTemp.info = new ItemType((byte) -1); // header item
+            prevTemp.info = new ItemType((byte) -1); // header item; nodes can't be empty
             prevTemp.next = temp;
             while (temp != null) {
-                // as long as the inserenda's number is < the temp's number, ...
+                // if the inserenda's number is < the temp's number, ...
                 if (inserenda.compareTo(temp.info) < 0) { // keep traversing.
                     prevTemp = temp; // shift down
                     temp = temp.next; // shift down
-                } else if (inserenda.compareTo(temp.info) == 0) {
-                    System.out.println("Item already exists");
-                    return; // don't insert duplicate item
-                } else {
-                    // otherwise (>), insert inserenda after preTempNode (& before tempNode)
+                } else if (inserenda.compareTo(temp.info) > 0) {
+                    // insert inserenda after prevTemp
                     (prevTemp.next = new NodeType()).info = inserenda;
+                    // and before temp
                     prevTemp.next.next = temp;
+                    return;
+                } else {
+                    // otherwise (==), don't insert duplicate item
+                    System.out.println("Item already exists");
+                    return;
                 } // if-elif-else
             } // while
 
@@ -120,23 +120,24 @@ public class SortedLinkedList {
         
         if (this.head == null) { // delete from an empty list
             System.out.println("You cannot delete from an empty list");
+            return;
         } else { // begin traversing
 
             // TK check this
-            NodeType prevTemp = this.head, temp = prevTemp.next;
-            // delete first item
-            if (delenda.compareTo(prevTemp.info) == 0) { // if == first item
-                this.head = temp;
-            } // if
+            NodeType prevTemp = new NodeType(), temp = this.head;
+            prevTemp.info = new ItemType((byte) -1); // header item; nodes can't be empty
+            prevTemp.next = temp;
             while (temp != null) {
-                // as long as the delenda's number is != the temp's number, ...
-                if (delenda.compareTo(temp.info) == 0) {
-                    // link before and after Nodes around delenda
-                    prevTemp.next = temp.next;
-                } else {
-                    // otherwise (!=), keep traversing.
+                // if the delenda's number is != the temp's number, ...
+                if (delenda.compareTo(temp.info) != 0) {
+                    // keep traversing.
                     prevTemp = temp; // shift down
                     temp = temp.next; // shift down
+                } else { // otherwise (==),
+                    // bridge the nodes around delenda
+                    prevTemp.next = temp.next;
+                    // we are done deleting.
+                    return;
                 } // if-else
             } // while
             System.out.println("The item is not present in the list");
@@ -159,25 +160,19 @@ public class SortedLinkedList {
     public int searchItem(ItemType quaerenda) {
         
         // TK check this
-        // TK figure out souts
         int index = 0;
-        if (this.head == null) { // search from an empty list
-            System.out.println("Item not found");
-            // intentional fall-through
-        } else { // begin traversing
-            NodeType temp = this.head;
-            // as long as the quarenda's number is != the temp's number, ...
-            while (temp != null) {
-                if (quaerenda.compareTo(temp.info) == 0) {
-                    return index;
-                } else { // keep traversing.
-                    index++;
-                    temp = temp.next; // shift down
-                } // if-else
-            } // while
-            System.out.println("Item is not present in the list");
-            // intentional fall-through
-        } // if-else
+        NodeType temp = this.head;
+        while (temp != null) {
+            // if the quarenda's number is != the temp's number, ...
+            if (quaerenda.compareTo(temp.info) != 0) {
+                // keep traversing.
+                index++;
+                temp = temp.next; // shift down
+            } else {
+                return index;
+            } // if-else
+        } // while
+        System.out.println("Item is not present in the list");
         return -1;
         
     } // serachitem(ItemType)
@@ -209,45 +204,48 @@ public class SortedLinkedList {
      */
     public static void mergeList(SortedLinkedList list1, SortedLinkedList list2) {
         
-        // we are going to traverse down both lists (always traverse lists thoroughly).
+        // --------Early Exit:--------
+        if (list1 == null) {
+            if (list2 == null) { return; } // if
+            list1 = list2;
+            return;
+        } // if
         
-        // Setup:
+        // --------Setup:--------
+        // pointers for the two list arguments (will be compared)
         NodeType temp1 = list1.head, temp2 = list2.head;
-        // header to avoid handling edge cases
+        // pointer for the final merged list (will not be compared)
         NodeType mergeTemp = new NodeType();
-        mergeTemp.info = new ItemType((byte) -1);
-        NodeType mergedListHead = mergeTemp;
+        NodeType mergedListHead = mergeTemp; // head node for the final list
         boolean temp1IsNOTNull, temp2IsNOTNull; // don't want to calculate this everytime
         
-        // while at least one of temp1/2 is NOT null, there are still items to merge
+        // --------Actual Merging:--------
+        // while at least one of temp1,2 is NOT null, there are still items to merge
         while ((temp1IsNOTNull = (temp1 != null))
-               | (temp2IsNOTNull = (temp2 != null))) { // bitwise OR to avoid short-circuiting
-            // iterate on merged list, to prepare for next item
-            mergeTemp = mergeTemp.next;
-            // if at least one of temp1/2 IS null, we need to switch to single-track merging
-            // thus, we must break out of this loop
+               | (temp2IsNOTNull = (temp2 != null))) { // bitwise OR to avoid short-circuiting the boolean assignment
+            // if at least one of temp1,2 IS null, we need to switch to single-track merging (in the next loop)
             if (!(temp1IsNOTNull && temp2IsNOTNull)) { break; } // if
             // compare each item.
             if (temp1.info.compareTo(temp2.info) == -1) {
-                // then put in first item
+                // then put in list1's item
                 mergeTemp = temp1;
                 temp1 = temp1.next;
-                // intentional fall-through
             } else if (temp1.info.compareTo(temp2.info) == 1) {
-                // else put in second item
+                // else, put in list2's item
                 mergeTemp = temp2;
                 temp2 = temp2.next;
-                // intentional fall-through
-            } else {
-                // if item == other item, then put only one item in
+            } else { // duplicate item (==)
+                // put only one item in
                 mergeTemp = temp1;
                 // then, iterate on BOTH lists
                 temp1 = temp1.next;
                 temp2 = temp2.next;
-                // intentional fall-through
             } // if-elif-else
+            // iterate (once) on merged list, to prepare for next item
+            mergeTemp = mergeTemp.next;
         } // while
         
+        // --------Loose Ends:--------
         // it is likely that we run out of traversing one list faster than the other.
         // for the rest of the items, simply append them to the merged list
         if (!temp1IsNOTNull && temp2IsNOTNull) { // if temp1 is null and temp2 is NOT, ...
@@ -258,9 +256,7 @@ public class SortedLinkedList {
         // before we entered this loop, we had already prepared the next spot for an item
         mergeTemp = temp1;
         // we are now done merging.
-        // shift the merged list head off of the -1 header node
-        mergedListHead = mergedListHead.next;
-        // do...something? do we return the list (void tho) or just assign one of them to the merged list?
+        // do...something? do we just assign one of them to the merged list?
         list1.head = mergedListHead;
         
     } // mergeList()
@@ -285,30 +281,38 @@ public class SortedLinkedList {
      */
     public static void deleteAlternateNodes(SortedLinkedList list) {
         
-        // TK check this (end behavior)
+        // TK check (end behavior)
         NodeType temp = list.head;
-        if (temp == null) { return; } // if
+        if (temp == null) {
+            System.out.println("The list is empty");
+            return;
+        } // if
         // while neither temp nor its twice-subsequent is null
+        // (if temp.next is null, then surely temp.next.next is also null)
         while (!(temp == null || temp.next == null)) {
-            temp.next = temp.next.next;
-            temp = temp.next;
+            // if we've reached the end of the list...
+            if (temp.next.next == null) {
+                temp.next = null;
+                return;
+            } // if
+            temp.next = temp.next.next; // bridge across delenda
+            temp = temp.next; // iterate
         } // while
-        // end of list
-        if (temp.next.next == null) { temp.next = null; } // if
-
+        
     } // deleteAlternateNodes()
 
     /**
-     * Prints the instance linked-list, in order, as space-separated integers.
+     * Prints the instance linked-list, in ascending order, as space-separated integers.
      */
     public void printList() {
 
         NodeType temp = this.head;
+        StringBuilder sb = new StringBuilder(); // idk why
         while (temp != null) {
-            System.out.print(temp.info.getValue() + " ");
+            sb.append(temp.info.getValue()).append(" ");
             temp = temp.next;
         } // while
-        System.out.println();
+        System.out.println(sb.build());
 
     } // printList()
 
