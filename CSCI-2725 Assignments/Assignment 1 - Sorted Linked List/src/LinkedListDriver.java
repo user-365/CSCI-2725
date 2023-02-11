@@ -38,7 +38,7 @@ public class LinkedListDriver {
 
                 case "i":
                     System.out.print("Enter a number to insert: ");
-                    item = new ItemType((byte) s.nextInt());
+                    item = new ItemType(s.nextInt());
                     printListWithLabel("Original list", list);
                     list.insertItem(item);
                     printListWithLabel("New list", list);
@@ -46,7 +46,7 @@ public class LinkedListDriver {
                 
                 case "d":
                     System.out.print("Enter a number to delete: ");
-                    item = new ItemType((byte) s.nextInt());
+                    item = new ItemType(s.nextInt());
                     printListWithLabel("Original list", list);
                     list.deleteItem(item);
                     printListWithLabel("New list", list);
@@ -54,7 +54,7 @@ public class LinkedListDriver {
 
                 case "s":
                     System.out.print("Enter a number to search: ");
-                    item = new ItemType((byte) s.nextInt());
+                    item = new ItemType(s.nextInt());
                     printListWithLabel("Original list", list);
                     int index = list.searchItem(item);
                     if (index == -1) {
@@ -73,12 +73,13 @@ public class LinkedListDriver {
                 case "m":
                     System.out.print("Enter the length of the new list: ");
                     int newLength = s.nextInt(); // TK what
+                    if (newLength <= 0) { break; } // if
 
                     // make newList
                     System.out.print("Enter the numbers: ");
                     SortedLinkedList newList = new SortedLinkedList();
                     Stream<String> listPrecursor = Pattern.compile(" ")
-                        .splitAsStream(s.nextLine()); // apparently faster than Stream.of()
+                        .splitAsStream(s.nextLine(), newLength); // apparently faster than Stream.of()
                     makeSLLFromStream(listPrecursor, newList);
 
                     printListWithLabel("The list 1", list);
@@ -132,7 +133,7 @@ public class LinkedListDriver {
         stream.mapToInt(Integer::parseInt) // String to int
                 .distinct() // no duplicates!
                 .sorted() // ascending order
-                .forEach(i -> SLL.insertItem(new ItemType((byte) i))); // put in list
+                .forEach(i -> SLL.insertItem(new ItemType(Math.abs( i )))); // put in list
     } // makeSLLFromStream
 
 } // LinkedListDriver
