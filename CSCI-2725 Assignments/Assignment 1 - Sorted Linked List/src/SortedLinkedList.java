@@ -307,12 +307,11 @@ public class SortedLinkedList {
     public void printList() {
 
         NodeType temp = this.head;
-        StringBuilder sb = new StringBuilder(); // idk why
         while (temp != null) {
-            sb.append(temp.info.getValue()).append(" ");
+            System.out.print(temp.info.getValue() + " ");
             temp = temp.next;
         } // while
-        System.out.println(sb.build());
+        System.out.println();
 
     } // printList()
 

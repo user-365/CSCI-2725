@@ -79,7 +79,8 @@ public class LinkedListDriver {
                     System.out.print("Enter the numbers: ");
                     SortedLinkedList newList = new SortedLinkedList();
                     Stream<String> listPrecursor = Pattern.compile(" ")
-                        .splitAsStream(s.nextLine(), newLength); // apparently faster than Stream.of()
+                        .splitAsStream(s.nextLine()) // apparently faster than Stream.of()
+                        .limit(newLength); // the only use i see for this field
                     makeSLLFromStream(listPrecursor, newList);
 
                     printListWithLabel("The list 1", list);

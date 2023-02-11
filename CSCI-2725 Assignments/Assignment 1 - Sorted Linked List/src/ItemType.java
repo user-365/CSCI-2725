@@ -4,15 +4,14 @@
  */
 public class ItemType {
     
-    private byte value; // it does say "integer" not "int"...
-
+    private int value;
     /**
      * Default constructor.
      * Initializes the instance member by parameter num.
      * 
      * @param num the value which will initialize the instance
      */
-    public ItemType(byte num) {
+    public ItemType(int num) {
         this.value = num;
     } // ItemType(int num)
     
