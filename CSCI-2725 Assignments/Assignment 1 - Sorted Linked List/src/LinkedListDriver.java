@@ -17,7 +17,6 @@ public class LinkedListDriver {
         System.out.println("Commands:\n(i) - Insert value\n(d) - Delete value\n(s) - Search value\n(a) - Delete alternate nodes\n(m) - Merge lists\n(p) - Print list\n(l) - Print length\n(q) - Quit program");
         SortedLinkedList list = new SortedLinkedList();
         Scanner s = new Scanner(System.in);
-        ItemType item;
 
         try {
 
@@ -37,31 +36,15 @@ public class LinkedListDriver {
             switch (s.nextLine()) {
 
                 case "i":
-                    System.out.print("Enter a number to insert: ");
-                    item = new ItemType(s.nextInt());
-                    printListWithLabel("Original list", list);
-                    list.insertItem(item);
-                    printListWithLabel("New list", list);
+                    insert(list, s);
                     break;
                 
                 case "d":
-                    System.out.print("Enter a number to delete: ");
-                    item = new ItemType(s.nextInt());
-                    printListWithLabel("Original list", list);
-                    list.deleteItem(item);
-                    printListWithLabel("New list", list);
+                    delete(list, s);
                     break;
 
                 case "s":
-                    System.out.print("Enter a number to search: ");
-                    item = new ItemType(s.nextInt());
-                    printListWithLabel("Original list", list);
-                    int index = list.searchItem(item);
-                    if (index == -1) {
-                        System.out.println("Item is not present in the list");
-                    } else {
-                        System.out.println("The item is present at index " + index);
-                    } // if-else
+                    search(list, s);
                     break;
 
                 case "a":
@@ -71,23 +54,7 @@ public class LinkedListDriver {
                     break;
 
                 case "m":
-                    System.out.print("Enter the length of the new list: ");
-                    int newLength = s.nextInt(); // TK what
-                    if (newLength <= 0) { break; } // if
-
-                    // make newList
-                    System.out.print("Enter the numbers: ");
-                    SortedLinkedList newList = new SortedLinkedList();
-                    Stream<String> listPrecursor = Pattern.compile(" ")
-                        .splitAsStream(s.nextLine()) // apparently faster than Stream.of()
-                        .limit(newLength); // the only use i see for this field
-                    makeSLLFromStream(listPrecursor, newList);
-
-                    printListWithLabel("The list 1", list);
-                    // TK create newList based on arguments
-                    printListWithLabel("The list 2", newList);
-                    SortedLinkedList.mergeList(list, newList);
-                    printListWithLabel("Merged list", list);
+                    merge(list, s);
                     break;
 
                 case "p":
@@ -106,12 +73,81 @@ public class LinkedListDriver {
 
                 default:
                     System.out.println("Invalid command, try again: ");
-                    break no_prefix;
+                    break no_prefix; // goto label
                     
             } // switch
         } // for
 
     } // main
+
+    /**
+     * 
+     * @param list
+     * @param s
+     */
+    private static void search(SortedLinkedList list, Scanner s) {
+        ItemType item;
+        System.out.print("Enter a number to search: ");
+        item = new ItemType(s.nextInt());
+        printListWithLabel("Original list", list);
+        int index = list.searchItem(item);
+        if (index == -1) {
+            System.out.println("Item is not present in the list");
+        } else {
+            System.out.println("The item is present at index " + index);
+        } // if-else
+    }
+
+    /**
+     * 
+     * @param list
+     * @param s
+     */
+    private static void delete(SortedLinkedList list, Scanner s) {
+        ItemType item;
+        System.out.print("Enter a number to delete: ");
+        item = new ItemType(s.nextInt());
+        printListWithLabel("Original list", list);
+        list.deleteItem(item);
+        printListWithLabel("New list", list);
+    }
+
+    /**
+     * 
+     * @param list
+     * @param s
+     */
+    private static void insert(SortedLinkedList list, Scanner s) {
+        ItemType item;
+        System.out.print("Enter a number to insert: ");
+        item = new ItemType(s.nextInt());
+        printListWithLabel("Original list", list);
+        list.insertItem(item);
+        printListWithLabel("New list", list);
+    }
+
+    /**
+     * 
+     * @param list
+     * @param s
+     */
+    private static void merge(SortedLinkedList list, Scanner s) {
+        System.out.print("Enter the length of the new list: ");
+        int newLength = s.nextInt(); // TK what
+        if (newLength <= 0) { return; } // if
+        // make newList
+        System.out.print("Enter the numbers: ");
+        SortedLinkedList newList = new SortedLinkedList();
+        Stream<String> listPrecursor = Pattern.compile(" ")
+                .splitAsStream(s.nextLine()) // apparently faster than Stream.of()
+                .limit(newLength); // the only use i see for this field
+        makeSLLFromStream(listPrecursor, newList);
+        printListWithLabel("The list 1", list);
+        // TK create newList based on arguments
+        printListWithLabel("The list 2", newList);
+        SortedLinkedList.mergeList(list, newList);
+        printListWithLabel("Merged list", list);
+    } // merge
 
     /**
      * TK write this
