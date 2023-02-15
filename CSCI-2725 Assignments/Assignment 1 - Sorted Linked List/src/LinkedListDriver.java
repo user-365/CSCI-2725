@@ -5,6 +5,7 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.regex.Pattern;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 // TK remember to create Readme.txt on Odin
@@ -162,18 +163,25 @@ public class LinkedListDriver {
 
     /**
      * TK write this
+     * Works.
      * @param stream
      * @param SLL
      */
     public static void makeSLLFromStream(Stream<String> stream, SortedLinkedList SLL) {
-        stream.mapToInt(Integer::parseInt) // String to int
+        IntStream template = stream.mapToInt(Integer::parseInt) // String to int
                 .distinct() // no duplicates!
-                .sorted() // ascending order
-                .forEach(i -> {
-                    System.out.println(i);
-                    SLL.insertItem(new ItemType(Math.abs( i )));
-                    printListWithLabel("fds", SLL);
-                }); // put in list
+                .sorted(); // ascending order
+        Iterable<Integer> iterable = template::iterator;
+        NodeType previous = new NodeType();
+        previous.info = new ItemType(-1); // header
+        SLL.setHead(previous);
+        for (Integer i : iterable) {
+            NodeType next = new NodeType();
+            next.info = new ItemType(Math.abs( i ));
+            previous.next = next;
+            previous = next;
+        } // for-each
+        SLL.setHead(SLL.getHead().next);
     } // makeSLLFromStream
 
 } // LinkedListDriver

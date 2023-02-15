@@ -38,6 +38,22 @@ public class SortedLinkedList {
     } // getLength()
 
     /**
+     * Setter method for {@code head} field.
+     * @param head that to which the instance field is to be set
+     */
+    public void setHead(NodeType head) {
+        this.head = head;
+    } // setHead(NodeType)
+
+    /**
+     * Getter method for {@code head} field.
+     * @return the instance field
+     */
+    public NodeType getHead() {
+        return this.head;
+    } // getHead()
+
+    /**
      * {@code item} should be inserted to the linked list maintaining
      * the ascending sorted order.
      * 
@@ -63,6 +79,7 @@ public class SortedLinkedList {
         // superfluous but did it anyway for early exit
         if (this.head == null) { // insert in an empty list
             (this.head = new NodeType()).info = inserenda;
+            System.out.println("SortedLinkedList.insertItem() head is null");
         } else { // begin traversing
 
             // TK check this
@@ -70,15 +87,18 @@ public class SortedLinkedList {
             prevTemp.info = new ItemType(-1); // header item; nodes can't be empty
             prevTemp.next = temp;
             while (temp != null) {
+                System.out.println("SortedLinkedList.insertItem() head is not null, in loop");
                 // if the inserenda's number is < the temp's number, ...
                 if (inserenda.compareTo(temp.info) < 0) { // keep traversing.
                     prevTemp = temp; // shift down
                     temp = temp.next; // shift down
+                    System.out.println("SortedLinkedList.insertItem() shift down");
                 } else if (inserenda.compareTo(temp.info) > 0) {
                     // insert inserenda after prevTemp
                     (prevTemp.next = new NodeType()).info = inserenda;
                     // and before temp
                     prevTemp.next.next = temp;
+                    System.out.println("SortedLinkedList.insertItem() success");
                     return;
                 } else {
                     // otherwise (==), don't insert duplicate item
@@ -303,12 +323,12 @@ public class SortedLinkedList {
 
     /**
      * Prints the instance linked-list, in ascending order, as space-separated integers.
+     * Works.
      */
     public void printList() {
 
         NodeType temp = this.head;
         while (temp != null) {
-            System.out.println("fdjskf");
             System.out.print(temp.info.getValue() + " ");
             temp = temp.next;
         } // while
