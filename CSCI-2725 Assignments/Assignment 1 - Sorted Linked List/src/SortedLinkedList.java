@@ -67,7 +67,7 @@ public class SortedLinkedList {
 
             // TK check this
             NodeType prevTemp = new NodeType(), temp = this.head;
-            prevTemp.info = new ItemType((byte) -1); // header item; nodes can't be empty
+            prevTemp.info = new ItemType(-1); // header item; nodes can't be empty
             prevTemp.next = temp;
             while (temp != null) {
                 // if the inserenda's number is < the temp's number, ...
@@ -125,7 +125,7 @@ public class SortedLinkedList {
 
             // TK check this
             NodeType prevTemp = new NodeType(), temp = this.head;
-            prevTemp.info = new ItemType((byte) -1); // header item; nodes can't be empty
+            prevTemp.info = new ItemType(-1); // header item; nodes can't be empty
             prevTemp.next = temp;
             while (temp != null) {
                 // if the delenda's number is != the temp's number, ...
@@ -308,6 +308,7 @@ public class SortedLinkedList {
 
         NodeType temp = this.head;
         while (temp != null) {
+            System.out.println("fdjskf");
             System.out.print(temp.info.getValue() + " ");
             temp = temp.next;
         } // while

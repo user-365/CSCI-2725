@@ -169,7 +169,11 @@ public class LinkedListDriver {
         stream.mapToInt(Integer::parseInt) // String to int
                 .distinct() // no duplicates!
                 .sorted() // ascending order
-                .forEach(i -> SLL.insertItem(new ItemType(Math.abs( i )))); // put in list
+                .forEach(i -> {
+                    System.out.println(i);
+                    SLL.insertItem(new ItemType(Math.abs( i )));
+                    printListWithLabel("fds", SLL);
+                }); // put in list
     } // makeSLLFromStream
 
 } // LinkedListDriver
