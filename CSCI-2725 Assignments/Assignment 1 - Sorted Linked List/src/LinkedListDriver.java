@@ -7,7 +7,6 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
-// TK handle edge cases like empty list etc.
 // TK remember to create Readme.txt on Odin
 
 public class LinkedListDriver {
