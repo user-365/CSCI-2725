@@ -1,30 +1,85 @@
-% manage PDFs (esp. screen-reading tags)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% MANAGE PDFs FOR SCREEN-READING %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\RequirePackage{pdfmanagement-testphase} % TK Uncomment when dependencies gotten
 %\DeclareDocumentMetadata{uncompress,pdfversion=2.0} % TK uncomment when control sequence done
 
 % TK TODO:
 % - add labels and captions n stuff to code blocks/snippets (fix function relabeling too)
 % - align 2nd level enumeration items with 1st level (ask on stackexchange)
-% - fix that one thing you emailed prof about
 
+% inspo for templating: https://tex.stackexchange.com/q/59702
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CLASS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \documentclass[12pt, a4paper]{article}
-\usepackage[utf8]{inputenc}
 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% FONTS and ENCODING %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% See: https://tex.stackexchange.com/q/59702
+%
+\usepackage[utf8]{inputenc}	% allows input of accented characters directly from the keyboard
+							% https://tex.stackexchange.com/questions/44694/fontenc-vs-inputenc
+\usepackage[T1]{fontenc} 	% ensure proper hyphenation
+\usepackage{newtxtext}		% loads clones of Helvetica and of a monospaced font to provide reasonably well matched sans-serif and "typewriter" fonts.
+\usepackage[smallerops, varg, cmbraces, ]{newtxmath} 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% AMS MATH %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \usepackage{amsmath}      % loads amstext, amsbsy, amsopn but not amssymb
+                            % equation stuff (eqref, subequations, equation, align, gather, flalign, multline, alignat, split...)
+                            % redundant by newtxmath
+% \usepackage{amsfonts}     % may be redundant with amsmath
+% \usepackage{amssymb}      % may be redundant with amsmath
+% \numberwithin{equation}{section}  % reset equation counters at start of each "section" and prefix numbers by section number
+% \numberwithin{figure}{section}    % reset figure   counters at start of each "section" and prefix numbers by section number
+
+\usepackage{enumitem}
+\usepackage{mathtools} % for multlined environment
+\usepackage{tcolorbox}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% HYPERREF (last) then HYPCAP %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% See: https://tex.stackexchange.com/q/1863
+%
+\usepackage[
+pdflang={en-US},
+pdftex, 
+final,                      % if you do    want to have clickable-colorful links
+pdfstartview = FitV,
+linktocpage  = false,       % ToC, LoF, LoT place hyperlink on page number, rather than entry text
+breaklinks   = true,        % so long urls are correctly broken across lines
+% pagebackref  = false,     % add page number in bibliography and link to position in document where cited
+]{hyperref}					% hyperref should be last loaded package; see link above
 % make better PDF
-\usepackage[pdflang={en-US},pdftex]{hyperref}
 \hypersetup{
   pdftitle={CSCI 2725 Homework 1},
   pdfauthor={Yitao Tian},
 } % setup PDF
 %\usepackage{tagpdf} % TK uncomment. add tags to content
 
-\usepackage{enumitem}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{mathtools} % for multlined environment
-\usepackage{tcolorbox}
 
-% render code blocks
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CUSTOM RENDERED CODE BLOCKS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% See: 
+%
 \tcbuselibrary{minted, breakable, xparse, skins}
 \definecolor{bg}{gray}{0.12} % bg color of code block (almost black)
 \renewcommand{\theFancyVerbLine}{\sffamily % change line number formatting
@@ -66,26 +121,47 @@
     \end{tcbclipinterior}},
   #3}
 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CUSTOM MISCELLANEA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % right align qed symbol
 \newcommand{\myqed}{\tag*{$\blacksquare$}}
-
+%
 % creates a phantom relational symbol (e.g. "=" or "\leq")
 % multiline/split expressions (after relational) must be horizontally to the right of the relational
-% source: https://tex.stackexchange.com/a/448386
+% See: https://tex.stackexchange.com/a/448386
 \newcommand*\myphantomrel[1]{\mathrel{\phantom{#1}}}
-
+%
 % word/phrase inline highlighting (for final answers)
-% source: https://tex.stackexchange.com/a/234175 (less SLOW than tikz method on same page?)
+% See: https://tex.stackexchange.com/a/234175 (less SLOW than tikz method on same page?)
 \newtcbox{\myhighlight}[1][]{enhanced, colframe=green, colback=green!15, 
        frame style={opacity=0.25}, interior style={opacity=0.25}, 
        nobeforeafter, tcbox raise base, shrink tight, extrude by=1mm, #1}
 
-\begin{document}
 
-%title
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TITLE PAGE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \author{Yitao Tian}
 \date{2023-01-21}
+\title{}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% THE ACTUAL DOCUMENT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\begin{document}
+
 \title{CSCI-2725 Homework 1}
+
 \maketitle
 
 \begin{enumerate}
@@ -213,7 +289,7 @@
 			\end{align*} \label{2(d)}
 		\end{enumerate}
 		
-	\item \textbf{Problem 3:} Find the Big O estimate or worst case complexity of the following functions (given in pseudo-code). \label{3}\\\\
+	\item \textbf{Problem 3:} Find the Big O estimate or worst case complexity of the following functions (given in pseudo-code). \label{3}
 		For the following code snippets, the work for the problem is contained in code comments.
 		The function algorithms ($T(n)$) are measured in units of assignment operations.
 		\begin{enumerate} %[leftmargin=0pt, labelsep=3em] % TKmarker i eyeballed this.
