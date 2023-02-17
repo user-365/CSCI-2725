@@ -79,33 +79,36 @@ public class SortedLinkedList {
         // superfluous but did it anyway for early exit
         if (this.head == null) { // insert in an empty list
             (this.head = new NodeType()).info = inserenda;
-            System.out.println("SortedLinkedList.insertItem() head is null");
         } else { // begin traversing
 
-            // TK check this
+            // TK check if some pointers are redundant
             NodeType prevTemp = new NodeType(), temp = this.head;
             prevTemp.info = new ItemType(-1); // header item; nodes can't be empty
             prevTemp.next = temp;
+            this.head = prevTemp;
             while (temp != null) {
-                System.out.println("SortedLinkedList.insertItem() head is not null, in loop");
-                // if the inserenda's number is < the temp's number, ...
-                if (inserenda.compareTo(temp.info) < 0) { // keep traversing.
+                // if the inserenda's number is > the temp's number, ...
+                if (inserenda.compareTo(temp.info) > 0) { // keep traversing.
                     prevTemp = temp; // shift down
+                    if (temp.next == null) {
+                        (prevTemp.next = new NodeType()).info = inserenda;
+                        break;
+                    } // ifnotnull
                     temp = temp.next; // shift down
-                    System.out.println("SortedLinkedList.insertItem() shift down");
-                } else if (inserenda.compareTo(temp.info) > 0) {
+                } else if (inserenda.compareTo(temp.info) < 0) { // insert.
                     // insert inserenda after prevTemp
                     (prevTemp.next = new NodeType()).info = inserenda;
                     // and before temp
                     prevTemp.next.next = temp;
-                    System.out.println("SortedLinkedList.insertItem() success");
-                    return;
+                    break;
                 } else {
                     // otherwise (==), don't insert duplicate item
                     System.out.println("Item already exists");
-                    return;
+                    break;
                 } // if-elif-else
             } // while
+            this.head = this.head.next;
+            return;
 
         } // if-else
         
@@ -147,20 +150,30 @@ public class SortedLinkedList {
             NodeType prevTemp = new NodeType(), temp = this.head;
             prevTemp.info = new ItemType(-1); // header item; nodes can't be empty
             prevTemp.next = temp;
+            this.head = prevTemp;
             while (temp != null) {
-                // if the delenda's number is != the temp's number, ...
-                if (delenda.compareTo(temp.info) != 0) {
-                    // keep traversing.
+                // if the delenda's number is > the temp's number, ...
+                if (delenda.compareTo(temp.info) > 0) { // keep traversing.
                     prevTemp = temp; // shift down
+                    if (temp.next == null) {
+                        // every item in the list was less than delenda
+                        System.out.println("The item is not present in the list");
+                        break;
+                    } // ifnotnull
                     temp = temp.next; // shift down
-                } else { // otherwise (==),
+                } else if (delenda.compareTo(temp.info) == 0) { // otherwise,
                     // bridge the nodes around delenda
                     prevTemp.next = temp.next;
                     // we are done deleting.
-                    return;
-                } // if-else
+                    break;
+                } else { // from now on, all items will be greater than delenda
+                    System.out.println("The item is not present in the list");
+                    // a non-present item cannot be deleted
+                    break;
+                } // if-elif-else
             } // while
-            System.out.println("The item is not present in the list");
+            this.head = this.head.next;
+            return;
 
         } // if-else
         
@@ -180,22 +193,30 @@ public class SortedLinkedList {
     public int searchItem(ItemType quaerenda) {
         
         // TK check this
-        int index = 0;
-        NodeType temp = this.head;
-        while (temp != null) {
-            // if the quarenda's number is != the temp's number, ...
-            if (quaerenda.compareTo(temp.info) != 0) {
-                // keep traversing.
-                index++;
-                temp = temp.next; // shift down
-            } else {
-                return index;
-            } // if-else
-        } // while
-        System.out.println("Item is not present in the list");
-        return -1;
+        int index = 1; // one-based, not zero-based
+        if (this.head == null) {
+            System.out.println("The list is empty");
+            return -1;
+        } else {
+            
+            NodeType temp = this.head;
+            while (temp != null) {
+                // if the quarenda's number is != the temp's number, ...
+                if (quaerenda.compareTo(temp.info) != 0) {
+                    // keep traversing.
+                    index++;
+                    temp = temp.next; // shift down
+                } else {
+                    System.out.println("The item is present at index " + index);
+                    return index;
+                } // if-else
+            } // while
+            System.out.println("Item is not present in the list");
+            return -1;
+
+        } // if-else
         
-    } // serachitem(ItemType)
+    } // searchitem(ItemType)
 
     /**
      * This function should merge two lists and not include any duplicate items in
@@ -248,15 +269,15 @@ public class SortedLinkedList {
             // compare each item.
             if (temp1.info.compareTo(temp2.info) == -1) {
                 // then put in list1's item
-                mergeTemp = temp1;
+                mergeTemp.next = temp1;
                 temp1 = temp1.next;
             } else if (temp1.info.compareTo(temp2.info) == 1) {
                 // else, put in list2's item
-                mergeTemp = temp2;
+                mergeTemp.next = temp2;
                 temp2 = temp2.next;
             } else { // duplicate item (==)
                 // put only one item in
-                mergeTemp = temp1;
+                mergeTemp.next = temp1;
                 // then, iterate on BOTH lists
                 temp1 = temp1.next;
                 temp2 = temp2.next;
@@ -274,10 +295,10 @@ public class SortedLinkedList {
         } // if
         // only need to attach/append temp1 to the merged list because temp1 holds the chain
         // before we entered this loop, we had already prepared the next spot for an item
-        mergeTemp = temp1;
+        mergeTemp.next = temp1;
         // we are now done merging.
         // do...something? do we just assign one of them to the merged list?
-        list1.head = mergedListHead;
+        list1.head = mergedListHead.next;
         
     } // mergeList()
 

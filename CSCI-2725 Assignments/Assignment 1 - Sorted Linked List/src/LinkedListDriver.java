@@ -31,9 +31,9 @@ public class LinkedListDriver {
         } // try-catch
 
         for (;;) {
-            System.out.println("Enter a command: ");
+            System.out.print("Enter a command: ");
             no_prefix: // from default case
-            switch (s.nextLine()) {
+            switch (s.next()) {
 
                 case "i":
                     insert(list, s);
@@ -62,7 +62,7 @@ public class LinkedListDriver {
                     break;
 
                 case "l":
-                    System.out.print("The length of the list is " + list.getLength());
+                    System.out.println("The length of the list is " + list.getLength());
                     break;
 
                 case "q": // loop's exit condition
@@ -90,12 +90,7 @@ public class LinkedListDriver {
         System.out.print("Enter a number to search: ");
         item = new ItemType(s.nextInt());
         printListWithLabel("Original list", list);
-        int index = list.searchItem(item);
-        if (index == -1) {
-            System.out.println("Item is not present in the list");
-        } else {
-            System.out.println("The item is present at index " + index);
-        } // if-else
+        list.searchItem(item);
     }
 
     /**
@@ -137,9 +132,13 @@ public class LinkedListDriver {
         if (newLength <= 0) { return; } // if
         // make newList
         System.out.print("Enter the numbers: ");
+        String inputList = s.nextLine();
+        while (inputList.equals("")) { // TK idk how else to do this
+            inputList = s.nextLine();
+        } // while
         SortedLinkedList newList = new SortedLinkedList();
         Stream<String> listPrecursor = Pattern.compile(" ")
-                .splitAsStream(s.nextLine()) // apparently faster than Stream.of()
+                .splitAsStream(inputList) // apparently faster than Stream.of()
                 .limit(newLength); // the only use i see for this field
         makeSLLFromStream(listPrecursor, newList);
         printListWithLabel("The list 1", list);
