@@ -5,9 +5,9 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.regex.Pattern;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-// TK handle edge cases like empty list etc.
 // TK remember to create Readme.txt on Odin
 
 public class LinkedListDriver {
@@ -31,9 +31,9 @@ public class LinkedListDriver {
         } // try-catch
 
         for (;;) {
-            System.out.println("Enter a command: ");
+            System.out.print("Enter a command: ");
             no_prefix: // from default case
-            switch (s.nextLine()) {
+            switch (s.next()) {
 
                 case "i":
                     insert(list, s);
@@ -62,7 +62,7 @@ public class LinkedListDriver {
                     break;
 
                 case "l":
-                    System.out.print("The length of the list is " + list.getLength());
+                    System.out.println("The length of the list is " + list.getLength());
                     break;
 
                 case "q": // loop's exit condition
@@ -90,12 +90,7 @@ public class LinkedListDriver {
         System.out.print("Enter a number to search: ");
         item = new ItemType(s.nextInt());
         printListWithLabel("Original list", list);
-        int index = list.searchItem(item);
-        if (index == -1) {
-            System.out.println("Item is not present in the list");
-        } else {
-            System.out.println("The item is present at index " + index);
-        } // if-else
+        list.searchItem(item);
     }
 
     /**
@@ -137,9 +132,13 @@ public class LinkedListDriver {
         if (newLength <= 0) { return; } // if
         // make newList
         System.out.print("Enter the numbers: ");
+        String inputList = s.nextLine();
+        while (inputList.equals("")) { // TK idk how else to do this
+            inputList = s.nextLine();
+        } // while
         SortedLinkedList newList = new SortedLinkedList();
         Stream<String> listPrecursor = Pattern.compile(" ")
-                .splitAsStream(s.nextLine()) // apparently faster than Stream.of()
+                .splitAsStream(inputList) // apparently faster than Stream.of()
                 .limit(newLength); // the only use i see for this field
         makeSLLFromStream(listPrecursor, newList);
         printListWithLabel("The list 1", list);
@@ -163,14 +162,25 @@ public class LinkedListDriver {
 
     /**
      * TK write this
+     * Works.
      * @param stream
      * @param SLL
      */
     public static void makeSLLFromStream(Stream<String> stream, SortedLinkedList SLL) {
-        stream.mapToInt(Integer::parseInt) // String to int
+        IntStream template = stream.mapToInt(Integer::parseInt) // String to int
                 .distinct() // no duplicates!
-                .sorted() // ascending order
-                .forEach(i -> SLL.insertItem(new ItemType(Math.abs( i )))); // put in list
+                .sorted(); // ascending order
+        Iterable<Integer> iterable = template::iterator;
+        NodeType previous = new NodeType();
+        previous.info = new ItemType(-1); // header
+        SLL.setHead(previous);
+        for (Integer i : iterable) {
+            NodeType next = new NodeType();
+            next.info = new ItemType(Math.abs( i ));
+            previous.next = next;
+            previous = next;
+        } // for-each
+        SLL.setHead(SLL.getHead().next);
     } // makeSLLFromStream
 
 } // LinkedListDriver
