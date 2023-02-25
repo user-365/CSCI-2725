@@ -271,5 +271,7 @@ public class CircularLinkedList {
     // ----------------HELPER METHODS---------------- //
     
     NodeType getHead() { return this.head; } // getHead()
+
+	void setHead(NodeType head) { this.head = head; } // setHead(NodeType)
   
 } // CircularLinkedList
