@@ -12,7 +12,7 @@ public class CircularLinkedListDriver {
 
         System.out.println(
                 "Commands:\n(i) - Insert value\n(d) - Delete value\n(s) - Search value\n(a) - Delete alternate nodes\n(m) - Merge lists\n(p) - Print list\n(l) - Print length\n(q) - Quit program");
-        SortedLinkedList list = new SortedLinkedList();
+        CircularLinkedList list = new CircularLinkedList();
         Scanner s = new Scanner(System.in);
 
         try {
@@ -70,5 +70,84 @@ public class CircularLinkedListDriver {
         } // for
 
     } // main
+
+	/**
+     * 
+     * @param list
+     * @param s
+     */
+    private static void search(CircularLinkedList list, Scanner s) {
+        ItemType item;
+        System.out.print("Enter a number to search: ");
+        item = new ItemType(s.nextInt());
+        printListWithLabel("Original list", list);
+        list.searchItem(item);
+    }
+
+    /**
+     * 
+     * @param list
+     * @param s
+     */
+    private static void delete(CircularLinkedList list, Scanner s) {
+        ItemType item;
+        System.out.print("Enter a number to delete: ");
+        item = new ItemType(s.nextInt());
+        printListWithLabel("Original list", list);
+        list.deleteItem(item);
+        printListWithLabel("New list", list);
+    }
+
+    /**
+     * 
+     * @param list
+     * @param s
+     */
+    private static void insert(CircularLinkedList list, Scanner s) {
+        ItemType item;
+        System.out.print("Enter a number to insert: ");
+        item = new ItemType(s.nextInt());
+        printListWithLabel("Original list", list);
+        list.insertItem(item);
+        printListWithLabel("New list", list);
+    }
+
+    /**
+     * TK write this
+     * @param label
+     * @param list
+     */
+    public static void printListWithLabel(String label, CircularLinkedList list) {
+
+        System.out.print(label + ": ");
+        list.printList();
+
+    } // printListWithPrefix(String, CircularLinkedList)
+
+    /**
+     * TK write this
+     * Works.
+     * @param stream
+     * @param SLL
+     */
+    public static void makeCLLFromStream(Stream<String> stream, CircularLinkedList CLL) {
+        
+		IntStream template = stream.mapToInt(Integer::parseInt) // String to int
+                .distinct() // no duplicates!
+                .sorted(); // ascending order
+        Iterable<Integer> iterable = template::iterator;
+        NodeType previous = new NodeType();
+        previous.info = new ItemType(-1); // header
+        CLL.setHead(previous);
+        for (Integer i : iterable) {
+            NodeType next = new NodeType();
+            next.info = new ItemType(Math.abs( i ));
+            previous.next = next;
+            previous = next;
+        } // for-each
+        CLL.setHead(CLL.getHead().next);
+
+    } // makeSLLFromStream
+
 
 } // CircularLinkedListDriver
