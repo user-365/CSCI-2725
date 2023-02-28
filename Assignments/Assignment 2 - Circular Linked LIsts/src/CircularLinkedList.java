@@ -21,63 +21,55 @@ public class CircularLinkedList {
      */
     void insertItem(ItemType item) {
 		
-		// TK: check this method
 		// That which is to be inserted (or not)
 		NodeType inserenda = new NodeType();
 		inserenda.info = item;
 		
-		NodeType prevTemp = new NodeType();
-		prevTemp.info = new ItemType(-1); // placeholder
-		NodeType temp = this.head, prevTemp.next = temp;
 		// Special case: empty list
 		if (this.head == null) {
 			this.head = inserenda;
 			return;
 		} // if
-		// Novel case: singleton list TK fix whether insert before or after
+		// Novel case: singleton list   
 		if (this.head.next == null) {
 			this.head.next = inserenda;
+			inserenda.next = this.head;
 			return;
 		} // if
+		
+		// Preparation
+		NodeType prevTemp = this.head;
+		NodeType temp = this.head.next;
 
 		for (;;) { // infinite if not explicitly returned
 			
 			if (item.compareTo(temp.info) > 0) {
-				// Novel case: Inserenda is a maximum; insert now
-				if (temp.next == this.head) {
+				// Special case: inserting greatest item
+				if (item.compareTo(this.head.info) > 0) {
 					// Insert ahead of temp
-					inserenda.next = this.head;
-					temp.next = inserenda;
+					inserenda.next = temp;
+					prevTemp.next = inserenda;
+					this.head = inserenda;
 					return;
 				} // if
 				// Keep traversing
-				prevTemp = prevTemp.next;
+				prevTemp = temp;
 				temp = temp.next;
-			} else if (item.compareTo(temp.info) == 0) { // duplicate item;
+			} else if (item.compareTo(temp.info) < 0) { // insert now
+				// General case + Special case: inserting least item
+				inserenda.next = temp;
+				prevTemp.next = inserenda;
+				return;
+			} else { // duplicate item;
 				return; // do not insert
-			} // if-elif
+			} // if-elif-else
 
-			// if prevTemp has merged into list:
-			if (prevTemp.info.getValue() != -1) {
-				if (item.compareTo(temp.info) < 0) { // insert now
-					// General case + Special case: inserting to front of list
-					inserenda.next = temp;
-					prevTemp.next = inserenda;
-					// Special case: inserting to end of list
-					if (prevTemp == this.head) { this.head = inserenda; }
-					return;
-				} // if
-				// We have looped back around with no insertion; exit now
-				if (temp == this.head) { return; } // TK print something?
-			} else { // if prevTemp has not merged into list yet:
-				// Iterate (once) to merge
-				prevTemp = prevTemp.next;
-				temp = temp.next;
-			} // if-else
+			// We have looped back around with no insertion; exit now
+			if (prevTemp == this.head) { return; } // TK print something?
 			
 		} // for
 
-	} // insertItem()
+	} // insertItem(ItemType)
     
     /**
      * Pre-Condition: the list exists and item is initialized.
@@ -88,24 +80,25 @@ public class CircularLinkedList {
     void deleteItem(ItemType item) {
 		
 		// TK check this method
-		// That which is to be deleted (or not)
-		NodeType delenda = new NodeType();
-		delenda.info = item;
-		
-		NodeType prevTemp = this.head;
 		// Special case: empty list
 		if (this.head == null) {
-			System.out.println(""); // TK fill in quotes
+			System.out.println("The item is not present in the list."); // TK fill in quotes
 			return;
 		} // if
-
-		NodeType temp = this.head.next;
+		
 		// Special case: deleting only item
+		System.out.println(this.head.next == null);
 		if (this.head.next == null) {
 			this.head = null;
 			return;
 		} // if
-
+		
+		// That which is to be deleted (or not)
+		NodeType delenda = new NodeType();
+		delenda.info = item;
+		NodeType prevTemp = this.head;
+		NodeType temp = this.head.next;
+		
 		for (;;) { // infinite if not explicitly returned
 			
 			if (item.compareTo(temp.info) > 0) { // keep traversing
@@ -120,22 +113,22 @@ public class CircularLinkedList {
 				} // if
 				return;
 			} else { // item not present
-				System.out.println(""); // TK fill in quotes
+				System.out.println("The item is not present in the list."); // TK fill in quotes
 				return;
 			} // if-elif-else
 			// We have looped back around with no deletion; exit now
-			if (temp == this.head) { return; } // TK print something?
+			if (temp == this.head.next) { return; } // TK print something?
 
 		} // for
 
-	} // deleteItem()
+	} // deleteItem(ItemType)
     
     /**
      * Pre-Condition: the list exists and item is initialized.
      * <p> Post-Condition: It return the index of the item if it is present in the list;
      * otherwise returns -1. Index starts from 1.
      */
-    void SearchItem(ItemType item) {
+    int SearchItem(ItemType item) {
 		
 		int returnIndex = 1;
 
@@ -151,7 +144,7 @@ public class CircularLinkedList {
 			if (item.compareTo(temp.info) > 0) { // keep traversing
 				temp = temp.next;
 				returnIndex++;
-		`	} else if (item.compareTo(temp.info == 0) {
+			} else if (item.compareTo(temp.info) == 0) {
 				return returnIndex;
 			} else {
 				return -1;
@@ -162,7 +155,7 @@ public class CircularLinkedList {
 	
 		} // for
 
-	} // SearchItem()
+	} // SearchItem(ItemType)
     
     /**
      * Pre-Condition: the list exists.
@@ -178,7 +171,7 @@ public class CircularLinkedList {
 			// We have completed one loop around; stop counting
 			if (temp == this.head) { break; }
 		} // for
-		return returnLength
+		return returnLength;
 
 	} // length()
     
@@ -189,82 +182,88 @@ public class CircularLinkedList {
     void print() {
 		
 		NodeType temp = this.head;	
-		for (;;) { // infinite if not explicitly returned
-			System.out.print(temp.info.getValue() + " ");
+		for (;temp != null && temp.next != null;) { // infinite if not explicitly returned
 			temp = temp.next;
+			System.out.print(temp.info.getValue() + " ");
 			// We have completed one loop around; stop printing
-			if (temp == this.head) { return; }
+			if (temp.next == this.head.next) { break; }
 		} // for
+		System.out.println();
 
 	} // print()
     
     // ----------------STATIC METHODS---------------- //
     
-    /**
-     * This function will take input from the user
-     * for the lower and upper bound (both inclusive)
-     * for a range of values that you will delete from the list.
-     */
-    static void deleteSubsection(int lower, int upper) {
-		
-		// TK should i allow deletion of entire list?
-		//    or keep it as it is and leave one node at least?
-
-		// Validate input (`lower`)
-		if (lower < 1) {
-			System.out.println(""); // TK fill in quotes
-			return;
-		} // if
-		
-		int counter = 1;
-		NodeType prevTemp = this.head;
-		NodeType temp = this.head.next;
-
-		for (;;) { // infinite if not explicitly returned
-
-			// We have not reached (one before) lower bound node yet
-			if (counter < lower - 1) { prevTemp = prevTemp.next; }
-			if (counter == upper + 1) {
-				// Bridge over deleted nodes
-				prevTemp.next = temp;
-				return
-			} // if
-
-			// Keep traversing
-			temp = temp.next;
-			counter++;
-
-			// We will imminently complete one loop around,
-			// yet we still haven't found (user-inputted) upper bound
-			if (temp.next == this.head && counter < upper) { return; }
-
-		} // for
-
-	} // deleteSubsection()
+//    /**
+//     * This function will take input from the user
+//     * for the lower and upper bound (both inclusive)
+//     * for a range of values that you will delete from the list.
+//     */
+//    static void deleteSubsection(int lower, int upper) {
+//		
+//		// TK should i allow deletion of entire list?
+//		// or keep it as it is and leave one node at least?
+//
+//		// Validate input (`lower`)
+//		if (lower < 1) {
+//			System.out.println(""); // TK fill in quotes
+//			return;
+//		} // if
+//		
+//		int counter = 1;
+//		NodeType prevTemp = this.head;
+//		NodeType temp = this.head.next;
+//
+//		for (;;) { // infinite if not explicitly returned
+//
+//			// We have not reached (one before) lower bound node yet
+//			if (counter < lower - 1) { prevTemp = prevTemp.next; }
+//			if (counter == upper + 1) {
+//				// Bridge over deleted nodes
+//				prevTemp.next = temp;
+//				return;
+//			} // if
+//
+//			// Keep traversing
+//			temp = temp.next;
+//			counter++;
+//
+//			// We will imminently complete one loop around,
+//			// yet we still haven't found (user-inputted) upper bound
+//			if (temp.next == this.head && counter < upper) { return; }
+//
+//		} // for
+//
+//	} // deleteSubsection()
     
     /**
-     * This function will return the reversed list.
-     * Use the original list and change the “next” of nodes,
-     * so that the list is reversed.
-     * You are not allowed to create a new list that contains
-     * the elements in reverse order.
-     * You will get zero if you create a new list and copy
-     * the elements in the reverse order in that list.
-     */
-    static CircularLinkedList reverseList() {
+	 * This function will return the reversed list.
+	 * Use the original list and change the “next” of nodes,
+	 * so that the list is reversed.
+	 * You are not allowed to create a new list that contains
+	 * the elements in reverse order.
+	 * You will get zero if you create a new list and copy
+	 * the elements in the reverse order in that list.
+	 * 
+	 * <p>
+	 * <strong>Side effects:</strong> modifies `CLL`, not a new list
+	 */
+    static CircularLinkedList reverseList(CircularLinkedList CLL) {
 		
-		NodeType prevTemp = this.head;
-		NodeType temp = this.head.next;
-		NodeType nextTemp = this.head.next.next;
+		NodeType prevTemp = CLL.head;
+		NodeType temp = CLL.head.next;
+		NodeType nextTemp = CLL.head.next.next;
 
-		for (;prevTemp != this.head;) {
+		for (;prevTemp != CLL.head;) {
 			// Reverse "next" direction
 			temp.next = prevTemp;
 			// Keep traversing
 			prevTemp = temp;
 			temp = nextTemp;
-			nextTemp = nextTemp.next
+			nextTemp = nextTemp.next;
 		} // for
+
+		return CLL;
 		
 	} // reverseList()
     

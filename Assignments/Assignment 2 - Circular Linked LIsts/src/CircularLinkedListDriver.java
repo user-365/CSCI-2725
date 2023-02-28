@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class CircularLinkedListDriver {
@@ -21,7 +22,7 @@ public class CircularLinkedListDriver {
             Stream<String> listPrecursor = Files.lines(file)
                     .map(str -> str.split(" ")) // space-separated integers
                     .flatMap(Arrays::stream);
-            makeSLLFromStream(listPrecursor, list);
+            makeCLLFromStream(listPrecursor, list);
 
         } catch (IOException x) {
             System.err.format("IOException: %s%n", x);
@@ -30,7 +31,7 @@ public class CircularLinkedListDriver {
         for (;;) {
             System.out.println("Enter a command: ");
             no_prefix: // from default case
-            switch (s.nextLine()) {
+            switch (s.next()) {
 
                 case "i":
                     insert(list, s);
@@ -53,7 +54,7 @@ public class CircularLinkedListDriver {
                     break;
 
                 case "l":
-                    System.out.print("The length of the list is " + list.getLength());
+                    System.out.println("The length of the list is " + list.length());
                     break;
 
                 case "q": // loop's exit condition
@@ -71,7 +72,7 @@ public class CircularLinkedListDriver {
 
     } // main
 
-	/**
+    /**
      * 
      * @param list
      * @param s
@@ -81,7 +82,7 @@ public class CircularLinkedListDriver {
         System.out.print("Enter a number to search: ");
         item = new ItemType(s.nextInt());
         printListWithLabel("Original list", list);
-        list.searchItem(item);
+        list.SearchItem(item);
     }
 
     /**
@@ -96,7 +97,7 @@ public class CircularLinkedListDriver {
         printListWithLabel("Original list", list);
         list.deleteItem(item);
         printListWithLabel("New list", list);
-    }
+    } // delete(CircularLinkedList, Scanner)
 
     /**
      * 
@@ -110,7 +111,18 @@ public class CircularLinkedListDriver {
         printListWithLabel("Original list", list);
         list.insertItem(item);
         printListWithLabel("New list", list);
-    }
+    } // insert(CircularLinkedList, Scanner)
+
+    /**
+     * 
+     * @param list
+     * @param s
+     */
+    private static void reverse(CircularLinkedList list, Scanner s) {
+        printListWithLabel("Original list", list);
+        CircularLinkedList.reverseList(list);
+        printListWithLabel("New list", list);
+    } // insert(CircularLinkedList, Scanner)
 
     /**
      * TK write this
@@ -120,7 +132,7 @@ public class CircularLinkedListDriver {
     public static void printListWithLabel(String label, CircularLinkedList list) {
 
         System.out.print(label + ": ");
-        list.printList();
+        list.print();
 
     } // printListWithPrefix(String, CircularLinkedList)
 
@@ -132,22 +144,48 @@ public class CircularLinkedListDriver {
      */
     public static void makeCLLFromStream(Stream<String> stream, CircularLinkedList CLL) {
         
-		IntStream template = stream.mapToInt(Integer::parseInt) // String to int
+		// Avoids "IllegalStateException: stream has already been operated upon or closed"
+        IntStream template = stream.mapToInt(Integer::parseInt) // String to int
                 .distinct() // no duplicates!
                 .sorted(); // ascending order
         Iterable<Integer> iterable = template::iterator;
         NodeType previous = new NodeType();
         previous.info = new ItemType(-1); // header
-        CLL.setHead(previous);
+        //CLL.setHead(previous); // must reset head later
+
+        NodeType least = new NodeType(); // smallest item
+        int counter = 0;
         for (Integer i : iterable) {
             NodeType next = new NodeType();
-            next.info = new ItemType(Math.abs( i ));
+            next.info = new ItemType(i);
+            if (counter == 0) { // run only once
+                least = next;
+                CLL.setHead(least);
+                counter++;
+            } // if
+            // Iterate once
             previous.next = next;
-            previous = next;
+            previous = previous.next;
         } // for-each
-        CLL.setHead(CLL.getHead().next);
 
-    } // makeSLLFromStream
+        if (least.info == null) {
+            System.out.println("List is empty.");
+            CLL.setHead(null);
+            return;
+        } // if
+
+        for (;;) {
+            // Iterate `head` field
+            CLL.setHead(CLL.getHead().next);
+            // We are about to reach the end; loop back around
+            if (CLL.getHead().next == null
+            || CLL.getHead().info.compareTo(least.info) == 0) {
+                CLL.getHead().next = least;
+                return;
+            } // if
+        } // for
+
+    } // makeCLLFromStream(Stream<String>, CircularLinkedList)
 
 
 } // CircularLinkedListDriver
