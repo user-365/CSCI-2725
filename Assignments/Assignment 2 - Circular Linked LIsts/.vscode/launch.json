@@ -6,17 +6,25 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Launch Current File",
+            "name": "input.txt CircularLinkedListDriver",
             "request": "launch",
-            "mainClass": "${file}"
+            "mainClass": "CircularLinkedListDriver",
+            "projectName": "Assignment 2 - Circular Linked Lists_4cf3a74b",
+            "args": ".\\lib\\input.txt",
         },
         {
             "type": "java",
-            "name": "Launch CircularLinkedListDriver",
+            "name": "empty.txt CircularLinkedListDriver",
             "request": "launch",
             "mainClass": "CircularLinkedListDriver",
-            "projectName": "CSCI-2725_fedd2ea8",
-            "args": ".\\lib\\input.txt",
+            "projectName": "Assignment 2 - Circular Linked Lists_4cf3a74b",
+            "args": ".\\lib\\empty.txt",
+        },
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
         }
     ]
 }

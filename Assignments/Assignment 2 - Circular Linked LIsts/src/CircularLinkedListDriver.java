@@ -12,7 +12,7 @@ public class CircularLinkedListDriver {
     public static void main(String[] args) {
 
         System.out.println(
-                "Commands:\n(i) - Insert value\n(d) - Delete value\n(s) - Search value\n(a) - Delete alternate nodes\n(m) - Merge lists\n(p) - Print list\n(l) - Print length\n(q) - Quit program");
+                "Commands:\n(i) - Insert value\n(d) - Delete value\n(p) - Print list\n(s) - Search list\n(l) - Length\n(r) - Reverse list\n(q) - Quit program");
         CircularLinkedList list = new CircularLinkedList();
         Scanner s = new Scanner(System.in);
 
@@ -29,7 +29,7 @@ public class CircularLinkedListDriver {
         } // try-catch
 
         for (;;) {
-            System.out.println("Enter a command: ");
+            System.out.print("\nEnter a command: ");
             no_prefix: // from default case
             switch (s.next()) {
 
@@ -64,7 +64,7 @@ public class CircularLinkedListDriver {
                     break;
 
                 default:
-                    System.out.println("Invalid command, try again: ");
+                    System.out.print("Invalid command, try again: ");
                     break no_prefix; // goto label
 
             } // switch
@@ -82,8 +82,13 @@ public class CircularLinkedListDriver {
         System.out.print("Enter a number to search: ");
         item = new ItemType(s.nextInt());
         printListWithLabel("Original list", list);
-        list.SearchItem(item);
-    }
+        int index = list.SearchItem(item);
+        if (index != -1) {
+            System.out.println("The item is present at index " + index);
+        } else {
+            System.out.println("Item is not present in the list");
+        } // if-else
+    } // search(CircularLinkedList, Scanner)
 
     /**
      * 
@@ -94,9 +99,9 @@ public class CircularLinkedListDriver {
         ItemType item;
         System.out.print("Enter a number to delete: ");
         item = new ItemType(s.nextInt());
-        printListWithLabel("Original list", list);
+        printListWithLabel("Before delete", list);
         list.deleteItem(item);
-        printListWithLabel("New list", list);
+        printListWithLabel("After delete", list);
     } // delete(CircularLinkedList, Scanner)
 
     /**
@@ -121,7 +126,7 @@ public class CircularLinkedListDriver {
     private static void reverse(CircularLinkedList list, Scanner s) {
         printListWithLabel("Original list", list);
         CircularLinkedList.reverseList(list);
-        printListWithLabel("New list", list);
+        printListWithLabel("Reversed list", list);
     } // insert(CircularLinkedList, Scanner)
 
     /**

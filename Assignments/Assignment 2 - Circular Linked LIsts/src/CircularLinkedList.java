@@ -28,12 +28,15 @@ public class CircularLinkedList {
 		// Special case: empty list
 		if (this.head == null) {
 			this.head = inserenda;
+			inserenda.next = this.head;
 			return;
 		} // if
+
 		// Novel case: singleton list   
-		if (this.head.next == null) {
+		if (this.head.next == this.head) {
 			this.head.next = inserenda;
 			inserenda.next = this.head;
+			if (item.compareTo(this.head.info) > 0) { this.head = inserenda; }
 			return;
 		} // if
 		
@@ -45,10 +48,10 @@ public class CircularLinkedList {
 			
 			if (item.compareTo(temp.info) > 0) {
 				// Special case: inserting greatest item
-				if (item.compareTo(this.head.info) > 0) {
+				if (temp == this.head) {
 					// Insert ahead of temp
-					inserenda.next = temp;
-					prevTemp.next = inserenda;
+					inserenda.next = temp.next;
+					temp.next = inserenda;
 					this.head = inserenda;
 					return;
 				} // if
@@ -61,6 +64,7 @@ public class CircularLinkedList {
 				prevTemp.next = inserenda;
 				return;
 			} else { // duplicate item;
+				System.out.println("Item already exists.");
 				return; // do not insert
 			} // if-elif-else
 
@@ -82,13 +86,13 @@ public class CircularLinkedList {
 		// TK check this method
 		// Special case: empty list
 		if (this.head == null) {
-			System.out.println("The item is not present in the list."); // TK fill in quotes
+			System.out.println("You cannot delete from an empty list.");
 			return;
 		} // if
 		
 		// Special case: deleting only item
-		System.out.println(this.head.next == null);
-		if (this.head.next == null) {
+		if (this.head.next == this.head
+			&& item.compareTo(this.head.info) == 0) {
 			this.head = null;
 			return;
 		} // if
@@ -113,11 +117,14 @@ public class CircularLinkedList {
 				} // if
 				return;
 			} else { // item not present
-				System.out.println("The item is not present in the list."); // TK fill in quotes
+				System.out.println("The item is not present in the list.");
 				return;
 			} // if-elif-else
 			// We have looped back around with no deletion; exit now
-			if (temp == this.head.next) { return; } // TK print something?
+			if (temp == this.head.next) {
+				System.out.println("The item is not present in the list.");
+				return;
+			} // if
 
 		} // for
 
@@ -127,21 +134,26 @@ public class CircularLinkedList {
      * Pre-Condition: the list exists and item is initialized.
      * <p> Post-Condition: It return the index of the item if it is present in the list;
      * otherwise returns -1. Index starts from 1.
+	 * 
+	 * <p> No side-effects like printing to stdout
      */
     int SearchItem(ItemType item) {
 		
-		int returnIndex = 1;
+		int returnIndex = 0;
 
 		NodeType temp = this.head;
 		// Novel case: empty list
 		if (this.head == null) {
-			System.out.println(""); // TK fill in quotes
 			return -1;
  		} // if
 
 		for (;;) { // infinite if not explicitly returned
 
-			if (item.compareTo(temp.info) > 0) { // keep traversing
+			if (item.compareTo(temp.info) > 0
+				|| (returnIndex == 0
+					&& temp == this.head)) { // keep traversing
+				// We have looped back around w/o finding the item; exit now
+				if (returnIndex > 0 && temp == this.head) { return -1; }
 				temp = temp.next;
 				returnIndex++;
 			} else if (item.compareTo(temp.info) == 0) {
@@ -150,8 +162,6 @@ public class CircularLinkedList {
 				return -1;
 			} // if-elif-else
 
-			// We have looped back around w/o finding the item; exit now
-			if (temp == this.head) { return -1; }
 	
 		} // for
 
@@ -164,6 +174,7 @@ public class CircularLinkedList {
     int length() {
 		
 		int returnLength = 0;
+		if (this.head == null) { return returnLength; }
 		NodeType temp = this.head;	
 		for (;;) { // infinite if not explicitly returned
 			temp = temp.next;
@@ -182,11 +193,16 @@ public class CircularLinkedList {
     void print() {
 		
 		NodeType temp = this.head;	
-		for (;temp != null && temp.next != null;) { // infinite if not explicitly returned
+		for (; temp != null;) {
 			temp = temp.next;
 			System.out.print(temp.info.getValue() + " ");
 			// We have completed one loop around; stop printing
 			if (temp.next == this.head.next) { break; }
+			// Singleton list; print item and exit
+			if (temp.next == temp) {
+				System.out.print(this.head.info.getValue());
+				break;
+			} // if
 		} // for
 		System.out.println();
 
@@ -246,21 +262,32 @@ public class CircularLinkedList {
 	 * the elements in the reverse order in that list.
 	 * 
 	 * <p>
-	 * <strong>Side effects:</strong> modifies `CLL`, not a new list
+	 * <strong>Side effects:</strong> modifies argument, not a new list
 	 */
     static CircularLinkedList reverseList(CircularLinkedList CLL) {
 		
+		if (CLL.head == null) {
+			System.out.println("The list is empty.");
+			return CLL;
+		} // if
+
 		NodeType prevTemp = CLL.head;
+		NodeType least = CLL.head.next;
 		NodeType temp = CLL.head.next;
 		NodeType nextTemp = CLL.head.next.next;
 
-		for (;prevTemp != CLL.head;) {
+		for (; prevTemp != temp;) {
 			// Reverse "next" direction
 			temp.next = prevTemp;
 			// Keep traversing
 			prevTemp = temp;
 			temp = nextTemp;
 			nextTemp = nextTemp.next;
+			// We have looped back around; exit now
+			if (prevTemp == CLL.head) {
+				CLL.head = least;
+				break;
+			} // if
 		} // for
 
 		return CLL;
