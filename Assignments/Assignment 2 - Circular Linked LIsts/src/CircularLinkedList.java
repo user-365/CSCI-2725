@@ -254,7 +254,7 @@ public class CircularLinkedList {
     
     /**
 	 * This function will return the reversed list.
-	 * Use the original list and change the “next” of nodes,
+	 * Use the original list and change the "next" of nodes,
 	 * so that the list is reversed.
 	 * You are not allowed to create a new list that contains
 	 * the elements in reverse order.
