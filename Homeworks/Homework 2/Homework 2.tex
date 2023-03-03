@@ -1,0 +1,71 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[version=4]{mhchem}
+\usepackage{stmaryrd}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\graphicspath{ {./images/} }
+
+\title{CSCI-2725 HW-2 }
+
+
+\author{Due: March 6, Monday 11:59 PM}
+\date{}
+
+
+\begin{document}
+\maketitle
+Upload a soft copy of your answers (single pdf file) to the submission link on elc before the due date. The answers to the homework assignment should be your own individual work. Show your work to get full credit for the answer.
+
+Extra credit: There is 5 percentage extra credit if you don't submit hand written homework. You can use latex or any other tool to write your homework.
+
+\begin{enumerate}
+  \item (5 points each) Look at the pseudo code below and find the Big $\mathrm{O}$ estimate or worst case complexity of the following recursive functions. Hint: Write recurrence relation for the functions and solve it using Master theorem.
+\end{enumerate}
+
+\begin{center}
+\includegraphics[max width=\textwidth]{2023_03_03_7ca42d2bb1fffd6a3763g-1}
+\end{center}
+
+\begin{center}
+\includegraphics[max width=\textwidth]{2023_03_03_7ca42d2bb1fffd6a3763g-2}
+\end{center}
+
+Assume that the function "random" has a complexity of $\mathrm{O}(\mathrm{n})$
+
+\begin{center}
+\includegraphics[max width=\textwidth]{2023_03_03_7ca42d2bb1fffd6a3763g-2(1)}
+\end{center}
+
+\begin{enumerate}
+  \setcounter{enumi}{1}
+  \item (10 points) Consider a recurrence relation given by following.
+\end{enumerate}
+
+$$
+T(n)=2 T(n-1)+2^{n}
+$$
+
+Show that $T(n)=n 2^{n}$ is the solution of the above equation. If you need a base case use $T(0)=0$
+
+\begin{enumerate}
+  \setcounter{enumi}{2}
+  \item (10 points) Below is the code for Fibonacci sequence. Write a recurrence relation for this code and solve it using substitution (forward or backward) method.
+\end{enumerate}
+
+int Fibonacci(int $\mathrm{N}$ )
+
+\{
+
+\begin{center}
+\includegraphics[max width=\textwidth]{2023_03_03_7ca42d2bb1fffd6a3763g-3}
+\end{center}
+
+Note: There are two recurrence relations $T(n-1)$ and $T(n-2)$ and to simplify your calculation you can assume that $\mathrm{T}(\mathrm{n}-1)=\mathrm{T}(\mathrm{n}-2)$ as they are almost of same size.
+
+
+\end{document}
