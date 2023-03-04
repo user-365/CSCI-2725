@@ -1,71 +1,437 @@
-\documentclass[10pt]{article}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{amssymb}
-\usepackage[version=4]{mhchem}
-\usepackage{stmaryrd}
-\usepackage{graphicx}
+% Template.tex's last substantial revision: 2023-03-03 16:37 EST
+% "Substantial" for Template.tex is laxer than for content-ful .texs
+% Revision contents: add \del macro
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% MANAGE PDFs FOR SCREEN-READING %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\RequirePackage{pdfmanagement-testphase} % TK Uncomment when dependencies gotten
+%\DeclareDocumentMetadata{uncompress,pdfversion=2.0} % TK uncomment when control sequence done
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TK LINKS (INSPIRATION) %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% inspo for templating: https://tex.stackexchange.com/q/59702
+% for header/footer: https://tex.stackexchange.com/a/203059
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TK LINKS (GUIDES) %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Typography in general: https://practicaltypography.com/summary-of-key-rules.html
+% LaTeX mistakes (see also comments): http://www.johndcook.com/blog/2010/02/15/top-latex-mistakes/
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TK TODO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Document-level
+% - make separate latex file to catalogue (my) custom macros
+% - make separate latex file as my design ethos manifesto
+%
+% Component-level
+% - showcase other things (e.g. codeblocks, highlighting, qeding)
+% - make remarks, proof? blocks (tcolorbox)
+% - add captions/labels to mymintedcodeblocks (tcolorbox)
+%
+% Text-level
+% - fix vertical spacing between Comment and math
+% - directional (from NW, bend, to W) arrows for proof comments (first instance)
+% - fix square root sign stroke thickness (too thick) in single-$/text-math mode
+% ? align 2nd level enumeration items with 1st level (ask on stackexchange)
+% ? center equations in prompt in various problems
+%
+% Comment-level
+% - switch "See" to "Credit" appropriately
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CLASS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[12pt, a4paper]{article}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% FONTS and ENCODING %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% See: https://tex.stackexchange.com/q/59702
+\usepackage[utf8]{inputenc}	      % allows input of accented characters directly from the keyboard
+							              			% https://tex.stackexchange.com/questions/44694/fontenc-vs-inputenc
+\usepackage[T1]{fontenc} 	        % ensures proper hyphenation
+%
+\usepackage{libertine}						% Linux Libertine (text) font family
+\usepackage[libertine,						% math-mode fonts to harmonize with Libertine text fonts.
+smallerops, varg, cmbraces, noamssymbols, ]{newtxmath}
+                                  % [libertine] = substitutes libertine for Times
+                                  % [smallerops] = smaller \sum,etc.
+                                  % [varg] = distinctive math letters
+                                  % [cmbraces] = thicker braces
+                                  % [noamssymbols] = prevent TXAMSadd from loading
+\let\Bbbk\relax										% disables newtxmath's definition of \Bbbk in favor of amssymb's (blackboard bold lowercase k)
+                                  % This choice of disabling is arbitrary.
+                                  % See: https://tex.stackexchange.com/a/587033
+%\usepackage{newtxtext}		  		  % loads clones of reasonably well-match fonts (Helvetica and a monospaced)
+%\usepackage{newpxtext,newpxmath} % based on Zapf's Palatino font
+%
+\usepackage{microtype}						% to break monospace (texttt) lines correctly
+% the below does not work with ragged-right env. (leave disabled to stop warnings)
+%\usepackage[htt]{hyphenat}       % to hyphenate monospace (texttt) lines correctly
+							              			% See: https://tex.stackexchange.com/a/10378
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% AMS MATH %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \usepackage{amsmath}      % loads amstext, amsbsy, amsopn but not amssymb
+                            % equation stuff (eqref, subequations, equation, align, gather, flalign, multline, alignat, split...)
+                            % redundant by newtxmath
+% \usepackage{amsfonts}     % may be redundant with amsmath
+\usepackage{amssymb}        % may be redundant with amsmath (enable for \therefore)
+% \numberwithin{equation}{section}  % reset equation counters at start of each "section" and prefix numbers by section number
+% \numberwithin{figure}{section}    % reset figure   counters at start of each "section" and prefix numbers by section number
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% LAYOUT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% force ~71 (65) characters per line
+% Credit: https://tex.stackexchange.com/a/59636
+\usepackage{geometry}
+\newlength{\alphabet}
+\settowidth{\alphabet}{\normalfont abcdefghijklmnopqrstuvwxyz}
+\geometry{textwidth = 2.75\alphabet}		% (Note: 2.75 * 26 = 71.5)
+% wider for math-heavy, narrower for text-heavy
+\makeatletter
+\if@twoside
+  \geometry{hmarginratio = {2:3}}
+\else
+  \geometry{hmarginratio = {1:1}}
+\fi
+\makeatother
+%
+%
+\linespread{1.25}
+%
+% remove spaces around align (and other display math) envs
+% Credit: https://tex.stackexchange.com/a/47403
+%\usepackage{etoolbox}
+%\newcommand{\zerodisplayskips}{%
+%  \setlength{\abovedisplayskip}{12pt}%
+%  \setlength{\belowdisplayskip}{12pt}%
+%% "short skip" refers to when the text line above/below the display math
+%% --ENDS (horizontally) before the display math BEGINS (horizontally)
+%% --so the math is raised a bit (vertically) to not leave so much whitespace.
+%% --See: https://tex.stackexchange.com/a/30913
+%  \setlength{\abovedisplayshortskip}{5pt}%
+%  \setlength{\belowdisplayshortskip}{5pt}}
+%\appto{\normalsize}{\zerodisplayskips}
+%\appto{\small}{\zerodisplayskips}
+%\appto{\footnotesize}{\zerodisplayskips}
+%
+%
+\usepackage{enumitem}
+\usepackage{mathtools}				% for multlined, dcases environment
+\usepackage{lipsum}						% to fill in with arbitrary text
+%\usepackage{datetime2}				% to display \currenttime in \date
+%
+\usepackage{ntheorem}
+\newtheorem{theorem}{Theorem}
+%
+\usepackage{tcolorbox}				% currently, only for CUSTOM RENDERED CODE BLOCKS
+\tcbuselibrary{most}					% currently, only for myhighlight
+\usepackage{fancybox}         % for text boxes such as those surrounding \Comments
+%
+\usepackage{derivative}			  % for upright "d"s (!) and all sorts of derivatives
+%
+% redefine \int to have (on top of default) negative space (idk how much (mathopen{}))
+% works with varargs bounds/limits
+% Credit: https://tex.stackexchange.com/a/277428
+\makeatletter
+\let\int@original\int
+\def\int{\int@checkfirstsb}
+\def\int@checkfirstsb{\@ifnextchar_{\int@checksecondsp}{\int@checkfirstsp}}
+\def\int@checkfirstsp{\@ifnextchar^{\int@checksecondsb}{\int@{}{}}}
+\def\int@checksecondsp_#1{\@ifnextchar^{\int@grabsp{#1}}{\int@{#1}{}}}
+\def\int@checksecondsb^#1{\@ifnextchar_{\int@grabsb{#1}}{\int@{}{#1}}}
+\def\int@grabsb#1_#2{\int@{#2}{#1}}
+\def\int@grabsp#1^#2{\int@{#1}{#2}}
+\def\int@#1#2{\int@original\ifblank{#1}{}{_{#1}}\ifblank{#2}{}{^{#2}}\mathopen{}} % redefinition
+\makeatother
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% GRAPHICX %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{graphicx} 		            % options = [final]  = all graphics displayed, regardless of draft option in class
+                                      % ^[final] does option clash
+                                      % options = [pdftex] = necessary (?) if import PDF files
+                                      % no option : when importing ps- and eps-files (?)
 \usepackage[export]{adjustbox}
-\graphicspath{ {./images/} }
-
-\title{CSCI-2725 HW-2 }
-
-
-\author{Due: March 6, Monday 11:59 PM}
-\date{}
+\graphicspath{ {./images/} }  	  		% tell LaTeX where to look for images
+% \DeclareGraphicsExtensions{.pdf, .PDF, .jpg, .JPG, .jpeg, .JPEG, .png, .PNG, .bmp, .BMP, .eps, .ps}
+\usepackage{float}				            % Improved interface for floating objects; add [H] option
+\usepackage{subcaption}		            % allows subfigures (inside figure envs)
 
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% HYPERREF (last) then HYPCAP %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% See: https://tex.stackexchange.com/q/1863
+\usepackage[
+  pdflang={en-US},
+  pdftex, 
+  final,                      % if you DO want to have clickable-colorful links
+  pdfstartview = FitV,
+  linktocpage  = false,       % ToC, LoF, LoT place hyperlink on page number, rather than entry text
+  breaklinks   = true,        % so long urls are correctly broken across lines
+  % pagebackref  = false,     % add page number in bibliography and link to position in document where cited
+]{hyperref}					          % hyperref should be last loaded package; see link above
+%
+% make better PDF
+\hypersetup{
+  pdftitle  = {Penny-Wisdom in \LaTeX},
+  pdfauthor = {Yitao Tian},
+} % setup PDF
+%\usepackage{tagpdf} % TK uncomment. add tags to content
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CUSTOM MACROS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% right align qed symbol (for non-proof-environments)
+\newcommand{\QED}{\tag*{$\blacksquare$}}
+%
+% creates a phantom relational symbol (e.g. "=" (default) or "\leq")
+% multiline/split expressions (after relational) must be horizontally to the right of the relational
+% Credit: https://tex.stackexchange.com/a/448386
+\newcommand*{\PhantomRel}[1][=]{\mathrel{\phantom{#1}}}
+%
+% word/phrase inline highlighting (for final answers). Color: green
+% Credit: https://tex.stackexchange.com/a/234175 (less SLOW than tikz method on same page?)
+\newtcbox{\Highlight}[1][]{enhanced, colframe = green, colback = green!15, 
+       frame style = {opacity = 0.25}, interior style = {opacity = 0.25}, 
+       nobeforeafter, tcbox raise base, shrink tight, extrude by = 1mm, #1}
+%
+% comment to explain step of proof
+% Catalogue of boxes (e.g. ovalbox): https://tex.stackexchange.com/a/373420
+\newcommand*{\Comment}[1]{\tag*{\ovalbox{\begin{tiny}%
+  \textrm{#1}%
+\end{tiny}}}}
+%
+% repackaging of BArr env below so it's probably redundant
+\newcommand{\ArrVect}[1]{\begin{BArr}#1\end{BArr}}
+%
+% bold-roman to represent vectors (as variables)
+\newcommand*{\Vect}[1]{\mathbf{#1}}
+%
+% Credit: https://tex.stackexchange.com/a/15897
+% #1: expression to be evaluated;
+% #2: variable to be set; #3: lower bound; #4: upper bound
+\newcommand{\Eval}[4]{\left.#1\mspace{2mu}\right\rvert_{\,#2\,=\,#3}^{\,#4}}
+%
+% "such that" bar in set-builder notation
+\newcommand{\SuchThat}{\mathrel{}\middle|\mathrel{}}
+%
+% shorthand for \odif of `derivative` package
+% varargs (csv) to match \odif's csv varargs
+% See (csv varargs): https://tex.stackexchange.com/a/286717
+\renewcommand*{\d}[1]{%
+  \forcsvlist\odif{#1}%
+}
+%
+% "del" operator for boundaries of spaces, from the `derivative` package
+% of note: "style-notation=multiple" makes the variable (not "del") NOT SUBscript
+% command's naming follows that of `derivative` package
+\newcommand*{\del}[1]{\pdif[style-notation=multiple][#1]}
+%
+% (hyper-)volume differential, but "Vol" is romanized (unlike x or y (italicized))
+\newcommand*{\dVol}{\odif{\textrm{Vol}}}
+%
+% Credit: https://tex.stackexchange.com/a/43009
+% absolute value and norm delimiters
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+% Swap the definitions so that \abs,\norm resizes the brackets,
+% and the starred (*) versions do not.
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+%
+% R^n (isomorphic to) euclidean space.
+% #1: number of dimensions
+\newcommand*{\R}[1][n]{\mathbf{R}^{#1}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CUSTOM ENVIRONMENTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Shifrin problem enumerate
+\newlist{Shifrin}{enumerate}{2}         % Custom 2-deep enumerate list
+\setlist[Shifrin, 1]{%                  % Configure the behaviour of level 1 entries
+    label				= \arabic{Shifrini}.,   % 1., 2., 3., ...
+    leftmargin	= \parindent,
+    rightmargin	= 10pt
+}
+\setlist[Shifrin, 2]{%                  % Configure the behaviour of level 2 entries
+    label				= (\arabic{Shifrinii}), % e.g. (1), (2), (3), ...
+    leftmargin	= 15pt,
+    rightmargin	= 15pt
+}
+%
+% Bracketed array (i.e., column/row vector, matrix)
+% Credit: https://tex.stackexchange.com/a/156022
+\newenvironment{BArr}{%         % short for "Bracketed Array"
+  \!\!\:\Bigl[\!\begin{smallmatrix}}{%
+  \end{smallmatrix}\!\Bigr]}
+%
+
+% REPLACE WITH ALL OF ABOVE
+\usepackage{MintedUnbreakableCodeBlock}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TITLE PAGE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{CSCI-2725 Homework 2}
+\author{Yitao Tian}
+\date{\today}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% THE ACTUAL DOCUMENT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
+
 \maketitle
-Upload a soft copy of your answers (single pdf file) to the submission link on elc before the due date. The answers to the homework assignment should be your own individual work. Show your work to get full credit for the answer.
 
-Extra credit: There is 5 percentage extra credit if you don't submit hand written homework. You can use latex or any other tool to write your homework.
+\textbf{Extra credit:} There is 5 percentage extra credit if you don't submit hand-written homework.
+You can use \LaTeX or any other tool to write your homework.
 
 \begin{enumerate}
-  \item (5 points each) Look at the pseudo code below and find the Big $\mathrm{O}$ estimate or worst case complexity of the following recursive functions. Hint: Write recurrence relation for the functions and solve it using Master theorem.
+  \item (5 points each) Look at the pseudocode below,
+  and find the Big-$O$ estimate or worst case complexity of the following recursive functions.
+
+  \textbf{Hint:} Write recurrence relation for the functions and solve it using Master's Theorem.
 \end{enumerate}
 
-\begin{center}
-\includegraphics[max width=\textwidth]{2023_03_03_7ca42d2bb1fffd6a3763g-1}
-\end{center}
+\begin{MintedUnbreakableCodeBlock}{java}
+      void fun(int n, int m) {
+        if (m > n) return;
+        System.out.print("m = " + m);
+        fun(n, m + 2);
+      }
+\end{MintedUnbreakableCodeBlock}
 
-\begin{center}
-\includegraphics[max width=\textwidth]{2023_03_03_7ca42d2bb1fffd6a3763g-2}
-\end{center}
 
-Assume that the function "random" has a complexity of $\mathrm{O}(\mathrm{n})$
 
-\begin{center}
-\includegraphics[max width=\textwidth]{2023_03_03_7ca42d2bb1fffd6a3763g-2(1)}
-\end{center}
+\newpage
 
-\begin{enumerate}
-  \setcounter{enumi}{1}
+
+
+\begin{MintedUnbreakableCodeBlock}{java}
+      float fun(int a[], int i) {
+        if (i == 0) {
+          return a[0];
+        }
+        if (i > 0) {
+          return (i * fun(a, i - 1) + a[i])/(i + 1);
+        }
+      }
+\end{MintedUnbreakableCodeBlock}
+
+
+
+\newpage
+
+
+
+Assume that the function "random" has a complexity of $O(n)$.
+\begin{MintedUnbreakableCodeBlock}{java}
+      void fun(int array[], int a, int b) {
+        if (a > b) return;
+        mid = (a + b)/2;
+        fun(array, a, mid);
+        fun(array, mid + 1, b);
+        random(array, a, mid, b);
+      }
+\end{MintedUnbreakableCodeBlock}
+
+
+
+\newpage
+
+
+
+\begin{MintedUnbreakableCodeBlock}{java}
+      int fun(int x, int n) {
+        if (n == 0) return 1;
+        if (x == 0) return 0;
+        if (n == 1) return x;
+        if (n % 2 == 0) return fun(x * x, n / 2);
+        else return x * fun(x * x, n / 2);
+      }
+\end{MintedUnbreakableCodeBlock}
+
+
+
+\newpage
+
+
+
+\begin{enumerate}[resume]
+
   \item (10 points) Consider a recurrence relation given by following.
-\end{enumerate}
+  \begin{equation*}
+    T(n) = 2T(n-1) + 2^n
+  \end{equation*}
+  
+  Show that $T(n)=n2^n$ is the solution of the above equation.
+  If you need a base case, use $T(0)=0$.
 
-$$
-T(n)=2 T(n-1)+2^{n}
-$$
 
-Show that $T(n)=n 2^{n}$ is the solution of the above equation. If you need a base case use $T(0)=0$
 
-\begin{enumerate}
-  \setcounter{enumi}{2}
+  \newpage
+
+
+
   \item (10 points) Below is the code for Fibonacci sequence. Write a recurrence relation for this code and solve it using substitution (forward or backward) method.
+  
+  \textbf{Note:} There are two recurrence relations $T(n-1)$ and $T(n-2)$ and to simplify your calculation you can assume that $T(n-1)=T(n-2)$ as they are almost of same size.
+
 \end{enumerate}
 
-int Fibonacci(int $\mathrm{N}$ )
-
-\{
-
-\begin{center}
-\includegraphics[max width=\textwidth]{2023_03_03_7ca42d2bb1fffd6a3763g-3}
-\end{center}
-
-Note: There are two recurrence relations $T(n-1)$ and $T(n-2)$ and to simplify your calculation you can assume that $\mathrm{T}(\mathrm{n}-1)=\mathrm{T}(\mathrm{n}-2)$ as they are almost of same size.
-
+\begin{MintedUnbreakableCodeBlock}{java}
+      int Fibonacci(int N) {
+        if (n == 0 || n == 1) {
+          return 1;
+        }
+        else {
+          return Fibonacci(n - 1) + Fibonacci(n - 2);
+        }
+      }
+\end{MintedUnbreakableCodeBlock}
 
 \end{document}

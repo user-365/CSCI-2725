@@ -1,0 +1,80 @@
+% NOT meant for (i.e. ready for, designed with in mind, expected for) public use!
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{MintedUnbreakableCodeBlock}[2023/03/03 self-explanatory package title]
+% Last substantial revision: 2023-03-03 17:29 EST
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TODO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% - add labels and captions n stuff to code blocks/snippets (fix function relabeling too)
+% - make theorems/remarks/proof blocks (tcolorbox)
+% - add captions/labels to mymintedcodeblocks (tcolorbox)
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PACKAGES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% See: https://tex.stackexchange.com/q/59702
+\RequirePackage[utf8]{inputenc}	% allows input of accented characters directly from the keyboard
+							                  % https://tex.stackexchange.com/questions/44694/fontenc-vs-inputenc
+\RequirePackage[T1]{fontenc} 	  % ensure proper hyphenation
+\RequirePackage{newtxtext}		  % loads clones of Helvetica and of a monospaced font to provide reasonably well matched sans-serif and "typewriter" fonts.
+\RequirePackage[smallerops, varg, cmbraces, noamssymbols, ]{newtxmath}
+
+\RequirePackage{microtype}		  % to break monospace (texttt) lines correctly
+\RequirePackage{tcolorbox}		  % for CUSTOM RENDERED CODE BLOCKS
+\RequirePackage{minted}
+\RequirePackage{shellesc}       % See: https://tex.stackexchange.com/a/318145/288823
+                                % render code blocks
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CUSTOM RENDERED CODE BLOCKS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Credit: TK find the link again
+% Note: minted requires "--shell-escape" option in LaTeX, so default is disabled
+\tcbuselibrary{minted, breakable, xparse, skins}
+\definecolor{bg}{gray}{0.12}				        % bg color of code block (almost black)
+\renewcommand{\theFancyVerbLine}{\sffamily	% change line number formatting
+	\textcolor[rgb]{0.9,0.9,1}{\scriptsize    % Credit (probably): https://tex.stackexchange.com/a/132850
+	\oldstylenums{\arabic{FancyVerbLine}}}}   
+\DeclareTCBListing{MintedUnbreakableCodeBlock}{O{}m!O{}}{%
+  breakable      = false,
+  listing engine = minted,
+  listing only,
+  minted language= #2,
+  minted style   = github-dark,
+  minted options = {%
+    linenos    = true, % enable line numbers
+    gobble     = 3,		% how many (conventionally, tab) characters to ignore from the latex editor
+    breaklines = true,
+    breakafter = ,
+    fontfamily = tt,
+    fontsize   = \small,
+    numbersep  = 8pt,	% how far line numbers are from left edge of text
+    texcomments= true,	% allow inline LaTeX math mode in code comments
+    % do not use tabs (use spaces instead), due to issues with incomplete tabs and spacing
+    #1},
+  label      = {Function},
+  left skip  = 0pt,
+  right skip = 0pt,
+  width      = \linewidth,
+  center,				% center code block in page
+  boxsep  = 3pt,		% all around minimum distance between text and edge
+  left    = 25pt,		% to get line numbers into box
+  arc     = 5pt,		% radius (?) of the rounded corner
+  boxrule = 0pt,		% no thin border around box
+  colback = bg,			% bg color (almost black)
+  shadow  = {4pt}{-4pt}{0pt}{black!50!white}, % drop shadow
+  % ^page 188 of the version 4.15 (tcolorbox) manual
+  enhanced,
+  overlay = {%
+    \begin{tcbclipinterior}
+    	\fill[bg] (frame.south west) rectangle ([xshift=20pt] frame.north west);
+    \end{tcbclipinterior}},
+  #3}
