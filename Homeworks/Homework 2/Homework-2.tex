@@ -1,5 +1,5 @@
 
-% Template.tex's last substantial revision: 2023-03-03 16:37 EST
+% Template.tex's last substantial revision: 2023-03-06 13:28 EST
 % "Substantial" for Template.tex is laxer than for content-ful .texs
 % Revision contents: add \del macro
 
@@ -69,19 +69,24 @@
 							              			% https://tex.stackexchange.com/questions/44694/fontenc-vs-inputenc
 \usepackage[T1]{fontenc} 	        % ensures proper hyphenation
 %
-\usepackage{libertine}						% Linux Libertine (text) font family
-\usepackage[libertine,						% math-mode fonts to harmonize with Libertine text fonts.
-smallerops, varg, cmbraces, noamssymbols, ]{newtxmath}
+%\usepackage{libertine}						% Linux Libertine (text) font family
+%\usepackage[libertine,						% math-mode fonts to harmonize with Libertine text fonts.
+%smallerops, varg, cmbraces, noamssymbols, ]{newtxmath}
                                   % [libertine] = substitutes libertine for Times
                                   % [smallerops] = smaller \sum,etc.
                                   % [varg] = distinctive math letters
                                   % [cmbraces] = thicker braces
                                   % [noamssymbols] = prevent TXAMSadd from loading
-\let\Bbbk\relax										% disables newtxmath's definition of \Bbbk in favor of amssymb's (blackboard bold lowercase k)
                                   % This choice of disabling is arbitrary.
                                   % See: https://tex.stackexchange.com/a/587033
-%\usepackage{newtxtext}		  		  % loads clones of reasonably well-match fonts (Helvetica and a monospaced)
-%\usepackage{newpxtext,newpxmath} % based on Zapf's Palatino font
+\usepackage{newtxtext}		  		  % loads clones of reasonably well-match fonts (Helvetica and a monospaced)
+%\usepackage{newpxtext,newpxmath}  % based on Zapf's Palatino font
+%\let\Bbbk\relax										% disables newtxmath's definition of \Bbbk in favor of amssymb's (blackboard bold lowercase k)
+%\let\loadsubfile\relax
+%\let\widering\relax
+%\let\ShowMathFonts\relax
+%\let\textfrac\relax
+%\let\thdefault\relax
 %
 \usepackage{microtype}						% to break monospace (texttt) lines correctly
 % the below does not work with ragged-right env. (leave disabled to stop warnings)
@@ -317,7 +322,7 @@ smallerops, varg, cmbraces, noamssymbols, ]{newtxmath}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \title{CSCI-2725 Homework 2}
 \author{Yitao Tian}
-\date{\today}
+\date{March 6, 2023}
 
 
 
@@ -329,34 +334,34 @@ smallerops, varg, cmbraces, noamssymbols, ]{newtxmath}
 \maketitle
 
 \textbf{Extra credit:} There is 5 percentage extra credit if you don't submit hand-written homework.
-You can use \LaTeX or any other tool to write your homework.
+You can use \LaTeX\ or any other tool to write your homework.
 
 \begin{enumerate}
-  \item (5 points each) Look at the pseudocode below,
-  and find the Big-$O$ estimate or worst case complexity of the following recursive functions.
+  \item (5 points each) Look at the pseudocode below.
+  \textbf{Find} the Big-O estimate or worst case complexity of the following recursive functions.
 
-  \textbf{Hint:} Write recurrence relation for the functions and solve it using Master's Theorem.
+  \textbf{Hint:} Write recurrence relation for the functions and solve it using the Master Theorem.
 \end{enumerate}
 
 \begin{MintedUnbreakableCodeBlock}{java}
-      void fun(int n, int m) {        // $T(l)=$
+      void fun(int n, int m) {        // $T(j)=$
         if (m > n) return;
         System.out.print("m = " + m); // $1+$
-        fun(n, m + 2);                // $T(l-2)$
+        fun(n, m + 2);                // $T(j-2)$
       }
 \end{MintedUnbreakableCodeBlock}
 
 Thus, the recurrence relation for the above function is
 \begin{equation*}
-  T(l) = 1 + T(l-2) (\textrm{letting } l \coloneqq m-n-1), \quad T(0) = 1.
+  T(j) = 1 + T(j-2) \quad (\textrm{letting}\ j \coloneqq m-n-1), \quad T(0) = 1.
 \end{equation*}
 
 Fitting this to the hypothesis of the \textit{Subtract and Conquer} version of the Master Theorem,
-we have $a=1$, $b=2$, and $f(l)\in O(1)=O(l^d)$, with $d=0$.
+we have $a=1$, $b=2$, and $f(j)\in O(1)=O(j^d)$, with $d=0$.
 
 By the Subtract and Conquer version, we have that:
 \begin{equation*}
-  \textrm{Since } a = 1, \textrm{ then } \Highlight{$T(l)\in O(l^{d+1}) = O(l)$}. \QED
+  \textrm{Since}\ a = 1,\ \textrm{then}\ \Highlight{$T(j)\in O(j^{d+1}) = O(j)$}. \QED
 \end{equation*}
 
 
@@ -386,7 +391,7 @@ we have $a=1$, $b=1$, and $f(i)\in O(i^d)$, with $d=0$.
 
 Applying the S\&C version, we have that
 \begin{equation*}
-  \textrm{Since } a = 1, \textrm{ then } \Highlight{$T(i)\in O(i^{d+1}) = O(i)$}. \QED
+  \textrm{Since}\ a = 1,\ \textrm{then}\ \Highlight{$T(i)\in O(i^{d+1}) = O(i)$}. \QED
 \end{equation*}
 
 
@@ -414,12 +419,12 @@ Thus, the recurrence relation for the above is
 
 We cannot use the S\&C version of the Master Theorem,
 but instead the \textit{Divide and Conquer} version.
-Putting it into the hypothesis of the D\&C,
+Putting the relation into the hypothesis of the D\&C,
 we have that $a=2$, $b=2$, and $f(n)\in\Theta(n^1) = \Theta(n^{\log_b(a)})$.
 
 Applying the D\&C, we have
 \begin{equation*}
-  \textrm{Since } f(n)\in\Theta(n^1) = \Theta(n^{\log_ba}), \Highlight{$T(n)\in\Theta(n \log n)$}. \QED
+  \textrm{Since}\ f(n)\in\Theta(n^1) = \Theta(n^{\log_ba}), \Highlight{$T(n)\in\Theta(n \log n)$}. \QED
 \end{equation*}
 
 
@@ -444,11 +449,11 @@ Thus, the recurrence relation for the above function is
 \end{equation*}
 
 In terms of the hypothesis of the D\&C version,
-we have $a=1$, $b=2$, and $f(n)\in O(1) = O(n^{\log_ba - \varepsilon})$, for all $\varepsilon=0$.
+we have $a=1$, $b=2$, and $f(n)\in O(1) = O(n^{\log_ba - \epsilon})$, for all $\epsilon>0$.
 
 Applying the D\&C, we have
 \begin{equation*}
-  \textrm{Since } f(n)\in O(n^{\log_ba - \varepsilon}), \textrm{ then } \Highlight{$T(n)\in\Theta(n^0)$}.
+  \textrm{Since}\ f(n)\in O(n^{\log_ba - \epsilon}),\ \textrm{then}\ \Highlight{$T(n)\in\Theta(n^0)$}.
 \end{equation*}
 
 
@@ -471,9 +476,9 @@ Applying the D\&C, we have
   \begin{align*}
     T(n)
       &= 2T(n-1) + 2^n \\
-      &= 2(2T(n-2) + 2^n) + 2^n \\
-      &= 2(2(2T(n-3) + 2^n) + 2^n) + 2^n \\
-      \vdots
+      &= 2(2T(n-2) + 2^{n-1}) + 2^n \\
+      &= 2(2(2T(n-3) + 2^{n-2}) + 2^{n-1}) + 2^n \\
+      &\vdots
   \end{align*}
 
   Undertaking a proof by induction, let $k$ be the numbering of $P$s as follows:
@@ -483,7 +488,7 @@ Applying the D\&C, we have
       namely, $T(n) = 2T(n-1) + 2^n$;
 
     \item $P(k)$ is the statement that $T(n)$ equals some expression in terms of $T(n-1-k)$,
-     namely, $T(n) = 2(2(\dots 2T(n-1-k) + 2^n \dots) + 2^n) + 2^n$;
+     namely, $T(n) = 2(2(\dots 2T(n-1-k) + 2^{n-k} \dots) + 2^{n-1}) + 2^n$;
 
     \item and of course, $P(k+1)$ is one in terms of $T(n-1-(k+1))$.
 
@@ -492,37 +497,22 @@ Applying the D\&C, we have
   From the recurrence relation derived from the source code above, $P(0)$ follows.
 
   Since $T(n)$ represents a recursion, we have that:
-  For all $n_0\in [0,n]$, $T(n_0) = 2T(n_0-1)+2^n$.
-  Therefore, $T(n_0) = 2T(n_0-1)+2^n$.
+  For all $n_0\in [0,n]$, $T(n_0) = 2T(n_0-1)+2^{n_0}$.
   Noting the obvious, if $n_0=n-1-k$, then $n_0-1=n-1-(k+1)$.
   $P(k)\rightarrow P(k+1)$ follows immediately.
 
   Thus, by induction, we have that $P(k)$ is true for all $k\in [0,n-1]$.
 
-  From the definition of $P(k)$, we have
+  From the definition of $P(k)$, and letting $a\coloneqq k+1$, we have
   \begin{align*}
     T(n)
-      &= 2(2(\dots 2T(n-1-a) + 2^n \dots) + 2^n) + 2^n \\
-      &= 2^a T(n-1-a) + \underbrace{2^{n+a-1} + 2^{n+a-2} + \cdots + 2^{n+(a-(a-2))-1} + 2^{n+(a-(a-1))-1}}_a \\
-      &= 2^{n-1} T(0) + \underbrace{2^{n+(n-1)-1} + 2^{n+(n-1)-2} + \cdots + 2^{n+((n-1)-(n-1-1))-1}}_{n-1}
-        & \Comment{let $a=n-1$} \\
-      &= \underbrace{2^{2n-2} + 2^{2n-3} + \cdots + 2^{2n-n}}_{n-1}
+      &= 2(2(\dots 2T(n-a) + 2^{n-(a-1)} \dots) + 2^{n-1}) + 2^n \\
+      &= 2^a T(n-a) + \underbrace{2^{n-(a-1)+(a-1)} + 2^{n-(a-2)+(a-2)} + \cdots + 2^{n-(a-a)+(a-a)}}_{a\ \textrm{terms}} \\
+      &= 2^n T(0) + \underbrace{2^n + 2^n + \cdots + 2^n}_{n\ \textrm{terms}}
+        & \Comment{let $a=n$} \\
+      &= \underbrace{2^n + 2^n + \cdots + 2^n}_{n\ \textrm{terms}}
         & \Comment{$T(0)=0$} \\
-      &= \sum_{i=0}^{n-2} 2^{2n-2} 2^{-i}.
-  \end{align*}
-
-  The sum is that of a geometric progression, with $a=2^{n-2}$ and $r=0.5$.
-  Generally, the sum of a geometric progression up to the $k$-th term is given as:
-  \begin{equation*}
-    S_k = \frac{ar^{k+1} - a}{r - 1}.
-  \end{equation*}
-
-  Here, $k=n-2$, so
-  \begin{align*}
-    \sum_{i=0}^{n-2} 2^{2n-2} 2^{-i}
-      &= \frac{2^{2n-2}(0.5)^{n-2+1} - 2^{2n-2}}{0.5 - 1} \\
-      &= \frac{2^{2n-2} - 2^{2n-2}2^{-n+1}}{0.5} \\
-      &= \frac{2^{n-1} \left(2^{n-1} - 1\right)}{0.5}
+      &= \Highlight{$n \cdot 2^n$}.
   \end{align*}
 
 
