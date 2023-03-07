@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.13)  6 MAR 2023 23:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.13)  6 MAR 2023 23:55
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"Homework 2"
-(./Homework 2.tex
+**Homework-2
+(./Homework-2.tex
 LaTeX2e <2022-11-01> patch level 1
 L3 programming layer <2023-02-07> (/usr/local/texlive/2022/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2022/07/02 v1.4n Standard LaTeX document class
@@ -287,12 +287,12 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 \Gm@dimlist=\toks29
 )
 \alphabet=\skip54
-LaTeX Font Info:    Trying to load font information for T1+LinuxLibertineT-TLF on input line 113.
+LaTeX Font Info:    Trying to load font information for T1+LinuxLibertineT-TLF on input line 114.
  (/usr/local/texlive/2022/texmf-dist/tex/latex/libertine/T1LinuxLibertineT-TLF.fd
 File: T1LinuxLibertineT-TLF.fd 2017/03/20 (autoinst) Font definitions for T1/LinuxLibertineT-TLF.
 )
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 12.0pt on input line 113.
+(Font)              scaled to size 12.0pt on input line 114.
  (/usr/local/texlive/2022/texmf-dist/tex/latex/enumitem/enumitem.sty
 Package: enumitem 2019/06/20 v3.9 Customized lists
 \enitkv@toks@=\toks30
@@ -985,64 +985,10 @@ Package: ifplatform 2017/10/13 v0.4a Testing for the operating system
  (/usr/local/texlive/2022/texmf-dist/tex/generic/catchfile/catchfile.sty
 Package: catchfile 2019/12/09 v1.8 Catch the contents of a file (HO)
 )
-runsystem(uname -s > ""Homework 2".w18")...executed.
+runsystem(uname -s > "Homework-2.w18")...executed.
 
-
-
-/usr/local/texlive/2022/texmf-dist/tex/latex/ifplatform/ifplatform.sty:92: Package catchfile Error: File `"Homework 2".w18' not found.
-
-See the catchfile package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.92     \CatchFileDef\@tempa{\ip@file}{}
-                                         
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-runsystem(rm -- ""Homework 2".w18")...executed.
-
-/usr/local/texlive/2022/texmf-dist/tex/latex/ifplatform/ifplatform.sty:94: Argument of \zap@space has an extra }.
-<inserted text> 
-                \par 
-l.94 ...empa{\expandafter\zap@space\@tempa\@empty}
-                                                  
-I've run across a `}' that doesn't seem to match anything.
-For example, `\def\a#1{...}' and `\a}' would produce
-this error. If you simply proceed now, the `\par' that
-I've just inserted will cause me to report a runaway
-argument that might be the root of the problem. But if
-your `}' was spurious, just type `2' and it will go away.
-
-Runaway argument?
-\@empty 
-/usr/local/texlive/2022/texmf-dist/tex/latex/ifplatform/ifplatform.sty:94: Paragraph ended before \zap@space was complete.
-<to be read again> 
-                   \par 
-l.94 ...empa{\expandafter\zap@space\@tempa\@empty}
-                                                  
-I suspect you've forgotten a `}', causing me to apply this
-control sequence to too much text. How can we recover?
-My plan is to forget the whole thing and hope for the best.
-
-Runaway argument?
-/usr/local/texlive/2022/texmf-dist/tex/latex/ifplatform/ifplatform.sty:104: Paragraph ended before \ip@only@six was complete.
-<to be read again> 
-                   \par 
-l.104 ...ef\@tempc{\expandafter\ip@only@six\@tempa
-                                                  ------\@nil}
-I suspect you've forgotten a `}', causing me to apply this
-control sequence to too much text. How can we recover?
-My plan is to forget the whole thing and hope for the best.
-
-/usr/local/texlive/2022/texmf-dist/tex/latex/ifplatform/ifplatform.sty:104: Undefined control sequence.
-l.104 ...expandafter\ip@only@six\@tempa------\@nil
-                                                  }
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+ (./Homework-2.w18)
+runsystem(rm -- "Homework-2.w18")...executed.
 
 ) (/usr/local/texlive/2022/texmf-dist/tex/latex/framed/framed.sty
 Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
@@ -1060,81 +1006,93 @@ Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
 \@float@every@listing=\toks72
 \c@listing=\count386
 )
-runsystem(mkdir -p _minted-Homework_2)...executed.
+runsystem(mkdir -p _minted-Homework-2)...executed.
 
  (/usr/local/texlive/2022/texmf-dist/tex/latex/tcolorbox/tcbminted.code.tex
 Library (tcolorbox): 'tcbminted.code.tex' version '6.0.1'
 ) (/usr/local/texlive/2022/texmf-dist/tex/latex/tcolorbox/tcbxparse.code.tex
 Library (tcolorbox): 'tcbxparse.code.tex' version '6.0.1'
 ))
-LaTeX Font Info:    Trying to load font information for T1+ntxtlf on input line 326.
+LaTeX Font Info:    Trying to load font information for T1+ntxtlf on input line 327.
  (/usr/local/texlive/2022/texmf-dist/tex/latex/newtx/t1ntxtlf.fd
 File: t1ntxtlf.fd 2021/05/24 v1.1 font definition file for T1/ntx/tlf
 )
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 12.0pt on input line 326.
-runsystem(which pygmentize && touch Homework_2.aex)...executed.
+(Font)              scaled to size 12.0pt on input line 327.
+runsystem(which pygmentize && touch Homework-2.aex)...executed.
 
-runsystem(rm Homework_2.aex)...executed.
+runsystem(rm Homework-2.aex)...executed.
+
+ (./Homework-2.aux
+
+LaTeX Warning: Label `Function' multiply defined.
 
 
-No file "Homework 2".aux.
-\openout1 = `"Homework 2.aux"'.
+LaTeX Warning: Label `Function' multiply defined.
 
-LaTeX Font Info:    Checking defaults for OML/nxlmi/m/it on input line 326.
-LaTeX Font Info:    Trying to load font information for OML+nxlmi on input line 326.
-(/usr/local/texlive/2022/texmf-dist/tex/latex/newtx/omlnxlmi.fd
+
+LaTeX Warning: Label `Function' multiply defined.
+
+
+LaTeX Warning: Label `Function' multiply defined.
+
+)
+\openout1 = `Homework-2.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/nxlmi/m/it on input line 327.
+LaTeX Font Info:    Trying to load font information for OML+nxlmi on input line 327.
+ (/usr/local/texlive/2022/texmf-dist/tex/latex/newtx/omlnxlmi.fd
 File: omlnxlmi.fd 2013/11/19 Fontinst v1.933 font definitions for OML/nxlmi.
 )
-LaTeX Font Info:    ... okay on input line 326.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 326.
-LaTeX Font Info:    ... okay on input line 326.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 326.
-LaTeX Font Info:    ... okay on input line 326.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 326.
-LaTeX Font Info:    ... okay on input line 326.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 326.
-LaTeX Font Info:    ... okay on input line 326.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 326.
-LaTeX Font Info:    ... okay on input line 326.
-LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 326.
-LaTeX Font Info:    Trying to load font information for U+ntxexa on input line 326.
+LaTeX Font Info:    ... okay on input line 327.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 327.
+LaTeX Font Info:    ... okay on input line 327.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 327.
+LaTeX Font Info:    ... okay on input line 327.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 327.
+LaTeX Font Info:    ... okay on input line 327.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 327.
+LaTeX Font Info:    ... okay on input line 327.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 327.
+LaTeX Font Info:    ... okay on input line 327.
+LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 327.
+LaTeX Font Info:    Trying to load font information for U+ntxexa on input line 327.
  (/usr/local/texlive/2022/texmf-dist/tex/latex/newtx/untxexa.fd
 File: untxexa.fd 2012/04/16 Fontinst v1.933 font definitions for U/ntxexa.
 )
-LaTeX Font Info:    ... okay on input line 326.
-LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 326.
-LaTeX Font Info:    Trying to load font information for LMS+ntxsy on input line 326.
+LaTeX Font Info:    ... okay on input line 327.
+LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 327.
+LaTeX Font Info:    Trying to load font information for LMS+ntxsy on input line 327.
  (/usr/local/texlive/2022/texmf-dist/tex/latex/newtx/lmsntxsy.fd
 File: lmsntxsy.fd 2016/07/02 Fontinst v1.933 font definitions for LMS/ntxsy.
 )
-LaTeX Font Info:    ... okay on input line 326.
-LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 326.
-LaTeX Font Info:    Trying to load font information for LMX+ntxexx on input line 326.
+LaTeX Font Info:    ... okay on input line 327.
+LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 327.
+LaTeX Font Info:    Trying to load font information for LMX+ntxexx on input line 327.
  (/usr/local/texlive/2022/texmf-dist/tex/latex/newtx/lmxntxexx.fd
 File: lmxntxexx.fd 2016/07/03 Fontinst v1.933 font definitions for LMX/ntxexx.
 )
-LaTeX Font Info:    ... okay on input line 326.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 326.
-LaTeX Font Info:    ... okay on input line 326.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 326.
-LaTeX Font Info:    ... okay on input line 326.
+LaTeX Font Info:    ... okay on input line 327.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 327.
+LaTeX Font Info:    ... okay on input line 327.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 327.
+LaTeX Font Info:    ... okay on input line 327.
 \c@mv@tabular=\count387
 \c@mv@boldtabular=\count388
-LaTeX Info: Command `\dddot' is already robust on input line 326.
-LaTeX Info: Command `\ddddot' is already robust on input line 326.
-LaTeX Info: Redefining \microtypecontext on input line 326.
-Package microtype Info: Applying patch `item' on input line 326.
-Package microtype Info: Applying patch `toc' on input line 326.
-Package microtype Info: Applying patch `eqnum' on input line 326.
-Package microtype Info: Applying patch `footnote' on input line 326.
+LaTeX Info: Command `\dddot' is already robust on input line 327.
+LaTeX Info: Command `\ddddot' is already robust on input line 327.
+LaTeX Info: Redefining \microtypecontext on input line 327.
+Package microtype Info: Applying patch `item' on input line 327.
+Package microtype Info: Applying patch `toc' on input line 327.
+Package microtype Info: Applying patch `eqnum' on input line 327.
+Package microtype Info: Applying patch `footnote' on input line 327.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 326.
+LaTeX Info: Redefining \showhyphens on input line 327.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -1199,62 +1157,63 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
-Package hyperref Info: Link coloring OFF on input line 326.
+Package hyperref Info: Link coloring OFF on input line 327.
+ (./Homework-2.out) (./Homework-2.out)
 \@outlinefile=\write7
-\openout7 = `"Homework 2.out"'.
+\openout7 = `Homework-2.out'.
 
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 20.74pt on input line 329.
+(Font)              scaled to size 20.74pt on input line 330.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 14.4pt on input line 329.
-LaTeX Font Info:    Trying to load font information for OT1+LinuxLibertineT-TLF on input line 329.
+(Font)              scaled to size 14.4pt on input line 330.
+LaTeX Font Info:    Trying to load font information for OT1+LinuxLibertineT-TLF on input line 330.
  (/usr/local/texlive/2022/texmf-dist/tex/latex/libertine/OT1LinuxLibertineT-TLF.fd
 File: OT1LinuxLibertineT-TLF.fd 2017/03/20 (autoinst) Font definitions for OT1/LinuxLibertineT-TLF.
 )
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 14.4pt on input line 329.
+(Font)              scaled to size 14.4pt on input line 330.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `LinuxLibertineT-TLF' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 10.5pt on input line 329.
+(Font)              scaled to size 10.5pt on input line 330.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 7.9pt on input line 329.
-LaTeX Font Info:    Trying to load font information for U+ntxmia on input line 329.
+(Font)              scaled to size 7.9pt on input line 330.
+LaTeX Font Info:    Trying to load font information for U+ntxmia on input line 330.
  (/usr/local/texlive/2022/texmf-dist/tex/latex/newtx/untxmia.fd
 File: untxmia.fd 2018/04/14 Fontinst v1.933 font definitions for U/ntxmia.
 )
-LaTeX Font Info:    Trying to load font information for U+ntxsyc on input line 329.
+LaTeX Font Info:    Trying to load font information for U+ntxsyc on input line 330.
  (/usr/local/texlive/2022/texmf-dist/tex/latex/newtx/untxsyc.fd
 File: untxsyc.fd 2012/04/12 Fontinst v1.933 font definitions for U/ntxsyc.
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 329.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 330.
  (/usr/local/texlive/2022/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (/usr/local/texlive/2022/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 329.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 330.
  (/usr/local/texlive/2022/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (/usr/local/texlive/2022/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
-(Font)              scaled to size 12.0pt on input line 330.
-LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
 (Font)              scaled to size 12.0pt on input line 331.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 8.8pt on input line 331.
+(Font)              scaled to size 12.0pt on input line 332.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 6.6pt on input line 331.
+(Font)              scaled to size 8.8pt on input line 332.
+LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 6.6pt on input line 332.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 8.8pt on input line 331.
+(Font)              scaled to size 8.8pt on input line 332.
 \tcb@out=\write8
-\openout8 = `"Homework 2.listing"'.
+\openout8 = `Homework-2.listing'.
 
- (./_minted-Homework_2/github-dark.pygstyle) (./_minted-Homework_2/E60A206D7D4F59C59349007AB2531E1BE2B4C182CB8DE87FCFA144E67A27557F.pygtex
+ (./_minted-Homework-2/github-dark.pygstyle) (./_minted-Homework-2/E60A206D7D4F59C59349007AB2531E1BF68EBED09B3FB8BE53597C41A71EF58E.pygtex
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
 (Font)              scaled to size 10.95pt on input line 1.
 LaTeX Font Info:    Trying to load font information for T1+ntxtt on input line 1.
@@ -1307,70 +1266,59 @@ LaTeX Font Info:    Font shape `T1/ntxtosf/m/n' will be
 (Font)              scaled to size 8.0pt on input line 2.
 )
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 6.6pt on input line 350.
+(Font)              scaled to size 6.6pt on input line 351.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/it' will be
-(Font)              scaled to size 12.0pt on input line 353.
+(Font)              scaled to size 12.0pt on input line 354.
  [1
 
 {/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-\openout8 = `"Homework 2.listing"'.
+\openout8 = `Homework-2.listing'.
 
- (./_minted-Homework_2/03F905D01BCE4081B74CEDD0B0ECF43BE2B4C182CB8DE87FCFA144E67A27557F.pygtex) [2]
-\openout8 = `"Homework 2.listing"'.
+ (./_minted-Homework-2/03F905D01BCE4081B74CEDD0B0ECF43BF68EBED09B3FB8BE53597C41A71EF58E.pygtex) [2]
+\openout8 = `Homework-2.listing'.
 
- (./_minted-Homework_2/7236B94AC6DD142ACBA29AA8B6964D82E2B4C182CB8DE87FCFA144E67A27557F.pygtex)
-Overfull \hbox (44.43655pt too wide) detected at line 411
-\OML/nxlmi/m/it/12 T\LMS/ntxsy/m/n/12 น\OML/nxlmi/m/it/12 n\LMS/ntxsy/m/n/12 บ \U/ntxmia/m/it/12 = \OT1/LinuxLibertineT-TLF/m/n/12 2\OML/nxlmi/m/it/12 T\LMS/ntxsy/m/n/12 น\OML/nxlmi/m/it/12 n\LMS/ntxsy/m/n/12 \OT1/LinuxLibertineT-TLF/m/n/12 2\LMS/ntxsy/m/n/12 บ ฯ \OML/nxlmi/m/it/12 f\LMS/ntxsy/m/n/12 น\OML/nxlmi/m/it/12 n\LMS/ntxsy/m/n/12 บน[]\OML/nxlmi/m/it/12 n \U/ntxsyc/m/n/12 B \OML/nxlmi/m/it/12 a \LMS/ntxsy/m/n/12 ^^@ \OML/nxlmi/m/it/12 b \LMS/ntxsy/m/n/12 ^^@ \OT1/LinuxLibertineT-TLF/m/n/12 1[]\OML/nxlmi/m/it/12 f\LMS/ntxsy/m/n/12 น\OML/nxlmi/m/it/12 n\LMS/ntxsy/m/n/12 บ \U/ntxsyc/m/n/12 B \OT1/LinuxLibertineT-TLF/m/n/12 1 \LMS/ntxsy/m/n/12 ฯ \OML/nxlmi/m/it/12 g\LMS/ntxsy/m/n/12 น\OML/nxlmi/m/it/12 n\LMS/ntxsy/m/n/12 บ\OML/nxlmi/m/it/12 ; []g\LMS/ntxsy/m/n/12 น\OML/nxlmi/m/it/12 n\LMS/ntxsy/m/n/12 บ 2 \OML/nxlmi/m/it/12 O\LMS/ntxsy/m/n/12 น\OML/nxlmi/m/it/12 n\LMS/ntxsy/m/n/12 บบ\OML/nxlmi/m/it/12 ; T\LMS/ntxsy/m/n/12 น\OT1/LinuxLibertineT-TLF/m/n/12 0\LMS/ntxsy/m/n/12 บ \U/ntxmia/m/it/12 = \OT1/LinuxLibertineT-TLF/m/n/12 1\OML/nxlmi/m/it/12 :
- []
+ (./_minted-Homework-2/7236B94AC6DD142ACBA29AA8B6964D82F68EBED09B3FB8BE53597C41A71EF58E.pygtex) [3]
+\openout8 = `Homework-2.listing'.
 
-[3]
-\openout8 = `"Homework 2.listing"'.
-
- (./_minted-Homework_2/B97DDF2866ECDDF5548F0923D1230CA6E2B4C182CB8DE87FCFA144E67A27557F.pygtex) [4]
+ (./_minted-Homework-2/B97DDF2866ECDDF5548F0923D1230CA6F68EBED09B3FB8BE53597C41A71EF58E.pygtex) [4]
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 6.0pt on input line 510.
+(Font)              scaled to size 6.0pt on input line 512.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 6.5pt on input line 510.
+(Font)              scaled to size 6.5pt on input line 512.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 5.5pt on input line 510.
+(Font)              scaled to size 5.5pt on input line 512.
 
-Overfull \hbox (5.01854pt too wide) detected at line 510
+Overfull \hbox (5.01854pt too wide) detected at line 512
 []
  []
 
 [5] [6]
-\openout8 = `"Homework 2.listing"'.
+\openout8 = `Homework-2.listing'.
 
- (./_minted-Homework_2/C50E95650E8856DB2D1689965002B323E2B4C182CB8DE87FCFA144E67A27557F.pygtex
+ (./_minted-Homework-2/C50E95650E8856DB2D1689965002B323F68EBED09B3FB8BE53597C41A71EF58E.pygtex
 LaTeX Font Info:    Font shape `T1/ntxtt/m/n' will be
 (Font)              scaled to size 6.0pt on input line 7.
 )
 \tf@thm=\write9
-\openout9 = `"Homework 2.thm"'.
+\openout9 = `Homework-2.thm'.
 
- [7] (./Homework 2.aux)
+ [7] (./Homework-2.aux)
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+LaTeX Warning: There were multiply-defined labels.
 
-
-Package rerunfilecheck Warning: File `"Homework 2".out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `"Homework 2".out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
+Package rerunfilecheck Info: File `Homework-2.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 42313 strings out of 476029
- 865454 string characters out of 5790172
- 1866346 words of memory out of 5000000
+ 42319 strings out of 476029
+ 865540 string characters out of 5790172
+ 1865346 words of memory out of 5000000
  61893 multiletter control sequences out of 15000+600000
  622610 words of font info for 228 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 101i,15n,131p,1005b,1182s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 101i,15n,131p,1003b,1182s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/libertine/lbtn_oexx6f.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tosf.enc}</usr/local/texlive/2022/texmf-dist/fonts/type1/public/newtx/LibertineMathMI.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/newtx/LibertineMathMI7.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/newtx/LibertineMathRM.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/libertine/LinLibertineT.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/latxfont/lcircle1.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/txfonts/t1xbtt.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/txfonts/t1xtt.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/txfonts/t1xtt.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/newtx/txexas.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/txfonts/txsyc.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/newtx/txsys.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/newtx/ztmb.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/newtx/ztmr.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/newtx/ztmri.pfb>
-Output written on "Homework 2.pdf" (7 pages, 267520 bytes).
+Output written on Homework-2.pdf (7 pages, 267530 bytes).
 PDF statistics:
  191 PDF objects out of 1000 (max. 8388607)
  119 compressed objects within 2 object streams

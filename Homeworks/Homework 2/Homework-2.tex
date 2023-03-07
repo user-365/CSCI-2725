@@ -1,3 +1,4 @@
+
 % Template.tex's last substantial revision: 2023-03-03 16:37 EST
 % "Substantial" for Template.tex is laxer than for content-ful .texs
 % Revision contents: add \del macro
@@ -338,12 +339,25 @@ You can use \LaTeX or any other tool to write your homework.
 \end{enumerate}
 
 \begin{MintedUnbreakableCodeBlock}{java}
-      void fun(int n, int m) {
+      void fun(int n, int m) {        // $T(l)=$
         if (m > n) return;
-        System.out.print("m = " + m);
-        fun(n, m + 2);
+        System.out.print("m = " + m); // $1+$
+        fun(n, m + 2);                // $T(l-2)$
       }
 \end{MintedUnbreakableCodeBlock}
+
+Thus, the recurrence relation for the above function is
+\begin{equation*}
+  T(l) = 1 + T(l-2) (\textrm{letting } l \coloneqq m-n-1), \quad T(0) = 1.
+\end{equation*}
+
+Fitting this to the hypothesis of the \textit{Subtract and Conquer} version of the Master Theorem,
+we have $a=1$, $b=2$, and $f(l)\in O(1)=O(l^d)$, with $d=0$.
+
+By the Subtract and Conquer version, we have that:
+\begin{equation*}
+  \textrm{Since } a = 1, \textrm{ then } \Highlight{$T(l)\in O(l^{d+1}) = O(l)$}. \QED
+\end{equation*}
 
 
 
@@ -352,15 +366,28 @@ You can use \LaTeX or any other tool to write your homework.
 
 
 \begin{MintedUnbreakableCodeBlock}{java}
-      float fun(int a[], int i) {
+      float fun(int a[], int i) {                    // $T(i)=$
         if (i == 0) {
           return a[0];
         }
         if (i > 0) {
-          return (i * fun(a, i - 1) + a[i])/(i + 1);
+          return (i * fun(a, i - 1) + a[i])/(i + 1); // $T(i-1)$
         }
       }
 \end{MintedUnbreakableCodeBlock}
+
+Thus, the recurrence relation for the above function is
+\begin{equation*}
+  T(i) = T(i-1), \quad T(0) = 1.
+\end{equation*}
+
+Putting this into the hypothesis of the S\&C version,
+we have $a=1$, $b=1$, and $f(i)\in O(i^d)$, with $d=0$.
+
+Applying the S\&C version, we have that
+\begin{equation*}
+  \textrm{Since } a = 1, \textrm{ then } \Highlight{$T(i)\in O(i^{d+1}) = O(i)$}. \QED
+\end{equation*}
 
 
 
@@ -370,14 +397,30 @@ You can use \LaTeX or any other tool to write your homework.
 
 Assume that the function "random" has a complexity of $O(n)$.
 \begin{MintedUnbreakableCodeBlock}{java}
-      void fun(int array[], int a, int b) {
+      void fun(int array[], int a, int b) { // $T(n)=$
         if (a > b) return;
-        mid = (a + b)/2;
-        fun(array, a, mid);
-        fun(array, mid + 1, b);
-        random(array, a, mid, b);
+        mid = (a + b)/2;                    // $1+$
+        fun(array, a, mid);                 // $T(n/2)+$
+        fun(array, mid + 1, b);             // $T(n/2)+$
+        random(array, a, mid, b);           // $g(n)$
       }
 \end{MintedUnbreakableCodeBlock}
+
+Thus, the recurrence relation for the above is
+\begin{equation*}
+  T(n) = 2T(n/2) + f(n), T(0) = 1,
+\end{equation*}
+(letting $n \coloneqq a-b-1$ and $f(n) \coloneqq 1+g(n)$, with $g(n)\in O(n)$).
+
+We cannot use the S\&C version of the Master Theorem,
+but instead the \textit{Divide and Conquer} version.
+Putting it into the hypothesis of the D\&C,
+we have that $a=2$, $b=2$, and $f(n)\in\Theta(n^1) = \Theta(n^{\log_b(a)})$.
+
+Applying the D\&C, we have
+\begin{equation*}
+  \textrm{Since } f(n)\in\Theta(n^1) = \Theta(n^{\log_ba}), \Highlight{$T(n)\in\Theta(n \log n)$}. \QED
+\end{equation*}
 
 
 
@@ -386,14 +429,27 @@ Assume that the function "random" has a complexity of $O(n)$.
 
 
 \begin{MintedUnbreakableCodeBlock}{java}
-      int fun(int x, int n) {
+      int fun(int x, int n) {                     // $T(n)=$
         if (n == 0) return 1;
         if (x == 0) return 0;
         if (n == 1) return x;
         if (n % 2 == 0) return fun(x * x, n / 2);
-        else return x * fun(x * x, n / 2);
+        else return x * fun(x * x, n / 2);        // $T(n/2)$
       }
 \end{MintedUnbreakableCodeBlock}
+
+Thus, the recurrence relation for the above function is
+\begin{equation*}
+  T(n) = T(n/2), \quad T(0) = 1.
+\end{equation*}
+
+In terms of the hypothesis of the D\&C version,
+we have $a=1$, $b=2$, and $f(n)\in O(1) = O(n^{\log_ba - \varepsilon})$, for all $\varepsilon=0$.
+
+Applying the D\&C, we have
+\begin{equation*}
+  \textrm{Since } f(n)\in O(n^{\log_ba - \varepsilon}), \textrm{ then } \Highlight{$T(n)\in\Theta(n^0)$}.
+\end{equation*}
 
 
 
@@ -408,8 +464,66 @@ Assume that the function "random" has a complexity of $O(n)$.
     T(n) = 2T(n-1) + 2^n
   \end{equation*}
   
-  Show that $T(n)=n2^n$ is the solution of the above equation.
+  \textbf{Show} that $T(n)=n2^n$ is the solution of the above equation.
   If you need a base case, use $T(0)=0$.
+
+  \textbf{Answer:} Using backward substitution, we have the following:
+  \begin{align*}
+    T(n)
+      &= 2T(n-1) + 2^n \\
+      &= 2(2T(n-2) + 2^n) + 2^n \\
+      &= 2(2(2T(n-3) + 2^n) + 2^n) + 2^n \\
+      \vdots
+  \end{align*}
+
+  Undertaking a proof by induction, let $k$ be the numbering of $P$s as follows:
+  \begin{enumerate}
+    
+    \item $P(0)$ is the statement that $T(n)$ equals an expression in terms of $T(n-1)$,
+      namely, $T(n) = 2T(n-1) + 2^n$;
+
+    \item $P(k)$ is the statement that $T(n)$ equals some expression in terms of $T(n-1-k)$,
+     namely, $T(n) = 2(2(\dots 2T(n-1-k) + 2^n \dots) + 2^n) + 2^n$;
+
+    \item and of course, $P(k+1)$ is one in terms of $T(n-1-(k+1))$.
+
+  \end{enumerate}
+
+  From the recurrence relation derived from the source code above, $P(0)$ follows.
+
+  Since $T(n)$ represents a recursion, we have that:
+  For all $n_0\in [0,n]$, $T(n_0) = 2T(n_0-1)+2^n$.
+  Therefore, $T(n_0) = 2T(n_0-1)+2^n$.
+  Noting the obvious, if $n_0=n-1-k$, then $n_0-1=n-1-(k+1)$.
+  $P(k)\rightarrow P(k+1)$ follows immediately.
+
+  Thus, by induction, we have that $P(k)$ is true for all $k\in [0,n-1]$.
+
+  From the definition of $P(k)$, we have
+  \begin{align*}
+    T(n)
+      &= 2(2(\dots 2T(n-1-a) + 2^n \dots) + 2^n) + 2^n \\
+      &= 2^a T(n-1-a) + \underbrace{2^{n+a-1} + 2^{n+a-2} + \cdots + 2^{n+(a-(a-2))-1} + 2^{n+(a-(a-1))-1}}_a \\
+      &= 2^{n-1} T(0) + \underbrace{2^{n+(n-1)-1} + 2^{n+(n-1)-2} + \cdots + 2^{n+((n-1)-(n-1-1))-1}}_{n-1}
+        & \Comment{let $a=n-1$} \\
+      &= \underbrace{2^{2n-2} + 2^{2n-3} + \cdots + 2^{2n-n}}_{n-1}
+        & \Comment{$T(0)=0$} \\
+      &= \sum_{i=0}^{n-2} 2^{2n-2} 2^{-i}.
+  \end{align*}
+
+  The sum is that of a geometric progression, with $a=2^{n-2}$ and $r=0.5$.
+  Generally, the sum of a geometric progression up to the $k$-th term is given as:
+  \begin{equation*}
+    S_k = \frac{ar^{k+1} - a}{r - 1}.
+  \end{equation*}
+
+  Here, $k=n-2$, so
+  \begin{align*}
+    \sum_{i=0}^{n-2} 2^{2n-2} 2^{-i}
+      &= \frac{2^{2n-2}(0.5)^{n-2+1} - 2^{2n-2}}{0.5 - 1} \\
+      &= \frac{2^{2n-2} - 2^{2n-2}2^{-n+1}}{0.5} \\
+      &= \frac{2^{n-1} \left(2^{n-1} - 1\right)}{0.5}
+  \end{align*}
 
 
 
@@ -417,21 +531,39 @@ Assume that the function "random" has a complexity of $O(n)$.
 
 
 
-  \item (10 points) Below is the code for Fibonacci sequence. Write a recurrence relation for this code and solve it using substitution (forward or backward) method.
+  \item (10 points) Below is the code for Fibonacci sequence. \textbf{Write} a recurrence relation for this code and solve it using substitution (forward or backward) method.
   
   \textbf{Note:} There are two recurrence relations $T(n-1)$ and $T(n-2)$ and to simplify your calculation you can assume that $T(n-1)=T(n-2)$ as they are almost of same size.
 
 \end{enumerate}
 
 \begin{MintedUnbreakableCodeBlock}{java}
-      int Fibonacci(int N) {
+      int Fibonacci(int N) {                          // $T(n)=$
         if (n == 0 || n == 1) {
           return 1;
         }
         else {
-          return Fibonacci(n - 1) + Fibonacci(n - 2);
+          return Fibonacci(n - 1) + Fibonacci(n - 2); // $T(n-1)+T(n-2)$
         }
       }
 \end{MintedUnbreakableCodeBlock}
+
+Since we are given that $T(n-1) \approx T(n-2)$,
+the recurrence relation for the above then becomes
+\begin{equation*}
+  T(n) = 2T(n-1), \quad T(0) = 1.
+\end{equation*}
+
+\textbf{Answer:} Using forward substitution, we have the following:
+\begin{align*}
+  T(1) &= 2T(0) \\
+  \therefore T(2) &= 2(2T(0)) \\
+  &\vdots \\
+  T(n) &= 2^n T(0) \\
+  \therefore T(n) &= \Highlight{$2^n$}.
+    & \Comment{$T(0)=1$}
+\end{align*}
+
+
 
 \end{document}
