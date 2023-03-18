@@ -1,0 +1,8 @@
+        void Quiz( int n ) {
+            if (n > 0) {
+                System.out.print("0");
+                Quiz(n - 1);
+                System.out.print("1");
+                Quiz(n - 1);
+            }
+        }
