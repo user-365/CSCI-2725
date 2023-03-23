@@ -372,13 +372,13 @@ You can use \LaTeX\ or any other tool to write your homework.
     \begin{enumerate}
     
         \item Recursive functions often have fewer local variables than the equivalent iterative functions. \\
-        \hspace*{\fill} \textbf{Answer:} True; though more intermediate parameters.
+        \hspace*{\fill} \textbf{Answer:} \Highlight{True}; though more intermediate parameters.
 
         \item Recursive functions must contain a path that does not contain recursive call. \\
-        \hspace*{\fill} \textbf{Answer:} True; this path is called the ``base case''.
+        \hspace*{\fill} \textbf{Answer:} \Highlight{True}; this path is called the ``base case''.
         
         \item Recursive functions are always less efficient than the corresponding iterative functions in terms of Big-$O$ complexity. \\
-        \hspace*{\fill} \textbf{Answer:} False; not always, but typically.
+        \hspace*{\fill} \textbf{Answer:} \Highlight{False}; not always, but typically.
     
     \end{enumerate}
 
@@ -406,17 +406,17 @@ You can use \LaTeX\ or any other tool to write your homework.
         
         \item How many recursive calls will be made for function call \verb|fun(7)|?
             Show your work on how you got the number of recursive calls. \\
-            \hspace*{\fill} \textbf{Answer:} Seventeen (17) function calls including first call (\verb|fun(7)|). \\
+            \hspace*{\fill} \textbf{Answer:} \Highlight{Seventeen (17)} function calls including first call (\verb|fun(7)|). \\
             \textbf{Justification:} fun(7), fun(22), fun(11), fun(34), fun(17), fun(52), fun(26), fun(13), fun(40), fun(20), fun(10), fun(5), fun(16), fun(8), fun(4), fun(2), fun(1)
         
         \item How many recursive calls will be made for function call \verb|fun(8)|?
             Show your work on how you got the number of recursive call.  \\
-            \hspace*{\fill} \textbf{Answer:} Four (4) function calls including first call (\verb|fun(8)|). \\
+            \hspace*{\fill} \textbf{Answer:} \Highlight{Four (4)} function calls including first call (\verb|fun(8)|). \\
             \textbf{Justification:} fun(8), fun(4), fun(2), fun(1)
 
         \item Do you see any problem in the above function?
             If so, give justification to your answer. \\
-            \hspace*{\fill} \textbf{Answer:} Yes, there is a problem; the function should not have wildly different complexity for its inputs.
+            \hspace*{\fill} \textbf{Answer:} \Highlight{Yes}, there is a problem; the function should not have wildly different complexity for its inputs.
     
     \end{enumerate}
 
@@ -441,11 +441,11 @@ You can use \LaTeX\ or any other tool to write your homework.
     \begin{enumerate}
         
         \item \verb|System.out.print(fun(10,6));| \\
-        \hspace*{\fill} \textbf{Answer:} prints 2 \\
+        \hspace*{\fill} \textbf{Answer:} \Highlight{Prints 2} \\
         \textbf{Justification:} fun(10,6), fun(4,6), fun(4,2), fun(2,2)
 
         \item \verb|System.out.print(fun(7,13));| \\
-        \hspace*{\fill} \textbf{Answer:} prints 1 \\
+        \hspace*{\fill} \textbf{Answer:} \Highlight{Prints 1} \\
         \textbf{Justification:} fun(7,13), fun(7,6), fun(1,6), fun(1,5), fun(1,4), fun(1,3), fun(1,2), fun(1,1)
 
     \end{enumerate}
@@ -470,7 +470,7 @@ You can use \LaTeX\ or any other tool to write your homework.
 
     \sout{\texttt{System.out.println(Quiz(2));}} \verb|// not valid Java code| \\
     \verb|Quiz(2);| \\
-    \hspace*{\fill} \textbf{Answer:} 0, 0, 1, 1, 0, 1 \\
+    \hspace*{\fill} \textbf{Answer:} \Highlight{0, 0, 1, 1, 0, 1} \\
     \textbf{Justification:} Quiz(2),
         print 0,
         Quiz(1),
@@ -502,13 +502,13 @@ You can use \LaTeX\ or any other tool to write your homework.
     \begin{enumerate}
 
         \item If node 1 is deleted, what node or nodes can replace node 1 in the tree? \\
-        \hspace*{\fill} \textbf{Answer:} Nodes 5 and 6 can replace; they are the predecessor and successor, respectively.
+        \hspace*{\fill} \textbf{Answer:} \Highlight{Nodes 5 and 6} can replace; they are the predecessor and successor, respectively.
         
         \item 4 2 7 5 1 6 8 3 is a traversal of the tree in which order? \\
-        \hspace*{\fill} \textbf{Answer:} In "in-order" order.
+        \hspace*{\fill} \textbf{Answer:} In \Highlight{"in-order"} order.
         
         \item 1 2 4 5 7 3 6 8 is a traversal of the tree in which order? \\
-        \hspace*{\fill} \textbf{Answer:} In "pre-order" order.
+        \hspace*{\fill} \textbf{Answer:} In \Highlight{"pre-order"} order.
     
     \end{enumerate}
 
@@ -533,22 +533,22 @@ You can use \LaTeX\ or any other tool to write your homework.
         \end{figure}\squeezeup
     
         \item What nodes are in level 3 of the tree? \\
-        \hspace*{\fill} \textbf{Answer:} 11, 14, 94, 100 (assuming root is level 0).
+        \hspace*{\fill} \textbf{Answer:} \Highlight{11, 14, 94, 100} (assuming root is level 0).
         
         \item \textbf{List} all the leaf nodes in the tree. \\
-        \hspace*{\fill} \textbf{Answer:} 2, 10, 12, 16, 33, 51, 95, 100.
+        \hspace*{\fill} \textbf{Answer:} \Highlight{2, 10, 12, 16, 33, 51, 95, 100}.
         
         \item What is the height of the binary search tree containing this input? \\
-        \hspace*{\fill} \textbf{Answer:} 5 excluding the root, 6 including.
+        \hspace*{\fill} \textbf{Answer:} \Highlight{5 excluding the root}, 6 including.
         
         \item \textbf{Give} the output of post-order traversal function called on the above tree. \\
-        \hspace*{\fill} \textbf{Answer:} 2 10 9 12 11 16 25 14 13 33 26 51 95 94 100 96 72 50
+        \hspace*{\fill} \textbf{Answer:} \Highlight{2 10 9 12 11 16 25 14 13 33 26 51 95 94 100 96 72 50}
         
         \item What is the maximum height of the binary search tree containing this input? \\
-        \hspace*{\fill} \textbf{Answer:} 17 excluding the root, 18 including.
+        \hspace*{\fill} \textbf{Answer:} \Highlight{17 excluding the root}, 18 including.
 
         \item What is the minimum height of a binary search tree containing this input? \\
-        \hspace*{\fill} \textbf{Answer:} 4 excluding the root, 5 including.
+        \hspace*{\fill} \textbf{Answer:} \Highlight{4 excluding the root}, 5 including.
 
         \item \textbf{Draw} the tree after deleting the node containing 94.
         \begin{figure}[H]
@@ -556,6 +556,8 @@ You can use \LaTeX\ or any other tool to write your homework.
             \caption{The BST after deleting 94}
             \label{fig:6(h)-BST}
         \end{figure}\squeezeup
+
+        \newpage
 
         \item \textbf{Use} the above tree (from part (h)) and draw the tree after deleting the node containing 13.
         \begin{figure}[H]

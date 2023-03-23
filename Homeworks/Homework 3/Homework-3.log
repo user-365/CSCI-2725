@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.12) (preloaded format=pdflatex 2023.1.22)  23 MAR 2023 10:36
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.12) (preloaded format=pdflatex 2023.1.22)  23 MAR 2023 14:42
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1304,16 +1304,16 @@ File: ./images//6(h).png Graphic file (type png)
 <use ./images//6(h).png>
 Package pdftex.def Info: ./images//6(h).png  used on input line 555.
 (pdftex.def)             Requested size: 925.2043pt x 252.19156pt.
-<./images//6(i).png, id=91, 915.42pt x 245.41687pt>
+ [6 <./images//6(a).png> <./images//6(h).png>]
+<./images//6(i).png, id=109, 915.42pt x 245.41687pt>
 File: ./images//6(i).png Graphic file (type png)
 <use ./images//6(i).png>
-Package pdftex.def Info: ./images//6(i).png  used on input line 562.
+Package pdftex.def Info: ./images//6(i).png  used on input line 564.
 (pdftex.def)             Requested size: 915.41777pt x 245.41626pt.
- [6 <./images//6(a).png> <./images//6(h).png>]
-<./images//6(j).png, id=111, 942.52126pt x 240.14719pt>
+<./images//6(j).png, id=110, 942.52126pt x 240.14719pt>
 File: ./images//6(j).png Graphic file (type png)
 <use ./images//6(j).png>
-Package pdftex.def Info: ./images//6(j).png  used on input line 569.
+Package pdftex.def Info: ./images//6(j).png  used on input line 571.
 (pdftex.def)             Requested size: 942.51897pt x 240.14658pt.
 \tf@thm=\write9
 \openout9 = `Homework-3.thm'.
@@ -1326,15 +1326,15 @@ Package rerunfilecheck Info: File `Homework-3.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 42348 strings out of 476404
- 872070 string characters out of 2786220
- 1861324 words of memory out of 3000000
- 61872 multiletter control sequences out of 15000+600000
+ 42374 strings out of 476404
+ 872532 string characters out of 2786220
+ 1867324 words of memory out of 3000000
+ 61898 multiletter control sequences out of 15000+600000
  597003 words of font info for 155 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  101i,11n,131p,1009b,1346s stack positions out of 10000i,1000n,20000p,200000b,80000s
 {C:/Users/Admin_Calvin/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/libertine/lbtn_oexx6f.enc}{C:/Users/Admin_Calvin/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/newtx/ntx-ec-tosf.enc}{C:/Users/Admin_Calvin/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/newtx/ntx-ec-tlf.enc}<C:/Users/Admin_Calvin/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/LibertineMathMI.pfb><C:/Users/Admin_Calvin/AppData/Local/Programs/MiKTeX/fonts/type1/public/libertine/LinLibertineT.pfb><C:/Users/Admin_Calvin/AppData/Local/Programs/MiKTeX/fonts/type1/public/txfonts/t1xbtt.pfb><C:/Users/Admin_Calvin/AppData/Local/Programs/MiKTeX/fonts/type1/public/txfonts/t1xtt.pfb><C:/Users/Admin_Calvin/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmb.pfb><C:/Users/Admin_Calvin/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmr.pfb>
-Output written on Homework-3.pdf (7 pages, 375965 bytes).
+Output written on Homework-3.pdf (7 pages, 380189 bytes).
 PDF statistics:
  164 PDF objects out of 1000 (max. 8388607)
  40 named destinations out of 1000 (max. 500000)
