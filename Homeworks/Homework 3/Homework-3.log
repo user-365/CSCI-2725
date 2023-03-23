@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.12) (preloaded format=pdflatex 2023.1.22)  20 MAR 2023 20:54
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.12) (preloaded format=pdflatex 2023.1.22)  23 MAR 2023 10:36
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1010,13 +1010,24 @@ runsystem(if not exist _minted-Homework-3 mkdir _minted-Homework-3)...executed.
 Library (tcolorbox): 'tcbminted.code.tex' version '5.1.1'
 ) (C:\Users\Admin_Calvin\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcbxparse.code.tex
 Library (tcolorbox): 'tcbxparse.code.tex' version '5.1.1'
-))
-LaTeX Font Info:    Trying to load font information for T1+ntxtlf on input line 358.
+)) (C:\Users\Admin_Calvin\AppData\Local\Programs\MiKTeX\tex/latex/ulem\ulem.sty
+\UL@box=\box95
+\UL@hyphenbox=\box96
+\UL@skip=\skip71
+\UL@hook=\toks73
+\UL@height=\dimen331
+\UL@pe=\count387
+\UL@pixel=\dimen332
+\ULC@box=\box97
+Package: ulem 2019/11/18
+\ULdepth=\dimen333
+)
+LaTeX Font Info:    Trying to load font information for T1+ntxtlf on input line 362.
  (C:\Users\Admin_Calvin\AppData\Local\Programs\MiKTeX\tex/latex/newtx\t1ntxtlf.fd
 File: t1ntxtlf.fd 2021/05/24 v1.1 font definition file for T1/ntx/tlf
 )
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 12.0pt on input line 358.
+(Font)              scaled to size 12.0pt on input line 362.
 runsystem(for ^%i in (pygmentize.exe pygmentize.bat pygmentize.cmd) do set > Homework-3.aex <nul: /p x=^%~$PATH:i>> Homework-3.aex)...executed.
 
 runsystem(del Homework-3.aex)...executed.
@@ -1031,60 +1042,60 @@ LaTeX Warning: Label `Function' multiply defined.
 )
 \openout1 = `Homework-3.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/nxlmi/m/it on input line 358.
-LaTeX Font Info:    Trying to load font information for OML+nxlmi on input line 358.
+LaTeX Font Info:    Checking defaults for OML/nxlmi/m/it on input line 362.
+LaTeX Font Info:    Trying to load font information for OML+nxlmi on input line 362.
  (C:\Users\Admin_Calvin\AppData\Local\Programs\MiKTeX\tex/latex/newtx\omlnxlmi.fd
 File: omlnxlmi.fd 2013/11/19 Fontinst v1.933 font definitions for OML/nxlmi.
 )
-LaTeX Font Info:    ... okay on input line 358.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 358.
-LaTeX Font Info:    ... okay on input line 358.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 358.
-LaTeX Font Info:    ... okay on input line 358.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 358.
-LaTeX Font Info:    ... okay on input line 358.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 358.
-LaTeX Font Info:    ... okay on input line 358.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 358.
-LaTeX Font Info:    ... okay on input line 358.
-LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 358.
-LaTeX Font Info:    Trying to load font information for U+ntxexa on input line 358.
+LaTeX Font Info:    ... okay on input line 362.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 362.
+LaTeX Font Info:    ... okay on input line 362.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 362.
+LaTeX Font Info:    ... okay on input line 362.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 362.
+LaTeX Font Info:    ... okay on input line 362.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 362.
+LaTeX Font Info:    ... okay on input line 362.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 362.
+LaTeX Font Info:    ... okay on input line 362.
+LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 362.
+LaTeX Font Info:    Trying to load font information for U+ntxexa on input line 362.
  (C:\Users\Admin_Calvin\AppData\Local\Programs\MiKTeX\tex/latex/newtx\untxexa.fd
 File: untxexa.fd 2012/04/16 Fontinst v1.933 font definitions for U/ntxexa.
 )
-LaTeX Font Info:    ... okay on input line 358.
-LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 358.
-LaTeX Font Info:    Trying to load font information for LMS+ntxsy on input line 358.
+LaTeX Font Info:    ... okay on input line 362.
+LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 362.
+LaTeX Font Info:    Trying to load font information for LMS+ntxsy on input line 362.
  (C:\Users\Admin_Calvin\AppData\Local\Programs\MiKTeX\tex/latex/newtx\lmsntxsy.fd
 File: lmsntxsy.fd 2016/07/02 Fontinst v1.933 font definitions for LMS/ntxsy.
 )
-LaTeX Font Info:    ... okay on input line 358.
-LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 358.
-LaTeX Font Info:    Trying to load font information for LMX+ntxexx on input line 358.
+LaTeX Font Info:    ... okay on input line 362.
+LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 362.
+LaTeX Font Info:    Trying to load font information for LMX+ntxexx on input line 362.
  (C:\Users\Admin_Calvin\AppData\Local\Programs\MiKTeX\tex/latex/newtx\lmxntxexx.fd
 File: lmxntxexx.fd 2016/07/03 Fontinst v1.933 font definitions for LMX/ntxexx.
 )
-LaTeX Font Info:    ... okay on input line 358.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 358.
-LaTeX Font Info:    ... okay on input line 358.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 358.
-LaTeX Font Info:    ... okay on input line 358.
-\c@mv@tabular=\count387
-\c@mv@boldtabular=\count388
-LaTeX Info: Command `\dddot' is already robust on input line 358.
-LaTeX Info: Command `\ddddot' is already robust on input line 358.
-LaTeX Info: Redefining \microtypecontext on input line 358.
-Package microtype Info: Applying patch `item' on input line 358.
-Package microtype Info: Applying patch `toc' on input line 358.
-Package microtype Info: Applying patch `eqnum' on input line 358.
-Package microtype Info: Applying patch `footnote' on input line 358.
+LaTeX Font Info:    ... okay on input line 362.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 362.
+LaTeX Font Info:    ... okay on input line 362.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 362.
+LaTeX Font Info:    ... okay on input line 362.
+\c@mv@tabular=\count388
+\c@mv@boldtabular=\count389
+LaTeX Info: Command `\dddot' is already robust on input line 362.
+LaTeX Info: Command `\ddddot' is already robust on input line 362.
+LaTeX Info: Redefining \microtypecontext on input line 362.
+Package microtype Info: Applying patch `item' on input line 362.
+Package microtype Info: Applying patch `toc' on input line 362.
+Package microtype Info: Applying patch `eqnum' on input line 362.
+Package microtype Info: Applying patch `footnote' on input line 362.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 358.
+LaTeX Info: Redefining \showhyphens on input line 362.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -1128,92 +1139,98 @@ File: mt-ptm.cfg 2006/04/20 v1.7 microtype config. file: Times (RS)
 
 (C:\Users\Admin_Calvin\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count389
-\scratchdimen=\dimen331
-\scratchbox=\box95
-\nofMPsegments=\count390
-\nofMParguments=\count391
-\everyMPshowfont=\toks73
-\MPscratchCnt=\count392
-\MPscratchDim=\dimen332
-\MPnumerator=\count393
-\makeMPintoPDFobject=\count394
-\everyMPtoPDFconversion=\toks74
+\scratchcounter=\count390
+\scratchdimen=\dimen334
+\scratchbox=\box98
+\nofMPsegments=\count391
+\nofMParguments=\count392
+\everyMPshowfont=\toks74
+\MPscratchCnt=\count393
+\MPscratchDim=\dimen335
+\MPnumerator=\count394
+\makeMPintoPDFobject=\count395
+\everyMPtoPDFconversion=\toks75
 ) (C:\Users\Admin_Calvin\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+ (C:\Users\Admin_Calvin\AppData\Local\Programs\MiKTeX\tex/latex/grfext\grfext.sty
+Package: grfext 2019/12/03 v1.3 Manage graphics extensions (HO)
+)
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 504.
  (C:\Users\Admin_Calvin\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-\c@lstlisting=\count395
+\c@lstlisting=\count396
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
-Package hyperref Info: Link coloring OFF on input line 358.
+Package hyperref Info: Link coloring OFF on input line 362.
  (Homework-3.out) (Homework-3.out)
 \@outlinefile=\write7
 \openout7 = `Homework-3.out'.
 
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 20.74pt on input line 361.
+(Font)              scaled to size 20.74pt on input line 365.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 14.4pt on input line 361.
-LaTeX Font Info:    Trying to load font information for OT1+LinuxLibertineT-TLF on input line 361.
+(Font)              scaled to size 14.4pt on input line 365.
+LaTeX Font Info:    Trying to load font information for OT1+LinuxLibertineT-TLF on input line 365.
  (C:\Users\Admin_Calvin\AppData\Local\Programs\MiKTeX\tex/latex/libertine\ot1linuxlibertinet-tlf.fd
 File: OT1LinuxLibertineT-TLF.fd 2017/03/20 (autoinst) Font definitions for OT1/LinuxLibertineT-TLF.
 )
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 14.4pt on input line 361.
+(Font)              scaled to size 14.4pt on input line 365.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `LinuxLibertineT-TLF' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 10.5pt on input line 361.
+(Font)              scaled to size 10.5pt on input line 365.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 7.9pt on input line 361.
-LaTeX Font Info:    Trying to load font information for U+ntxmia on input line 361.
+(Font)              scaled to size 7.9pt on input line 365.
+LaTeX Font Info:    Trying to load font information for U+ntxmia on input line 365.
  (C:\Users\Admin_Calvin\AppData\Local\Programs\MiKTeX\tex/latex/newtx\untxmia.fd
 File: untxmia.fd 2018/04/14 Fontinst v1.933 font definitions for U/ntxmia.
 )
-LaTeX Font Info:    Trying to load font information for U+ntxsyc on input line 361.
+LaTeX Font Info:    Trying to load font information for U+ntxsyc on input line 365.
  (C:\Users\Admin_Calvin\AppData\Local\Programs\MiKTeX\tex/latex/newtx\untxsyc.fd
 File: untxsyc.fd 2012/04/12 Fontinst v1.933 font definitions for U/ntxsyc.
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 361.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 365.
  (C:\Users\Admin_Calvin\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (C:\Users\Admin_Calvin\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 361.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 365.
  (C:\Users\Admin_Calvin\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (C:\Users\Admin_Calvin\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/sb/n' will be
-(Font)              scaled to size 14.4pt on input line 361.
+(Font)              scaled to size 14.4pt on input line 365.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/sb/n' will be
-(Font)              scaled to size 10.5pt on input line 361.
+(Font)              scaled to size 10.5pt on input line 365.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/sb/n' will be
-(Font)              scaled to size 7.9pt on input line 361.
+(Font)              scaled to size 7.9pt on input line 365.
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
-(Font)              scaled to size 12.0pt on input line 362.
+(Font)              scaled to size 12.0pt on input line 366.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 12.0pt on input line 363.
+(Font)              scaled to size 12.0pt on input line 367.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 8.8pt on input line 363.
+(Font)              scaled to size 8.8pt on input line 367.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 6.6pt on input line 363.
+(Font)              scaled to size 6.6pt on input line 367.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/sb/n' will be
-(Font)              scaled to size 12.0pt on input line 363.
+(Font)              scaled to size 12.0pt on input line 367.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/sb/n' will be
-(Font)              scaled to size 8.8pt on input line 363.
+(Font)              scaled to size 8.8pt on input line 367.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/sb/n' will be
-(Font)              scaled to size 6.6pt on input line 363.
+(Font)              scaled to size 6.6pt on input line 367.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 8.8pt on input line 363.
+(Font)              scaled to size 8.8pt on input line 367.
  [1
 
 {C:/Users/Admin_Calvin/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
@@ -1270,11 +1287,38 @@ LaTeX Font Info:    Font shape `T1/ntxtt/m/n' will be
  (_minted-Homework-3/9D0DCB13D5EF685EFD0067653CF40A3CCB537D2C62E1B101487F7B01E4B2DEB9.pygtex) [3]
 \openout8 = `Homework-3.listing'.
 
- (_minted-Homework-3/75F3F2C1871524284677F545836D23F4CB537D2C62E1B101487F7B01E4B2DEB9.pygtex) [4] [5]
+ (_minted-Homework-3/75F3F2C1871524284677F545836D23F4CB537D2C62E1B101487F7B01E4B2DEB9.pygtex) [4]
+<./images//5.png, id=77, 413.29407pt x 285.31593pt>
+File: ./images//5.png Graphic file (type png)
+<use ./images//5.png>
+Package pdftex.def Info: ./images//5.png  used on input line 497.
+(pdftex.def)             Requested size: 413.29305pt x 285.31523pt.
+ [5 <./images//5.png>]
+<./images//6(a).png, id=89, 1407.75937pt x 368.87813pt>
+File: ./images//6(a).png Graphic file (type png)
+<use ./images//6(a).png>
+Package pdftex.def Info: ./images//6(a).png  used on input line 530.
+(pdftex.def)             Requested size: 1407.75594pt x 368.87721pt.
+<./images//6(h).png, id=90, 925.20656pt x 252.19218pt>
+File: ./images//6(h).png Graphic file (type png)
+<use ./images//6(h).png>
+Package pdftex.def Info: ./images//6(h).png  used on input line 555.
+(pdftex.def)             Requested size: 925.2043pt x 252.19156pt.
+<./images//6(i).png, id=91, 915.42pt x 245.41687pt>
+File: ./images//6(i).png Graphic file (type png)
+<use ./images//6(i).png>
+Package pdftex.def Info: ./images//6(i).png  used on input line 562.
+(pdftex.def)             Requested size: 915.41777pt x 245.41626pt.
+ [6 <./images//6(a).png> <./images//6(h).png>]
+<./images//6(j).png, id=111, 942.52126pt x 240.14719pt>
+File: ./images//6(j).png Graphic file (type png)
+<use ./images//6(j).png>
+Package pdftex.def Info: ./images//6(j).png  used on input line 569.
+(pdftex.def)             Requested size: 942.51897pt x 240.14658pt.
 \tf@thm=\write9
 \openout9 = `Homework-3.thm'.
 
- [6] (Homework-3.aux)
+ [7 <./images//6(i).png> <./images//6(j).png>] (Homework-3.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
@@ -1282,17 +1326,17 @@ Package rerunfilecheck Info: File `Homework-3.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 42138 strings out of 476404
- 868345 string characters out of 2786220
- 1859324 words of memory out of 3000000
- 61688 multiletter control sequences out of 15000+600000
- 596730 words of font info for 152 fonts, out of 8000000 for 9000
+ 42348 strings out of 476404
+ 872070 string characters out of 2786220
+ 1861324 words of memory out of 3000000
+ 61872 multiletter control sequences out of 15000+600000
+ 597003 words of font info for 155 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 101i,7n,131p,1009b,1346s stack positions out of 10000i,1000n,20000p,200000b,80000s
+ 101i,11n,131p,1009b,1346s stack positions out of 10000i,1000n,20000p,200000b,80000s
 {C:/Users/Admin_Calvin/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/libertine/lbtn_oexx6f.enc}{C:/Users/Admin_Calvin/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/newtx/ntx-ec-tosf.enc}{C:/Users/Admin_Calvin/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/newtx/ntx-ec-tlf.enc}<C:/Users/Admin_Calvin/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/LibertineMathMI.pfb><C:/Users/Admin_Calvin/AppData/Local/Programs/MiKTeX/fonts/type1/public/libertine/LinLibertineT.pfb><C:/Users/Admin_Calvin/AppData/Local/Programs/MiKTeX/fonts/type1/public/txfonts/t1xbtt.pfb><C:/Users/Admin_Calvin/AppData/Local/Programs/MiKTeX/fonts/type1/public/txfonts/t1xtt.pfb><C:/Users/Admin_Calvin/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmb.pfb><C:/Users/Admin_Calvin/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmr.pfb>
-Output written on Homework-3.pdf (6 pages, 193373 bytes).
+Output written on Homework-3.pdf (7 pages, 375965 bytes).
 PDF statistics:
- 139 PDF objects out of 1000 (max. 8388607)
- 34 named destinations out of 1000 (max. 500000)
- 24733 words of extra memory for PDF output out of 24883 (max. 10000000)
+ 164 PDF objects out of 1000 (max. 8388607)
+ 40 named destinations out of 1000 (max. 500000)
+ 24758 words of extra memory for PDF output out of 24883 (max. 10000000)
 

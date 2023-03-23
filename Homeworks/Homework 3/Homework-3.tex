@@ -340,6 +340,10 @@ smallerops, varg, cmbraces, noamssymbols, ]{newtxmath}
 
 % REPLACE ALL OF ABOVE
 \usepackage{MintedUnbreakableCodeBlock}
+\usepackage[normalem]{ulem} % for striking-through text (don't remove option)
+%\setlength{\textfloatsep}{1\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip} % Credit: https://tex.stackexchange.com/a/60479
+\newcommand{\squeezeup}{\vspace{-16pt}}% Credit: https://tex.stackexchange.com/a/60488
+
 
 
 
@@ -383,10 +387,6 @@ You can use \LaTeX\ or any other tool to write your homework.
     \newpage
 
 
-
-%\end{enumerate}
-    
-%\begin{enumerate}[resume]
     
     \item (6 points each)
     \begin{MintedUnbreakableCodeBlock}{java}
@@ -405,13 +405,18 @@ You can use \LaTeX\ or any other tool to write your homework.
     \begin{enumerate}
         
         \item How many recursive calls will be made for function call \verb|fun(7)|?
-            Show your work on how you got the number of recursive calls.
+            Show your work on how you got the number of recursive calls. \\
+            \hspace*{\fill} \textbf{Answer:} Seventeen (17) function calls including first call (\verb|fun(7)|). \\
+            \textbf{Justification:} fun(7), fun(22), fun(11), fun(34), fun(17), fun(52), fun(26), fun(13), fun(40), fun(20), fun(10), fun(5), fun(16), fun(8), fun(4), fun(2), fun(1)
         
         \item How many recursive calls will be made for function call \verb|fun(8)|?
-            Show your work on how you got the number of recursive call.
+            Show your work on how you got the number of recursive call.  \\
+            \hspace*{\fill} \textbf{Answer:} Four (4) function calls including first call (\verb|fun(8)|). \\
+            \textbf{Justification:} fun(8), fun(4), fun(2), fun(1)
 
         \item Do you see any problem in the above function?
-            If so, give justification to your answer.
+            If so, give justification to your answer. \\
+            \hspace*{\fill} \textbf{Answer:} Yes, there is a problem; the function should not have wildly different complexity for its inputs.
     
     \end{enumerate}
 
@@ -435,10 +440,14 @@ You can use \LaTeX\ or any other tool to write your homework.
 
     \begin{enumerate}
         
-        \item \verb|System.out.print(fun(10,6));|
+        \item \verb|System.out.print(fun(10,6));| \\
+        \hspace*{\fill} \textbf{Answer:} prints 2 \\
+        \textbf{Justification:} fun(10,6), fun(4,6), fun(4,2), fun(2,2)
 
-        \item \verb|System.out.print(fun(7,13));|
-    
+        \item \verb|System.out.print(fun(7,13));| \\
+        \hspace*{\fill} \textbf{Answer:} prints 1 \\
+        \textbf{Justification:} fun(7,13), fun(7,6), fun(1,6), fun(1,5), fun(1,4), fun(1,3), fun(1,2), fun(1,1)
+
     \end{enumerate}
 
 
@@ -459,7 +468,22 @@ You can use \LaTeX\ or any other tool to write your homework.
             }
         }\end{MintedUnbreakableCodeBlock}
 
-    \verb|System.out.print(Quiz(2));|
+    \sout{\texttt{System.out.println(Quiz(2));}} \verb|// not valid Java code| \\
+    \verb|Quiz(2);| \\
+    \hspace*{\fill} \textbf{Answer:} 0, 0, 1, 1, 0, 1 \\
+    \textbf{Justification:} Quiz(2),
+        print 0,
+        Quiz(1),
+            print 0,
+            Quiz(0),
+            print 1,
+            Quiz(0),
+        print 1,
+        Quiz(1),
+            print 0,
+            Quiz(0),
+            print 1,
+            Quiz(0)
 
 
 
@@ -469,13 +493,22 @@ You can use \LaTeX\ or any other tool to write your homework.
 
     \item (4 points each) \textbf{Consider} the binary search tree below
         (the numbers inside the nodes are not the actual data; they are just numbers labeling the nodes).
+    \begin{figure}[H]
+        \includegraphics[max width=\textwidth/2, center]{"5.png"}
+        \caption{A binary search tree}
+        \label{fig:5-BST}
+    \end{figure}\squeezeup
+
     \begin{enumerate}
 
-        \item If node 1 is deleted, what node or nodes can replace node 1 in the tree?
+        \item If node 1 is deleted, what node or nodes can replace node 1 in the tree? \\
+        \hspace*{\fill} \textbf{Answer:} Nodes 5 and 6 can replace; they are the predecessor and successor, respectively.
         
-        \item 4 2 7 5 1 6 8 3 is a traversal of the tree in which order?
+        \item 4 2 7 5 1 6 8 3 is a traversal of the tree in which order? \\
+        \hspace*{\fill} \textbf{Answer:} In "in-order" order.
         
-        \item 1 2 4 5 7 3 6 8 is a traversal of the tree in which order?
+        \item 1 2 4 5 7 3 6 8 is a traversal of the tree in which order? \\
+        \hspace*{\fill} \textbf{Answer:} In "pre-order" order.
     
     \end{enumerate}
 
@@ -487,33 +520,69 @@ You can use \LaTeX\ or any other tool to write your homework.
 
     \item (4 points each) \textbf{Consider} the following set of input data:
     \begin{equation*}
-        50\ 72\ 96\ 94\ 107\ 26\ 13\ 11\ 9\ 2\ 10\ 14\ 25\ 51\ 33\ 16\ 95\ 12
+        50\ 72\ 96\ 94\ 100\ 26\ 13\ 11\ 9\ 2\ 10\ 14\ 25\ 51\ 33\ 16\ 95\ 12
     \end{equation*}
     
     \begin{enumerate}
 
         \item \textbf{Draw} a binary search tree using the above input (in the order given).
+        \begin{figure}[H]
+            \includegraphics[max width=\textwidth/2, center]{"6(a).png"}
+            \caption{A BST based on the given, ordered input}
+            \label{fig:6(a)-BST}
+        \end{figure}\squeezeup
     
-        \item What nodes are in level 3 of the tree?
+        \item What nodes are in level 3 of the tree? \\
+        \hspace*{\fill} \textbf{Answer:} 11, 14, 94, 100 (assuming root is level 0).
         
-        \item \textbf{List} all the leaf nodes in the tree.
+        \item \textbf{List} all the leaf nodes in the tree. \\
+        \hspace*{\fill} \textbf{Answer:} 2, 10, 12, 16, 33, 51, 95, 100.
         
-        \item What is the height of the binary search tree containing this input?
+        \item What is the height of the binary search tree containing this input? \\
+        \hspace*{\fill} \textbf{Answer:} 5 excluding the root, 6 including.
         
-        \item \textbf{Give} the output of post-order traversal function called on the above tree.
+        \item \textbf{Give} the output of post-order traversal function called on the above tree. \\
+        \hspace*{\fill} \textbf{Answer:} 2 10 9 12 11 16 25 14 13 33 26 51 95 94 100 96 72 50
         
-        \item What is the maximum height of the binary serach tree containing this input?
-        
-        \item What is the minimum height of a binary search tree containing this input?
-        
+        \item What is the maximum height of the binary search tree containing this input? \\
+        \hspace*{\fill} \textbf{Answer:} 17 excluding the root, 18 including.
+
+        \item What is the minimum height of a binary search tree containing this input? \\
+        \hspace*{\fill} \textbf{Answer:} 4 excluding the root, 5 including.
+
         \item \textbf{Draw} the tree after deleting the node containing 94.
-        
+        \begin{figure}[H]
+            \includegraphics[max width=\textwidth/2, center]{"6(h).png"}
+            \caption{The BST after deleting 94}
+            \label{fig:6(h)-BST}
+        \end{figure}\squeezeup
+
         \item \textbf{Use} the above tree (from part (h)) and draw the tree after deleting the node containing 13.
-        
+        \begin{figure}[H]
+            \includegraphics[max width=\textwidth/2, center]{"6(i).png"}
+            \caption{The BST after deleting 13}
+            \label{fig:6(i)-BST}
+        \end{figure}\squeezeup
+
         \item \textbf{Use} the above tree (from part (i)) and draw the tree after deleting the node containing 50.
-    
+        \begin{figure}[H]
+            \includegraphics[max width=\textwidth/2, center]{"6(j).png"}
+            \caption{The BST after deleting 50}
+            \label{fig:6(j)-BST}
+        \end{figure}\squeezeup
+
     \end{enumerate}
 
 \end{enumerate}
 
 \end{document}
+
+
+50, 72, 96, 94, 100, 26, 13, 11, 9, 2, 10, 14, 25, 51, 33, 16, 95, 12
+2, 9, 10, 11, 12, 13, 14, 16, 25, 26, 33, 50, 51, 72, 94, 95, 96, 100
+
+% TK TODO
+% X fix all off-by-one height problems
+% X try to run code snippets in python (with printing added) to verify results
+% - add boxes around figures
+% - organize function call csv
