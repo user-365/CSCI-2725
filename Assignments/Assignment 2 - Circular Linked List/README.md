@@ -1,23 +1,31 @@
-# Full Name:
+# Full Name
+
 Yitao Tian
 
-# University Email Address:
+## University Email Address
+
 ct91548@uga.edu
 
-# Compile:
+## Compile
+
 javac -d .\bin\ .\src\*
 
-# Run:
+## Run
+
 java -cp .\bin\ CircularLinkedListDriver .\lib\input.txt
 OR
 java -cp .\bin\ CircularLinkedListDriver .\lib\empty.txt
 
-# Description of Directories:
-## bin:
+## Description of Directories
+
+### bin
+
 Compiled .class files
 
-## lib:
+### lib
+
 input.txt and empty.txt
 
-## src:
+### src
+
 Source code in .java files
