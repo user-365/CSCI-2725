@@ -32,7 +32,7 @@ public class BinarySearchTree {
      * 
      * @param inserenda item to be inserted
      */
-    public void insert(ItemType inserenda) {
+    public NodeType insert(ItemType inserenda) {
         
     } // insert(ItemType)
 
@@ -50,7 +50,7 @@ public class BinarySearchTree {
      * 
      * @param delenda item to be deleted from the tree
      */
-    public void delete(ItemType delenda) {
+    public NodeType delete(ItemType delenda) {
         
     } // delete(ItemType)
 
