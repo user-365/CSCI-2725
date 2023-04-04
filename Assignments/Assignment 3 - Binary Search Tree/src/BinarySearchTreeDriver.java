@@ -14,17 +14,17 @@ public class BinarySearchTreeDriver {
     
     public static void main(String[] args) {
         System.out.println(
-                "Commands:\n(i) - Insert value\n(d) - Delete value\n(p) - Print list\n(s) - Search list\n(l) - Length\n(r) - Reverse list\n(q) - Quit program");
-        CircularLinkedList list = new CircularLinkedList();
+                "Commands:\n(i) - Insert Item\n(d) - Delete Item\n(p) - Print Tree\n(r) - Retrieve Item\n(l) - Count Leaf Nodes\n(s) - Find Single Parents\n(c) - Find Cousins\n(q) - Quit program");
+        BinarySearchTree bst = new BinarySearchTree();
         Scanner s = new Scanner(System.in);
 
         try {
 
             Path file = Paths.get(args[0]);
-            Stream<String> listPrecursor = Files.lines(file)
+            Stream<String> BST_precursor = Files.lines(file)
                     .map(str -> str.split(" ")) // space-separated integers
                     .flatMap(Arrays::stream);
-            makeCLLFromStream(listPrecursor, list);
+            make_BST_from_Stream(BST_precursor, bst);
 
         } catch (IOException x) {
             System.err.format("IOException: %s%n", x);
@@ -36,27 +36,27 @@ public class BinarySearchTreeDriver {
             switch (s.next()) {
 
                 case "i":
-                    insert(list, s);
+                    insert(bst, s);
                     break;
 
                 case "d":
-                    delete(list, s);
+                    delete(bst, s);
                     break;
 
                 case "s":
-                    search(list, s);
+                    search(bst, s);
                     break;
 
                 case "r":
-                    reverse(list, s);
+                    reverse(bst, s);
                     break;
 
                 case "p":
-                    printListWithLabel("The list is", list);
+                    printListWithLabel("The list is", bst);
                     break;
 
                 case "l":
-                    System.out.println("The length of the list is " + list.length());
+                    System.out.println("The length of the list is " + bst.length());
                     break;
 
                 case "q": // loop's exit condition
@@ -79,7 +79,7 @@ public class BinarySearchTreeDriver {
      * @param list
      * @param s
      */
-    private static void search(CircularLinkedList list, Scanner s) {
+    private static void search(BinarySearchTree list, Scanner s) {
         ItemType item;
         System.out.print("Enter a number to search: ");
         item = new ItemType(s.nextInt());
@@ -90,111 +90,86 @@ public class BinarySearchTreeDriver {
         } else {
             System.out.println("Item is not present in the list");
         } // if-else
-    } // search(CircularLinkedList, Scanner)
+    } // search(BinarySearchTree, Scanner)
 
     /**
      * 
      * @param list
      * @param s
      */
-    private static void delete(CircularLinkedList list, Scanner s) {
+    private static void delete(BinarySearchTree list, Scanner s) {
         ItemType item;
         System.out.print("Enter a number to delete: ");
         item = new ItemType(s.nextInt());
         printListWithLabel("Before delete", list);
         list.deleteItem(item);
         printListWithLabel("After delete", list);
-    } // delete(CircularLinkedList, Scanner)
+    } // delete(BinarySearchTree, Scanner)
 
     /**
      * 
      * @param list
      * @param s
      */
-    private static void insert(CircularLinkedList list, Scanner s) {
+    private static void insert(BinarySearchTree list, Scanner s) {
         ItemType item;
         System.out.print("Enter a number to insert: ");
         item = new ItemType(s.nextInt());
         printListWithLabel("Original list", list);
         list.insertItem(item);
         printListWithLabel("New list", list);
-    } // insert(CircularLinkedList, Scanner)
+    } // insert(BinarySearchTree, Scanner)
 
     /**
      * 
      * @param list
      * @param s
      */
-    private static void reverse(CircularLinkedList list, Scanner s) {
+    private static void reverse(BinarySearchTree list, Scanner s) {
         printListWithLabel("Original list", list);
-        CircularLinkedList.reverseList(list);
+        BinarySearchTree.reverseList(list);
         printListWithLabel("Reversed list", list);
-    } // insert(CircularLinkedList, Scanner)
+    } // insert(BinarySearchTree, Scanner)
 
     /**
      * TK write this
      * 
      * @param label
-     * @param list
+     * @param bst
      */
-    public static void printListWithLabel(String label, CircularLinkedList list) {
+    public static void printListWithLabel(String label, BinarySearchTree bst) {
 
         System.out.print(label + ": ");
-        list.print();
+        bst.inOrder(bst.get_root());
 
-    } // printListWithPrefix(String, CircularLinkedList)
+    } // printListWithPrefix(String, BinarySearchTree)
 
     /**
      * TK write this
      * Works.
      * 
      * @param stream
-     * @param SLL
+     * @param bst
      */
-    public static void makeCLLFromStream(Stream<String> stream, CircularLinkedList CLL) {
+    public static void make_BST_from_Stream(Stream<String> stream, BinarySearchTree bst) {
 
         // Avoids "IllegalStateException: stream has already been operated upon or
         // closed"
         IntStream template = stream.mapToInt(Integer::parseInt) // String to int
-                .distinct() // no duplicates!
-                .sorted(); // ascending order
+                .distinct(); // no duplicates!
         Iterable<Integer> iterable = template::iterator;
-        NodeType previous = new NodeType();
-        previous.info = new ItemType(-1); // header
-        // CLL.setHead(previous); // must reset head later
-
-        NodeType least = new NodeType(); // smallest item
         int counter = 0;
         for (Integer i : iterable) {
-            NodeType next = new NodeType();
-            next.info = new ItemType(i);
             if (counter == 0) { // run only once
-                least = next;
-                CLL.setHead(least);
+                NodeType root = new NodeType();
+                root.info = new ItemType(i);
+                bst.set_root(root);
                 counter++;
             } // if
-              // Iterate once
-            previous.next = next;
-            previous = previous.next;
+            ItemType new_info = new ItemType(i);
+            bst.insert(new_info);
         } // for-each
 
-        if (least.info == null) {
-            System.out.println("List is empty.");
-            CLL.setHead(null);
-            return;
-        } // if
-
-        for (;;) {
-            // Iterate `head` field
-            CLL.setHead(CLL.getHead().next);
-            // We are about to reach the end; loop back around
-            if (CLL.getHead().next == null
-                    || CLL.getHead().info.compareTo(least.info) == 0) {
-                CLL.getHead().next = least;
-                return;
-            } // if
-        } // for
-
-    } // makeCLLFromStream(Stream<String>, CircularLinkedList)
+    } // make_BST_from_Stream(Stream<String>, BinarySearchTree)
 
 } // BinarySearchTreeDriver
