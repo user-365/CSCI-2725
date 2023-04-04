@@ -9,8 +9,6 @@ javac -d .\bin\ .\src\*
 
 # Run:
 java -cp .\bin\ BinarySearchTreeDriver .\lib\input.txt
-OR
-java -cp .\bin\ BinarySearchTreeDriver .\lib\empty.txt
 
 # Description of Directories:
 ## bin:

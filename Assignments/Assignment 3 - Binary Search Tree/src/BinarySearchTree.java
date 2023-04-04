@@ -1,7 +1,5 @@
 import java.util.ArrayList;
 
-import java.util.ArrayList;
-
 /**
  * BinarySearchTree
  */
@@ -57,8 +55,8 @@ public class BinarySearchTree {
                     break;
             } // switch-case
         } else {
-            // `- If inserenda is equal to subroot, then notify duplicate-ness (exit of course)
-            System.out.println("The item already exists in the tree");
+            // `- If inserenda is equal to subroot, then notify duplicate-ness
+            System.out.println("The item already exists in the tree.");
         } // if-else
 
     } // insert(ItemType)
@@ -91,15 +89,20 @@ public class BinarySearchTree {
         if (get_last(survey_result) == null) {
             System.out.println("The number is not present in the tree");
         } else {
-            // `- If delenda is equal to subroot, then call actual delete function
-            NodeType parent = get_second_to_last(survey_result);
+            // `- If delenda is equal to subroot, then call actual delete method
             NodeType deleted = get_last(survey_result);
+            if (survey_result.size() <= 1) {
+                // if `deleted` has no parent
+                delete_biparous_node(deleted);
+                return;
+            } // if
+            NodeType parent = get_second_to_last(survey_result);
             delete(parent, deleted);
         } // if-else
 
     } // delete(ItemType)
 
-    /** Wrapped function in {@link #delete(ItemType) delete()}. */
+    /** Wrapped method in {@link #delete(ItemType) delete()}. */
     private void delete(NodeType parent, NodeType deleted) {
 
         // What kind of child is deleted?
@@ -135,19 +138,40 @@ public class BinarySearchTree {
                     break;
             } // switch-case
         } else {
-            // `- If delenda-node is double-child/biparous node,
-            ArrayList<NodeType> branch_to_predecessor;
-            // `- find predecessor
+            delete_biparous_node(deleted);
+        } // if-elif-else
+
+    } // delete(NodeType)
+
+    private void delete_biparous_node(NodeType deleted) {
+
+        // `- If delenda-node is double-child/biparous node,
+        ArrayList<NodeType> branch_to_predecessor;
+        // `- find predecessor
+        if ((branch_to_predecessor = get_branch_to_predecessor(deleted)).size() <= 1) {
+
+            // `- if predecessor nonexistent
+            ArrayList<NodeType> branch_to_successor = get_branch_to_successor(deleted);
+            // `- replace delenda-node with successor (duplicating the latter)
+            NodeType successor = get_last(branch_to_successor);
+            NodeType parent_of_successor = get_second_to_last(branch_to_successor);
+            deleted.info = successor.info;
+            // `- actual-delete the original successor
+            delete(parent_of_successor, successor);
+            
+        } else {
+
+            // `- else, if predecessor existent
             // `- replace delenda-node with predecessor (duplicating the latter)
-            branch_to_predecessor = get_branch_to_predecessor(deleted);
             NodeType predecessor = get_last(branch_to_predecessor);
             NodeType parent_of_predecessor = get_second_to_last(branch_to_predecessor);
             deleted.info = predecessor.info;
             // `- actual-delete the original successor
             delete(parent_of_predecessor, predecessor);
-        } // if-elif-else
 
-    } // delete(NodeType)
+        } // if-else
+
+    } // delete_biparous_node(NodeType)
 
     /**
      * Retrieves a specified info via object reference, and returns a success value.
@@ -173,7 +197,8 @@ public class BinarySearchTree {
             return false;
         } // if
         ArrayList<NodeType> survey_result = survey(recuperanda);
-        return get_last(survey_result).info.compareTo(recuperanda) == 0;
+        return get_last(survey_result) != null
+            && get_last(survey_result).info.compareTo(recuperanda) == 0;
 
     } // retrieve(ItemType)
 
@@ -190,7 +215,7 @@ public class BinarySearchTree {
         // inOrder on left child
         if (subroot.left != null) { inOrder(subroot.left); } // if
         // Print parent
-        System.out.println(subroot.info.getValue());
+        System.out.print(subroot.info.getValue() + " ");
         // inOrder on right child
         if (subroot.right != null) { inOrder(subroot.right); } // if
 
@@ -199,7 +224,7 @@ public class BinarySearchTree {
     /**
      * <strong>Not</strong> a getter method.
      * <p>
-     * Side Effect: This function should print the nodes that have one child.
+     * Side Effect: This method should print the nodes that have one child.
      */
     public void getSingleParent() {
 
@@ -208,39 +233,44 @@ public class BinarySearchTree {
             // TK notify
             return;
         } // if
-        // Wrapped function: getSingleParent(NodeType subroot)
-        get_uniparous_parent(this.root);
+        // Wrapped method: getSingleParent(NodeType subroot)
+        get_uniparous_parents(this.root);
 
     } // getSingleParent()
 
     /**
-     * Wrapped (recursive) function for {@link #getSingleParent() getSingleParent()}.
+     * Wrapped (recursive) method inside {@link #getSingleParent() getSingleParent()}.
      * @param subroot the node under which we are to print the nodes that have one child
      */
-    private void get_uniparous_parent(NodeType subroot) {
+    private void get_uniparous_parents(NodeType subroot) {
         
         // Base case: if is null, then return
         if (subroot == null) { return; }
         // Recursive case: Pre-order traversing:
-        if (subroot.left != null && subroot.right == null) {
+        if (subroot.left != null && subroot.right != null) {
+            // `- does it have both children?
+            // `- recurse with both children
+            get_uniparous_parents(subroot.left);
+            get_uniparous_parents(subroot.right);
+        } else if (subroot.left != null && subroot.right == null) {
             // `- does it have only the left child?
             // `- print and recurse with left child
-            System.out.println(subroot.info.getValue());
-            get_uniparous_parent(subroot.left);
+            System.out.print(subroot.info.getValue() + " ");
+            get_uniparous_parents(subroot.left);
         } else if (subroot.left == null && subroot.right != null) {
             // `- else, does it have only the right child?
             // `- print and recurse with right child
-            System.out.println(subroot.info.getValue());
-            get_uniparous_parent(subroot.right);
+            System.out.print(subroot.info.getValue() + " ");
+            get_uniparous_parents(subroot.right);
         } // if-else
-          // `- otherwise, it has either zero or both children and implicitly return
+          // `- otherwise, it has zero children and implicitly return
 
-    } // get_uniparous_parent(NodeType)
+    } // get_uniparous_parents(NodeType)
 
     /**
      * <strong>Not</strong> a getter method.
      * <p>
-     * Side Effect: This function should count the number of leaf nodes in the BST
+     * Side Effect: This method should count the number of leaf nodes in the BST
      * (Nodes with no children), and then output the count.
      */
     public void getNumLeafNodes() {
@@ -250,14 +280,14 @@ public class BinarySearchTree {
             // TK notify
             return;
         } // if
-        // Wrapped function: int getNumLeafNodes(NodeType subroot)
-        // Wrapper function: print
+        // Wrapped method: int getNumLeafNodes(NodeType subroot)
+        // Wrapper method: print
         System.out.println(get_num_leaf_nodes(this.root));
 
     } // getNumLeafNodes()
 
     /**
-     * Wrapped (recursive) function for {@link #getNumLeafNodes()
+     * Wrapped (recursive) method inside {@link #getNumLeafNodes()
      * getNumLeafNodes()}.
      * 
      * @param subroot the node under which we are to print the leaf nodes
@@ -279,7 +309,7 @@ public class BinarySearchTree {
     /**
      * <strong>Not</strong> a getter method.
      * <p>
-     * Side Effect: This function should take in a node as input,
+     * Side Effect: This method should take in a node as input,
      * and prints the cousins of the given node.
      * <p>
      * Note: for every node in the BST, it can have a maximum of two (first)
@@ -296,8 +326,16 @@ public class BinarySearchTree {
         ArrayList<NodeType> branch = survey(node.info);
         NodeType confirmed_target = get_last(branch);
         if (confirmed_target != null) {
+            if (branch.size() <= 1) {
+                // if `confirmed_target` has no parent
+                return;
+            } // if
             // get parent of node (from survey)
             NodeType parent = get_second_to_last(branch);
+            if (branch.size() <= 2) {
+                // if `confirmed_target` has no grandparent
+                return;
+            } // if
             // get to grandparent of node (from survey)
             NodeType grandparent = branch.get(branch.size() - 3);
             // avoid parent of node, going to pibling
@@ -308,18 +346,19 @@ public class BinarySearchTree {
             } else {
                 // if pibling does exist, print its children
                 NodeType pibling = grandparent.left.info.compareTo(parent.info) == 0 ? grandparent.right : grandparent.left;
-                System.out.println(pibling.left.info.getValue());
-                System.out.println(pibling.right.info.getValue()); // TK: labels
+                if (pibling.left != null) {
+                    System.out.print(pibling.left.info.getValue() + " ");
+                } // ifnotnull
+                if (pibling.right != null) {
+                    System.out.print(pibling.right.info.getValue() + " ");
+                } // ifnotnull
             } // if-else
         } // ifnotnull
 
     } // getCousins(NodeType)
 
     /**
-     * Helper function: Gets predecessor (and its branch from the root) of input node.
-     * Only one of either this method
-     * or {@link #get_branch_to_successor(NodeType) get_branch_to_predecessor()}
-     * should be in use.
+     * Helper method: Gets predecessor (and its branch from the root) of input node.
      *
      * @param node the node whose predecessor we want
      * @return the node's predecessor
@@ -329,7 +368,11 @@ public class BinarySearchTree {
         ArrayList<NodeType> branch = new ArrayList<NodeType>();
         branch.add(node);
         // Go left
-        branch.add(node.left);
+        if (node.left != null) {
+            branch.add(node.left);
+        } else {
+            return branch;
+        } // if-else
         // Keep going right
         NodeType addendum;
         while ((addendum = get_last(branch).right) != null) {
@@ -341,10 +384,7 @@ public class BinarySearchTree {
     } // get_branch_to_predecessor(NodeType)
 
     /**
-     * Helper function: Gets successor (and its branch from the root) of input node.
-     * Only one of either this method
-     * or {@link #get_branch_to_predecessor(NodeType) get_branch_to_predecessor()}
-     * should be in use.
+     * Helper method: Gets successor (and its branch from the root) of input node.
      *
      * @param node the node whose successor we want
      * @return the node's successor
@@ -354,7 +394,11 @@ public class BinarySearchTree {
         ArrayList<NodeType> branch = new ArrayList<NodeType>();
         branch.add(node);
         // Go right
-        branch.add(node.right);
+        if (node.right != null) {
+            branch.add(node.right);
+        } else {
+            return branch;
+        } // if-else
         // Keep going left
         NodeType addendum;
         while ((addendum = get_last(branch).left) != null) {
@@ -375,7 +419,7 @@ public class BinarySearchTree {
     } // isEmpty()
 
     /**
-     * Wrapped (recursive) function inside {@link #survey(ItemType) survey()}.
+     * Wrapped (recursive) method inside {@link #survey(ItemType) survey()}.
      * <p>
      * Side Effect: modifies branch parameter.
      */
@@ -402,9 +446,11 @@ public class BinarySearchTree {
     } // search(InfoType)
 
     /**
-     * Wrapper function that is the cornerstone for many of this class's methods.
      * Returns the branch/path to a target node
      * (or, if the target node isn't in the BST, the branch to where it <em>would</em> be).
+     * Wrapper method that is the cornerstone for many of this class's methods,
+     * viz., {@link #insert(ItemType) insert()}, {@link #delete(ItemType) delete()},
+     * {@link #retrieve(ItemType) retrieve()}, and {@link #getCousins(NodeType) getCousins()}.
      * 
      * @param quaerenda the info/item of the node that is the target of the survey
      * @return the list of nodes that were traversed
@@ -434,7 +480,7 @@ public class BinarySearchTree {
     } // get_only_child(NodeType)
 
     /**
-     * Shorthand function to get the last node in the branch list,
+     * Shorthand method to get the last node in the branch list,
      * which represents the target node (of a survey).
      * @param branch the list of nodes that were traversed
      * @return the target node of the survey
@@ -444,7 +490,7 @@ public class BinarySearchTree {
     } // get_last(ArrayList<NodeType>)
 
     /**
-     * Shorthand function to get the second-to-last node in the branch list,
+     * Shorthand method to get the second-to-last node in the branch list,
      * which represents the parent of the target node (of a survey).
      * 
      * @param branch the list of nodes that were traversed
@@ -475,4 +521,3 @@ public class BinarySearchTree {
 // TK TODO
 // TK - write down side effects in javadocs
 // TK - finish javadocs
-// TK - always check if has children (i.e. if child is non-null)
