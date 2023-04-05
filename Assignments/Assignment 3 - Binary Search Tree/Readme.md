@@ -57,7 +57,7 @@ else, if subroot has only the right child:
 
 We only care about the recursive calls.
 
-The recursive calls are in one of the three if-elif-elif conditional blocks.
+The recursive calls are in one of the three `if`-`elif`-`elif` conditional blocks.
 
 Choose the most expensive of the three (subroot has both children).
 
