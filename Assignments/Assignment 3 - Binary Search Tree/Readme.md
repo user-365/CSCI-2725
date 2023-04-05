@@ -8,25 +8,25 @@ ct91548@uga.edu
 
 ## Compile
 
-javac -d .\bin\ .\src\**
+`javac -d .\bin\ .\src\**`
 
 ## Run
 
-java -cp .\bin\ BinarySearchTreeDriver .\lib\input.txt
+`java -cp .\bin\ BinarySearchTreeDriver .\lib\input.txt`
 
 ## Description of Directories
 
-### `bin`
+### `bin/`
 
-Compiled .class files
+Compiled `.class` files
 
-### lib
+### `lib/`
 
-input.txt
+`input.txt`
 
-### src
+### `src/`
 
-Source code in .java files
+Source code in `.java` files
 
 ## Pseudocode and Complexity
 
@@ -56,17 +56,36 @@ else, if subroot has only the right child:
 #### `getSingleParent` Complexity
 
 We only care about the recursive calls.
+
 The recursive calls are in one of the three if-elif-elif conditional blocks.
+
 Choose the most expensive of the three (subroot has both children).
+
 There are two recursive calls inside (and no other function calls/operations).
+
 Let the units be *n*, the number of nodes in the subtree (we are assuming the tree is balanced).
+
 Since each of the two recursive calls act on a left/right subtree of the original tree, they only act on *0.5n* nodes.
+
 So the big function has:
-    T(n) = T(0.5n) + T(0.5n) = 2T(0.5n)
+
+```lang-latex
+T(n) = T(0.5n) + T(0.5n) = 2T(0.5n)
+```
+
 Using the *Divide and Conquer* version of the *master theorem*, we have:
-    a = 2, b = 2, so \log_b(a) = 1
+
+```lang-latex
+a = 2, b = 2, so \log_b(a) = 1
+```
+
 Since the power of f(n) is 0 and \log_b(a) = 1, we have **case 1** of the *master theorem*:
-So, T(n) \in \Theta(n^{\log_b(a)}) = \Theta(n^1).
+
+So,
+
+```lang-latex
+T(n) \in \Theta(n^{\log_b(a)}) = \Theta(n^1)
+```
 
 ### `getNumLeafNodes` function
 
@@ -84,16 +103,34 @@ return sum > 0 ? sum : 1;
 #### `getNumLeafNodes` Complexity
 
 We only care about the recursive calls.
+
 The recursive calls is in one line in the **Recursive case**.
+
 There are two recursive calls making up the summation (and one constant-complexity function).
+
 Let the units be *n*, the number of nodes in the subtree (we are assuming the tree is balanced).
+
 Since each of the two recursive calls act on a left/right subtree of the original tree, they only act on *0.5n* nodes.
+
 So the big function has:
-    T(n) = T(0.5n) + T(0.5n) = 2T(0.5n)
+
+```lang-latex
+T(n) = T(0.5n) + T(0.5n) = 2T(0.5n)
+```
+
 Using the *Divide and Conquer* version of the *master theorem*, we have:
-    a = 2, b = 2, so \log_b(a) = 1
+
+```lang-latex
+a = 2, b = 2, so \log_b(a) = 1
+```
+
 Since the power of f(n) is 0 and \log_b(a) = 1, we have **case 1** of the *master theorem*:
-So, T(n) \in \Theta(n^{\log_b(a)}) = \Theta(n^1).
+
+So,
+
+```lang-latex
+T(n) \in \Theta(n^{\log_b(a)}) = \Theta(n^1)
+```
 
 ### `getCousins` function
 
@@ -122,13 +159,37 @@ if target node isnt null, then:
 #### `getCousins` Complexity
 
 Let the units be *n*, the number of nodes in the subtree (we are assuming the tree is balanced).
+
 As one can see, other than the Traversal function call (in the first line of **General case**), all other function calls/operations are constant time (no recursion).
+
 The Traversal call (i.e., `survey(ItemType, NodeType, ArrayList<NodeType>)`), as noted in the code comment, is O(\log(n)).
+
 Specifically, the Traversal call is the standard (binary) search we have shown in class, which has recurrence relation:
-    T(n) = T(0.5n)
+
+```lang-latex
+T(n) = T(0.5n)
+```
+
 Using the *Divide and Conquer* version of the *master theorem*, we have:
-    a = 1, b = 2, so \log_b(a) = 0
+
+```lang-latex
+a = 1, b = 2, so \log_b(a) = 0
+```
+
 Since the power of f(n) is 0 and \log_b(a) = 0, we have **case 2** of the *master theorem*:
-So, T(n) \in \Theta(n^{\log_b(a)} \log(n)) = \Theta(n^0 \log(n)) = \Theta(\log(n)), justifying my earlier claim.
+
+So,
+
+```lang-latex
+T(n) \in \Theta(n^{\log_b(a)} \log(n)) = \Theta(n^0 \log(n)) = \Theta(\log(n))
+```
+
+justifying my earlier claim.
+
 Again, other than this Traversal call, there is no recursion, so for the rest of the function, we don't need the *master theorem*.
-So, in total, T(n) (of `getCousins(NodeType)`) is \Theta(\log(n)).
+
+So, in total,
+
+```lang-latex
+T(n) (of `getCousins(NodeType)`) \in \Theta(\log(n))
+```
