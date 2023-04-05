@@ -18,17 +18,17 @@ ct91548@uga.edu
 
 `java -cp .\bin\ BinarySearchTreeDriver .\lib\input.txt`
 
-### Description of Directories
+## Description of Directories
 
-#### `bin/`
+### `bin/`
 
 Compiled `.class` files
 
-#### `lib/`
+### `lib/`
 
 `input.txt`
 
-#### `src/`
+### `src/`
 
 Source code in `.java` files
 
