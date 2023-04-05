@@ -1,4 +1,6 @@
-# Full Name
+# Assignment 3 - Binary Search Tree Readme
+
+## Full Name
 
 Yitao Tian
 
