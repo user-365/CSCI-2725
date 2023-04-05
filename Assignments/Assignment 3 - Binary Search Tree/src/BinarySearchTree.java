@@ -297,7 +297,7 @@ public class BinarySearchTree {
 
         // Base case: if is null, then return 0
         if (subroot == null) { return 0; }
-        // General case: Post-order traversing:
+        // Recursive case: Post-order traversing:
         int sum = get_num_leaf_nodes(subroot.left) + get_num_leaf_nodes(subroot.right);
         // `- does it have either child?
         // `- if so, return sum of number of leaf nodes (below current subroot)
