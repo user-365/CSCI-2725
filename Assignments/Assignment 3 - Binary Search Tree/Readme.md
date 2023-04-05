@@ -1,32 +1,34 @@
 # Assignment 3 - Binary Search Tree Readme
 
-## Full Name
+## Submitter Information
+
+### Full Name
 
 Yitao Tian
 
-## University Email Address
+### University Email Address
 
 ct91548@uga.edu
 
-## Compile
+### Compile
 
 `javac -d .\bin\ .\src\**`
 
-## Run
+### Run
 
 `java -cp .\bin\ BinarySearchTreeDriver .\lib\input.txt`
 
-## Description of Directories
+### Description of Directories
 
-### `bin/`
+#### `bin/`
 
 Compiled `.class` files
 
-### `lib/`
+#### `lib/`
 
 `input.txt`
 
-### `src/`
+#### `src/`
 
 Source code in `.java` files
 
