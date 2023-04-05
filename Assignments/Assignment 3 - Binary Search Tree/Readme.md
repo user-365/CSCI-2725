@@ -192,7 +192,7 @@ justifying my earlier claim.
 
 Again, other than this Traversal call, there is no recursion, so for the rest of the function, we don't need the *master theorem*.
 
-So, in total,
+So, in summary,
 
 ```lang-latex
 T(n) (of `getCousins(NodeType)`) \in \Theta(\log(n))
