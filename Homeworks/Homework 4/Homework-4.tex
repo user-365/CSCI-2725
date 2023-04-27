@@ -51,7 +51,7 @@
 % - make separate latex file as my design ethos manifesto
 %
 % Component-level
-% - showcase other things (e.g. codeblocks, highlighting, qeding)
+% - \textbf{Show}case other things (e.g. codeblocks, highlighting, qeding)
 % - make remarks and proof? blocks (tcolorbox)
 %
 % Text-level
@@ -367,8 +367,284 @@ You can use \LaTeX\ or any other tool to write your homework.
 
 \begin{enumerate}
 
+    \item (20 points) \textbf{Construct} an AVL tree using the following input (in the
+    given order)
+    \begin{equation*}
+      50,\ 26,\ 72,\ 12,\ 11,\ 25,\ 68,\ 45,\ 55,\ 77,\ 47
+    \end{equation*}
+
+    \textbf{Show} which node got unbalanced, what rotation operation you need
+    to perform and all the intermediate steps as you are performing the
+    rotation operations (something similar to examples shown in the class).
+
+    \begin{figure}[h!]
+      \centering
+      \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{1-1-a}
+        \caption{Before first rotation (LL)}
+        \label{fig:1-1-a}
+      \end{subfigure}
+      \hfill
+      \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{1-1-b}
+        \caption{After first rotation (LL)}
+        \label{fig:1-1-b}
+      \end{subfigure}
+      \hfill
+      \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{1-2-a}
+        \caption{Before second rotation (LR)}
+        \label{fig:1-2-a}
+      \end{subfigure}
+      \hfill
+      \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{1-2-b}
+        \caption{After second rotation (LR)}
+        \label{fig:1-2-b}
+      \end{subfigure}
+      \hfill
+      \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{1-3-a}
+        \caption{Before third rotation (RL)}
+        \label{fig:1-3-a}
+      \end{subfigure}
+      \hfill
+      \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{1-3-b}
+        \caption{After third rotation (RL)}
+        \label{fig:1-3-b}
+      \end{subfigure}
+      \hfill
+      \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{1-4-a}
+        \caption{Before fourth (1st half) rotation (RL)}
+        \label{fig:1-4-a}
+      \end{subfigure}
+      \hfill
+      \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{1-4-b}
+        \caption{Before fourth (2nd half) rotation (RR)}
+        \label{fig:1-4-b}
+      \end{subfigure}
+      \hfill
+      \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{1-4-c}
+        \caption{Final AVL tree}
+        \label{fig:1-4-c}
+      \end{subfigure}
+      \caption{AVL Insertions}
+      \label{fig:1}
+    \end{figure}
     
+    
+
+    
+    \clearpage
+
+
+
+    \item (20 points) \textbf{Construct} a binary search tree using the following input
+    (in the given order)
+    \begin{equation*}
+      50,\ 26,\ 72,\ 12,\ 11,\ 94,\ 53,\ 99,\ 67,\ 98,\ 37,\ 80
+    \end{equation*}
+
+    \begin{figure}[h!]
+      \centering
+      \includegraphics[width=0.25\textwidth]{2-1}
+      \caption{Initial BST}
+      \label{fig:2-1}
+    \end{figure}
+
+    \begin{enumerate}
+
+      \item Is the above tree a valid AVL tree? \\
+      \hspace*{\fill} \textbf{Answer:} \Highlight{No} \\
+      \hspace*{\fill} \textbf{Explan.:} BF of 50 is -2
+      
+      \item Delete the following nodes from the above tree using the AVL
+      delete (in the given order)
+      \begin{equation*}
+        37,\ 12,\ 80,\ 50,\ 98,\ 11
+      \end{equation*}
+
+      \textbf{Show} all your intermediate steps as you are deleting nodes from
+      the tree including the rotation operations.
+
+      \begin{figure}[h!]
+        \begin{subfigure}[b]{0.3\textwidth}
+          \centering
+          \includegraphics[width=\textwidth]{2-2-a}
+          \caption{Deleting 37}
+          \label{fig:2-2-a}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[b]{0.3\textwidth}
+          \centering
+          \includegraphics[width=\textwidth]{2-2-b}
+          \caption{Deleting 12; before LL rotation}
+          \label{fig:2-2-b}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[b]{0.3\textwidth}
+          \centering
+          \includegraphics[width=\textwidth]{2-2-c}
+          \caption{Deleting 80; after LL rotation}
+          \label{fig:2-2-c}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[b]{0.3\textwidth}
+          \centering
+          \includegraphics[width=\textwidth]{2-2-d}
+          \caption{Deleting 50; replace with predecessor}
+          \label{fig:2-2-d}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[b]{0.3\textwidth}
+          \centering
+          \includegraphics[width=\textwidth]{2-2-e}
+          \caption{Deleting 98}
+          \label{fig:2-2-e}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[b]{0.3\textwidth}
+          \centering
+          \includegraphics[width=\textwidth]{2-2-f}
+          \caption{Deleting 11}
+          \label{fig:2-2-f}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[c]{0.3\textwidth}
+          \centering
+          \includegraphics[width=\textwidth]{2-2-g}
+          \caption{Final AVL tree}
+          \label{fig:2-2-g}
+        \end{subfigure}
+        \caption{AVL Deletions}
+        \label{fig:2}
+      \end{figure}
+
+    \end{enumerate}
+
+
+
+    \clearpage
+
+
+
+    \item (20 points) \textbf{Construct} a red-black tree using the following input (in
+    the given order)
+    \begin{equation*}
+      50,\ 26,\ 72,\ 37,\ 28,\ 15,\ 17,\ 24
+    \end{equation*}
+
+    \textbf{Show} all your intermediate steps including the recoloring and restruc-
+    turing operations.
+
+    \textit{Note:} nodes circled in red mean red nodes, in black means black nodes, regardless of node text or background color.
+
+    \begin{figure}[h!]
+      \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{3-1-a}
+        \caption{Inserted 50}
+        \label{fig:3-1-a}
+      \end{subfigure}
+      \hfill
+      \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{3-1-b}
+        \caption{Inserting 26}
+        \label{fig:3-1-b}
+      \end{subfigure}
+      \hfill
+      \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{3-1-c}
+        \caption{Inserting 72}
+        \label{fig:3-1-c}
+      \end{subfigure}
+      \hfill
+      \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{3-1-d}
+        \caption{Inserting 37; recoloring children of 50}
+        \label{fig:3-1-d}
+      \end{subfigure}
+      \hfill
+      \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{3-2-a}
+        \caption{Inserting 28; before RL rotation and recoloring}
+        \label{fig:3-2-a}
+      \end{subfigure}
+      \hfill
+      \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{3-2-b}
+        \caption{Inserting 28; after RL rotation and recoloring}
+        \label{fig:3-2-b}
+      \end{subfigure}
+      \hfill
+      \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{3-2-c}
+        \caption{Inserting 15; recoloring 28 and its children}
+        \label{fig:3-2-c}
+      \end{subfigure}
+      \hfill
+      \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{3-3-a}
+        \caption{Inserting 17; before LR rotation and recoloring}
+        \label{fig:3-3-a}
+      \end{subfigure}
+      \hfill
+      \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{3-3-b}
+        \caption{Inserting 17; after LR rotation and recoloring}
+        \label{fig:3-3-b}
+      \end{subfigure}
+      \hfill
+      \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{3-4-a}
+        \caption{Inserting 24; recoloring 17 and its children; before LL rotation}
+        \label{fig:3-4-a}
+      \end{subfigure}
+      \hfill
+      \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{3-4-b}
+        \caption{Inserting 24; after LL rotation and recoloring}
+        \label{fig:3-4-b}
+      \end{subfigure}
+      \hfill
+      \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{3-4-c}
+        \caption{Final red-black tree}
+        \label{fig:3-4-c}
+      \end{subfigure}
+      \caption{RBT Insertions}
+      \label{fig:3}
+    \end{figure}
 
 \end{enumerate}
 
 \end{document}
+
+% TK TODO
+% - relabel to RR in figure 8 before fourth (2nd half) rotation (LL->RR)
+% - fix positioning of figures
+% - condense figures into subfigures

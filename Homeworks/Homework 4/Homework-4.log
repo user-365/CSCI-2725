@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.12) (preloaded format=pdflatex 2023.1.22)  18 APR 2023 06:33
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.12) (preloaded format=pdflatex 2023.1.22)  21 APR 2023 23:55
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**./Homework-3.tex
-(Homework-3.tex
+**./Homework-4.tex
+(Homework-4.tex
 LaTeX2e <2022-11-01> patch level 1
 L3 programming layer <2023-01-16> (C:\Users\Admin_Calvin\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
 Document Class: article 2022/07/02 v1.4n Standard LaTeX document class
@@ -912,13 +912,12 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
 \ULC@box=\box90
 Package: ulem 2019/11/18
 \ULdepth=\dimen318
-)
-No file Homework-3.aux.
-\openout1 = `Homework-3.aux'.
+) (Homework-4.aux)
+\openout1 = `Homework-4.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/nxlmi/m/it on input line 361.
 LaTeX Font Info:    Trying to load font information for OML+nxlmi on input line 361.
-(C:\Users\Admin_Calvin\AppData\Local\Programs\MiKTeX\tex/latex/newtx\omlnxlmi.fd
+ (C:\Users\Admin_Calvin\AppData\Local\Programs\MiKTeX\tex/latex/newtx\omlnxlmi.fd
 File: omlnxlmi.fd 2013/11/19 Fontinst v1.933 font definitions for OML/nxlmi.
 )
 LaTeX Font Info:    ... okay on input line 361.
@@ -1043,8 +1042,9 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
 Package hyperref Info: Link coloring OFF on input line 361.
+ (Homework-4.out) (Homework-4.out)
 \@outlinefile=\write5
-\openout5 = `Homework-3.out'.
+\openout5 = `Homework-4.out'.
 
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
 (Font)              scaled to size 20.74pt on input line 364.
@@ -1106,46 +1106,201 @@ LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/sb/n' will be
 (Font)              scaled to size 6.6pt on input line 366.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
 (Font)              scaled to size 8.8pt on input line 366.
+<./images//1-1-a.png, id=42, 150.5625pt x 164.11313pt>
+File: ./images//1-1-a.png Graphic file (type png)
+<use ./images//1-1-a.png>
+Package pdftex.def Info: ./images//1-1-a.png  used on input line 384.
+(pdftex.def)             Requested size: 120.58308pt x 131.44092pt.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 10.95pt on input line 385.
+<./images//1-1-b.png, id=44, 154.32657pt x 134.00063pt>
+File: ./images//1-1-b.png Graphic file (type png)
+<use ./images//1-1-b.png>
+Package pdftex.def Info: ./images//1-1-b.png  used on input line 391.
+(pdftex.def)             Requested size: 120.58308pt x 104.70407pt.
+<./images//1-2-a.png, id=45, 158.09062pt x 167.87718pt>
+File: ./images//1-2-a.png Graphic file (type png)
+<use ./images//1-2-a.png>
+Package pdftex.def Info: ./images//1-2-a.png  used on input line 398.
+(pdftex.def)             Requested size: 120.58308pt x 128.04906pt.
+<./images//1-2-b.png, id=46, 166.37157pt x 135.50626pt>
+File: ./images//1-2-b.png Graphic file (type png)
+<use ./images//1-2-b.png>
+Package pdftex.def Info: ./images//1-2-b.png  used on input line 405.
+(pdftex.def)             Requested size: 120.58308pt x 98.21365pt.
+<./images//1-3-a.png, id=47, 184.43906pt x 164.86594pt>
+File: ./images//1-3-a.png Graphic file (type png)
+<use ./images//1-3-a.png>
+Package pdftex.def Info: ./images//1-3-a.png  used on input line 412.
+(pdftex.def)             Requested size: 120.58308pt x 107.78545pt.
 
+Underfull \hbox (badness 2932) in paragraph at lines 413--413
+[]\T1/LinuxLibertineT-TLF/m/n/10.95 (+20) (e) |Be-fore third ro-ta-tion
+ []
 
-Homework-3.tex:372: LaTeX Error: Something's wrong--perhaps a missing \item.
+<./images//1-3-b.png, id=48, 167.87718pt x 133.24782pt>
+File: ./images//1-3-b.png Graphic file (type png)
+<use ./images//1-3-b.png>
+Package pdftex.def Info: ./images//1-3-b.png  used on input line 419.
+(pdftex.def)             Requested size: 120.58308pt x 95.70859pt.
+<./images//1-4-a.png, id=49, 258.9675pt x 216.05719pt>
+File: ./images//1-4-a.png Graphic file (type png)
+<use ./images//1-4-a.png>
+Package pdftex.def Info: ./images//1-4-a.png  used on input line 426.
+(pdftex.def)             Requested size: 120.58308pt x 100.604pt.
+<./images//1-4-b.png, id=50, 257.763pt x 207.77625pt>
+File: ./images//1-4-b.png Graphic file (type png)
+<use ./images//1-4-b.png>
+Package pdftex.def Info: ./images//1-4-b.png  used on input line 433.
+(pdftex.def)             Requested size: 120.58308pt x 97.1983pt.
+<./images//1-4-c.png, id=51, 252.19218pt x 168.63pt>
+File: ./images//1-4-c.png Graphic file (type png)
+<use ./images//1-4-c.png>
+Package pdftex.def Info: ./images//1-4-c.png  used on input line 440.
+(pdftex.def)             Requested size: 120.58308pt x 80.62755pt.
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.372 \end{enumerate}
-                     
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-\tf@thm=\write6
-\openout6 = `Homework-3.thm'.
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [1
 
-{C:/Users/Admin_Calvin/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] (Homework-3.aux)
+{C:/Users/Admin_Calvin/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] [2 <./images//1-1-a.png> <./images//1-1-b.png> <./images//1-2-a.png> <./images//1-2-b.png> <./images//1-3-a.png> <./images//1-3-b.png> <./images//1-4-a.png> <./images//1-4-b.png> <./images//1-4-c.png>]
+<./images//2-1.png, id=76, 332.74312pt x 252.19218pt>
+File: ./images//2-1.png Graphic file (type png)
+<use ./images//2-1.png>
+Package pdftex.def Info: ./images//2-1.png  used on input line 463.
+(pdftex.def)             Requested size: 100.48488pt x 76.1585pt.
+<./images//2-2-a.png, id=77, 332.74312pt x 252.19218pt>
+File: ./images//2-2-a.png Graphic file (type png)
+<use ./images//2-2-a.png>
+Package pdftex.def Info: ./images//2-2-a.png  used on input line 486.
+(pdftex.def)             Requested size: 120.58308pt x 91.38942pt.
+<./images//2-2-b.png, id=78, 310.15875pt x 272.51813pt>
+File: ./images//2-2-b.png Graphic file (type png)
+<use ./images//2-2-b.png>
+Package pdftex.def Info: ./images//2-2-b.png  used on input line 493.
+(pdftex.def)             Requested size: 120.58308pt x 105.94897pt.
+<./images//2-2-c.png, id=79, 304.13625pt x 225.84375pt>
+File: ./images//2-2-c.png Graphic file (type png)
+<use ./images//2-2-c.png>
+Package pdftex.def Info: ./images//2-2-c.png  used on input line 500.
+(pdftex.def)             Requested size: 120.58308pt x 89.53984pt.
+<./images//2-2-d.png, id=80, 237.88875pt x 212.29312pt>
+File: ./images//2-2-d.png Graphic file (type png)
+<use ./images//2-2-d.png>
+Package pdftex.def Info: ./images//2-2-d.png  used on input line 507.
+(pdftex.def)             Requested size: 120.58308pt x 107.61047pt.
+<./images//2-2-e.png, id=81, 239.39438pt x 205.5178pt>
+File: ./images//2-2-e.png Graphic file (type png)
+<use ./images//2-2-e.png>
+Package pdftex.def Info: ./images//2-2-e.png  used on input line 514.
+(pdftex.def)             Requested size: 120.58308pt x 103.52068pt.
+<./images//2-2-f.png, id=82, 232.61906pt x 223.58531pt>
+File: ./images//2-2-f.png Graphic file (type png)
+<use ./images//2-2-f.png>
+Package pdftex.def Info: ./images//2-2-f.png  used on input line 521.
+(pdftex.def)             Requested size: 120.58308pt x 115.89998pt.
+<./images//2-2-g.png, id=83, 195.73125pt x 199.49532pt>
+File: ./images//2-2-g.png Graphic file (type png)
+<use ./images//2-2-g.png>
+Package pdftex.def Info: ./images//2-2-g.png  used on input line 528.
+(pdftex.def)             Requested size: 120.58308pt x 122.90349pt.
 
-Package rerunfilecheck Warning: File `Homework-3.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
 
-Package rerunfilecheck Info: Checksums for `Homework-3.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[3
+
+ <./images//2-1.png>] [4 <./images//2-2-a.png> <./images//2-2-b.png> <./images//2-2-c.png> <./images//2-2-d.png> <./images//2-2-e.png> <./images//2-2-f.png> <./images//2-2-g.png>]
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
+(Font)              scaled to size 12.0pt on input line 553.
+<./images//3-1-a.png, id=105, 115.18031pt x 112.16907pt>
+File: ./images//3-1-a.png Graphic file (type png)
+<use ./images//3-1-a.png>
+Package pdftex.def Info: ./images//3-1-a.png  used on input line 558.
+(pdftex.def)             Requested size: 120.58308pt x 117.4301pt.
+<./images//3-1-b.png, id=106, 146.04562pt x 153.57375pt>
+File: ./images//3-1-b.png Graphic file (type png)
+<use ./images//3-1-b.png>
+Package pdftex.def Info: ./images//3-1-b.png  used on input line 565.
+(pdftex.def)             Requested size: 120.58308pt x 126.803pt.
+<./images//3-1-c.png, id=107, 201.75375pt x 179.92218pt>
+File: ./images//3-1-c.png Graphic file (type png)
+<use ./images//3-1-c.png>
+Package pdftex.def Info: ./images//3-1-c.png  used on input line 572.
+(pdftex.def)             Requested size: 120.58308pt x 107.53409pt.
+<./images//3-1-d.png, id=108, 259.7203pt x 227.34938pt>
+File: ./images//3-1-d.png Graphic file (type png)
+<use ./images//3-1-d.png>
+Package pdftex.def Info: ./images//3-1-d.png  used on input line 579.
+(pdftex.def)             Requested size: 120.58308pt x 105.55331pt.
+<./images//3-2-a.png, id=109, 261.22594pt x 246.1697pt>
+File: ./images//3-2-a.png Graphic file (type png)
+<use ./images//3-2-a.png>
+Package pdftex.def Info: ./images//3-2-a.png  used on input line 586.
+(pdftex.def)             Requested size: 120.58308pt x 113.63383pt.
+<./images//3-2-b.png, id=110, 284.56313pt x 272.51813pt>
+File: ./images//3-2-b.png Graphic file (type png)
+<use ./images//3-2-b.png>
+Package pdftex.def Info: ./images//3-2-b.png  used on input line 593.
+(pdftex.def)             Requested size: 120.58308pt x 115.47977pt.
+<./images//3-2-c.png, id=111, 322.20375pt x 257.46187pt>
+File: ./images//3-2-c.png Graphic file (type png)
+<use ./images//3-2-c.png>
+Package pdftex.def Info: ./images//3-2-c.png  used on input line 600.
+(pdftex.def)             Requested size: 120.58308pt x 96.35545pt.
+<./images//3-3-a.png, id=112, 414.79968pt x 311.66437pt>
+File: ./images//3-3-a.png Graphic file (type png)
+<use ./images//3-3-a.png>
+Package pdftex.def Info: ./images//3-3-a.png  used on input line 607.
+(pdftex.def)             Requested size: 120.58308pt x 90.5991pt.
+<./images//3-3-b.png, id=113, 414.79968pt x 311.66437pt>
+File: ./images//3-3-b.png Graphic file (type png)
+<use ./images//3-3-b.png>
+Package pdftex.def Info: ./images//3-3-b.png  used on input line 614.
+(pdftex.def)             Requested size: 120.58308pt x 90.5991pt.
+<./images//3-4-a.png, id=114, 428.35031pt x 344.03531pt>
+File: ./images//3-4-a.png Graphic file (type png)
+<use ./images//3-4-a.png>
+Package pdftex.def Info: ./images//3-4-a.png  used on input line 621.
+(pdftex.def)             Requested size: 120.58308pt x 96.84892pt.
+<./images//3-4-b.png, id=115, 428.35031pt x 344.03531pt>
+File: ./images//3-4-b.png Graphic file (type png)
+<use ./images//3-4-b.png>
+Package pdftex.def Info: ./images//3-4-b.png  used on input line 628.
+(pdftex.def)             Requested size: 120.58308pt x 96.84892pt.
+<./images//3-4-c.png, id=116, 461.47406pt x 274.77657pt>
+File: ./images//3-4-c.png Graphic file (type png)
+<use ./images//3-4-c.png>
+Package pdftex.def Info: ./images//3-4-c.png  used on input line 635.
+(pdftex.def)             Requested size: 120.58308pt x 71.7966pt.
+
+
+LaTeX Warning: Float too large for page by 35.08192pt on input line 641.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+\tf@thm=\write6
+\openout6 = `Homework-4.thm'.
+
+[5
+
+] [6 <./images//3-1-a.png> <./images//3-1-b.png> <./images//3-1-c.png> <./images//3-1-d.png> <./images//3-2-a.png> <./images//3-2-b.png> <./images//3-2-c.png> <./images//3-3-a.png> <./images//3-3-b.png> <./images//3-4-a.png> <./images//3-4-b.png> <./images//3-4-c.png>] (Homework-4.aux)
+Package rerunfilecheck Info: File `Homework-4.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 38720 strings out of 476404
- 791120 string characters out of 2786220
- 1853324 words of memory out of 3000000
- 58364 multiletter control sequences out of 15000+600000
- 594935 words of font info for 170 fonts, out of 8000000 for 9000
+ 39263 strings out of 476404
+ 801948 string characters out of 2786220
+ 1860324 words of memory out of 3000000
+ 58822 multiletter control sequences out of 15000+600000
+ 611928 words of font info for 213 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 101i,6n,131p,1009b,470s stack positions out of 10000i,1000n,20000p,200000b,80000s
-{C:/Users/Admin_Calvin/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/libertine/lbtn_nh77jq.enc}{C:/Users/Admin_Calvin/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/libertine/lbtn_76gpa5.enc}<C:/Users/Admin_Calvin/AppData/Local/Programs/MiKTeX/fonts/type1/public/libertine/LinLibertineT.pfb><C:/Users/Admin_Calvin/AppData/Local/Programs/MiKTeX/fonts/type1/public/libertine/LinLibertineTB.pfb>
-Output written on Homework-3.pdf (1 page, 178592 bytes).
+ 101i,8n,131p,1009b,1147s stack positions out of 10000i,1000n,20000p,200000b,80000s
+{C:/Users/Admin_Calvin/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/libertine/lbtn_7grukw.enc}{C:/Users/Admin_Calvin/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/libertine/lbtn_oexx6f.enc}{C:/Users/Admin_Calvin/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/libertine/lbtn_nh77jq.enc}{C:/Users/Admin_Calvin/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/libertine/lbtn_76gpa5.enc}<C:/Users/Admin_Calvin/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/LibertineMathMI.pfb><C:/Users/Admin_Calvin/AppData/Local/Programs/MiKTeX/fonts/type1/public/libertine/LinLibertineT.pfb><C:/Users/Admin_Calvin/AppData/Local/Programs/MiKTeX/fonts/type1/public/libertine/LinLibertineTB.pfb><C:/Users/Admin_Calvin/AppData/Local/Programs/MiKTeX/fonts/type1/public/libertine/LinLibertineTI.pfb>
+Output written on Homework-4.pdf (6 pages, 832974 bytes).
 PDF statistics:
- 62 PDF objects out of 1000 (max. 8388607)
- 2 named destinations out of 1000 (max. 500000)
- 45213 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 168 PDF objects out of 1000 (max. 8388607)
+ 16 named destinations out of 1000 (max. 500000)
+ 55598 words of extra memory for PDF output out of 61914 (max. 10000000)
 
